@@ -1,7 +1,6 @@
-# Angular/TypeScript Forms
+# Angular Architecture
 
-This code sample demonstrates how Angular template-driven forms and 
-reactive forms can be created and used.
+This code sample demonstrates different Angular Architecture concepts.
 
 ## Running the Application
 
