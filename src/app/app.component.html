@@ -1,0 +1,33 @@
+
+  <nav class="navbar navbar-default">
+    <div class="navbar-header">
+      <a href="#/"><img src="assets/angular.png" class="logo" /></a>
+    </div>
+    <ul class="nav navbar-nav nav-pills">
+      <li routerLinkActive="active">
+        <a routerLink="/planning">Planning</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/features-modules">Features/Modules</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/structuring-components">Components</a>
+      </li>
+      <li routerLinkActive="active">
+          <a routerLink="/communication">Communication</a>
+        </li>
+    </ul>
+    <strong *ngIf="customers" class="pull-right circle">
+        {{ customers.length }}
+    </strong>
+  </nav>
+
+
+  <strong *ngIf="customer" class="pull-right" style="padding-right: 10px;">
+      Current Customer: {{ customer.name }}
+  </strong>
+  
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  

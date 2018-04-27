@@ -1,0 +1,11 @@
+<h4>Customers</h4>
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+  </tr>
+  <tr *ngFor="let cust of customers" (click)="selectCustomer(cust)">
+    <td>{{ cust.name }}</td>
+  </tr>
+</table>
+<br />
+<div *ngFor="let msg of logMessages">{{ msg }}</div>

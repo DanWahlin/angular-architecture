@@ -1,0 +1,16 @@
+<h1>Container and Presentation Components</h1>
+<ul>
+    <li>Container components act as the "manager" for presentation components. Responsible for managing state.</li>
+    <li>Presentation components are handed state and are responsible for presenting/rendering it.</li>
+    <li>Recommending setting changeDetection to ChangeDetectionStrategy.OnPush</li>
+</ul>
+<br />
+
+<div class="row">
+    <div class="col-md-6">
+        <app-customers-list [customers]="customers" (customerSelected)="selected($event)"></app-customers-list>
+    </div>
+    <div class="col-md-6">
+        <app-customer-details [customer]="customer"></app-customer-details>
+    </div>
+</div>
