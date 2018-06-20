@@ -4,3 +4,9 @@ export interface ICustomer {
     city: string;
     age: number;
 }
+
+export interface IProduct {
+    id: number;
+    name: string;
+    price: number;
+}

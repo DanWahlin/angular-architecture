@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ICustomer } from '../../shared/interfaces';
+import { ICustomer, IProduct } from '../../shared/interfaces';
 import { ClonerService } from './cloner.service';
 import { Subject, BehaviorSubject } from 'rxjs';
 
@@ -31,12 +31,69 @@ export class DataService {
     }
   ];
 
+  products: IProduct[] =  [
+    {
+      id: 1,
+      name: 'Basketball',
+      price: 29.99
+    },
+    {
+      id: 2,
+      name: 'XBox',
+      price: 249.99
+    },
+    {
+      id: 3,
+      name: 'Nintendo Switch',
+      price: 249.99
+    },
+    {
+      id: 4,
+      name: 'Bat',
+      price: 29.99
+    },
+    {
+      id: 5,
+      name: 'Glove',
+      price: 29.99
+    },
+    {
+      id: 6,
+      name: 'Cell Phone',
+      price: 799.99
+    },
+    {
+      id: 7,
+      name: 'Cell Phone Service',
+      price: 49.99
+    },
+    {
+      id: 8,
+      name: 'Laptop',
+      price: 999.99
+    },
+    {
+      id: 9,
+      name: 'Bluetooth Speaker',
+      price: 69.99
+    },
+    {
+      id: 10,
+      name: 'TV',
+      price: 1599.99
+    }
+  ];
+
   customersSubject = new BehaviorSubject<ICustomer[]>(this.customers);
 
   constructor(private cloner: ClonerService) { }
 
   getCustomers() : Observable<ICustomer[]> {
     return of(this.customers);
+  }
+
+  getProducts() : Observable<IProduct[]> {
+    return of(this.products);
   }
 
   addCustomer() : Observable<ICustomer[]> {
