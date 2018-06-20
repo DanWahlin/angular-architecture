@@ -1,35 +1,27 @@
 <h1>Pipes versus Functions</h1>
 This example shows how using pipes (where possible) instead of functions in a template can enhance performance. See the console.
-<h3>Calling Functions from a Template</h3>
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th>Name</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of products$ | async">
-      <td>{{ product.name }}</td>
-      <td>{{ getTotalPrice(product.price) | currency }}</td>
-    </tr>
-  </tbody>
+<h3>Calling a Function from a Template</h3>
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Total</th>
+  </tr>
+  <tr *ngFor="let product of products$ | async">
+    <td>{{ product.name }}</td>
+    <td>{{ getTotalPrice(product.price) | currency }}</td>
+  </tr>
 </table>
 
-<br /><br />
-<h3>Using Pipes in a Template</h3>
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th>Name</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of products$ | async">
-      <td>{{ product.name }}</td>
-      <td>{{ product.price | addtax:product.price | currency }}</td>
-    </tr>
-  </tbody>
+<br />
+<br />
+<h3>Using a Pipe (and @memo() decorator) in a Template</h3>
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Total</th>
+  </tr>
+  <tr *ngFor="let product of products$ | async">
+    <td>{{ product.name }}</td>
+    <td>{{ product.price | addtax:product.price | currency }}</td>
+  </tr>
 </table>
-
