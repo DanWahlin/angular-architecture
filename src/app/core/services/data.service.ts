@@ -84,7 +84,8 @@ export class DataService {
     }
   ];
 
-  customersSubject = new BehaviorSubject<ICustomer[]>(this.customers);
+  private customersSubject$ = new BehaviorSubject<ICustomer[]>(this.customers);
+  customersChanged$ = this.customersSubject$.asObservable();
 
   constructor(private cloner: ClonerService) { }
 
@@ -104,6 +105,7 @@ export class DataService {
       city: 'Somewhere',
       age: id * 5
     });
+    this.customersSubject$.next(this.customers);
     return of(this.customers);
   }
 
