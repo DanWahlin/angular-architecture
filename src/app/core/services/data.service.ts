@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { ICustomer, IProduct } from '../../shared/interfaces';
 import { ClonerService } from './cloner.service';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class DataService {
