@@ -1,12 +1,13 @@
 <h1>Pipes versus Functions</h1>
 This example shows how using pipes (where possible) instead of functions in a template can enhance performance. See the console.
-
+<br /><br />
 <h4>Add Product</h4>
 Name: <input type="text" (input)="newProduct.name = $event.target.value" [value]="newProduct.name" /> 
 <br />
 Price: <input type="text" (input)="newProduct.price = $event.target.value" [value]="newProduct.price" /> 
 <br /><br />
 <button class="btn btn-primary" (click)="addProduct()">Add Product</button>
+<br />
 
 <h3>Calling a Function from a Template</h3>
 <table class="table table-striped">
