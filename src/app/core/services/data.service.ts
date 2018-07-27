@@ -117,4 +117,14 @@ export class DataService {
     )
   }
 
+  addProduct(newProduct: IProduct) {
+    console.log(newProduct.price);
+    this.products.push({
+      id: this.products.length,
+      name: newProduct.name,
+      price: +newProduct.price
+    });
+    return of(this.products);
+  }
+
 }

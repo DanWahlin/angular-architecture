@@ -12,6 +12,11 @@ import { IProduct } from '../shared/interfaces';
 export class PipesFunctionsComponent implements OnInit {
   products$: Observable<IProduct[]>;
   tax = .08;
+  newProduct: IProduct = {
+    id: null,
+    name: '',
+    price: null
+  };
 
   constructor(private dataService: DataService) { }
 
@@ -22,6 +27,10 @@ export class PipesFunctionsComponent implements OnInit {
   getTotalPrice(price: number) {
     console.log('totalPrice() function called');
     return price + (price * this.tax);
+  }
+
+  addProduct() {
+    this.products$ = this.dataService.addProduct(this.newProduct);
   }
 
 }

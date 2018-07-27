@@ -1,9 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import memo from 'memo-decorator';
 
 @Pipe({
-  name: 'addtax'
+  name: 'addtaxmemo'
 })
-export class AddTaxPipe implements PipeTransform {
+export class AddTaxMemoPipe implements PipeTransform {
+  @memo()
   transform(price: number): number {
     if (price) {
       return this.getTotalPrice(price);
@@ -12,7 +14,7 @@ export class AddTaxPipe implements PipeTransform {
   }
 
   getTotalPrice(price: number) {
-    console.log('addtax pipe called');
+    console.log('addtaxmemo pipe called');
     let total = price + (price * .08);
     return total;
   }
