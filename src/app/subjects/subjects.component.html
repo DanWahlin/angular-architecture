@@ -1,0 +1,37 @@
+<h1>Using RxJS Subjects</h1>
+All of the functionality for this demo is in core/data.service.ts and app.component.ts. Click Start to begin.
+<br /><br />
+
+<button (click)="start()">Start</button>
+
+<h2 class="status">Status: {{ status }}</h2>
+
+<h3>Subject Observable Data</h3>
+<ul>
+  <li *ngFor="let data of subjectObservableData">{{ data.length }}</li>
+</ul>
+
+<br />
+<h3>BehaviorSubject Observable Data</h3>
+Note how this picks up the last value emitted event though it subscribed after the value was sent out. That's because BehaviorSubject allows an initial value to be sent to an observer as they subscribe.
+<br />
+<ul>
+  <li *ngFor="let data of behaviorSubjectObservableData">{{ data.length }}</li>
+</ul>
+
+<br />
+<h3>ReplaySubject Observable Data</h3>
+Note how this stays in sync with everything above even though it subscribes 10 seconds after the subject. That's because it's replaying everything up to that point from a cache it maintains.
+<br />
+<ul>
+  <li *ngFor="let data of replaySubjectObservableData">{{ data.length }}</li>
+</ul>
+
+<br />
+<h3>AsyncSubject Observable Data</h3>
+This only plays the last item before it completes - nothing before that. It "completes" in the data service once the customers array length is greater than 10. 
+<br />
+<ul>
+  <li *ngFor="let data of asyncSubjectObservableData">{{ data.length }}</li>
+</ul>
+<br /><br />
