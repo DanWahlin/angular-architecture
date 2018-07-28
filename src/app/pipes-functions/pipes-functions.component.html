@@ -29,7 +29,7 @@ Price: <input type="text" (input)="newProduct.price = $event.target.value" [valu
   </tr>
   <tr *ngFor="let product of products$ | async">
     <td>{{ product.name }}</td>
-    <td>{{ product.price | addtax:product.price | currency }}</td>
+    <td>{{ product.price | addtax | currency }}</td>
   </tr>
 </table>
 
@@ -41,6 +41,6 @@ Price: <input type="text" (input)="newProduct.price = $event.target.value" [valu
   </tr>
   <tr *ngFor="let product of products$ | async">
     <td>{{ product.name }}</td>
-    <td>{{ product.price | addtaxmemo:product.price | currency }}</td>
+    <td>{{ product.price | addtaxmemo | currency }}</td>
   </tr>
 </table>
