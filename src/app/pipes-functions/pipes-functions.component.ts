@@ -24,8 +24,8 @@ export class PipesFunctionsComponent implements OnInit {
     this.products$ = this.dataService.getProducts();
   }
 
-  getTotalPrice(price: number) {
-    console.log('totalPrice() function called');
+  addTax(price: number) {
+    console.log('addTax() function called');
     return price + (price * this.tax);
   }
 
