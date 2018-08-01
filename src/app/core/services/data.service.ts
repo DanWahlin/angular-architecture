@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ICustomer, IProduct } from '../../shared/interfaces';
 import { ClonerService } from './cloner.service';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class DataService {

@@ -4,7 +4,9 @@ import { EventBusService, Events } from './core/services/event-bus.service';
 import { ICustomer } from './shared/interfaces';
 import { Subscription } from 'rxjs';
 import { DataService } from './core/services/data.service';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
+@AutoUnsubscribe()
 @Component({ 
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,8 +29,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.eventbusSub.unsubscribe();
-    this.customersChangedSub.unsubscribe();
+    // AutoUnsubscribe decorator above makes these calls unnecessary
+    // this.eventbusSub.unsubscribe();
+    // this.customersChangedSub.unsubscribe();
   }
   
 }
