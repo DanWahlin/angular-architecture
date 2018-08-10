@@ -1,0 +1,14 @@
+League: 
+<select [value]="league" (change)="league = $event.target.value">
+  <option>League A</option>
+  <option>League B</option>
+</select>
+
+<br /><br />
+
+<div *ngFor="let team of teams">
+  <!-- {{ team.name }} {{ winPercentage(team) | percent }} -->
+  {{ team.name }} {{ team | winPercentage | percent }}
+</div>
+
+
