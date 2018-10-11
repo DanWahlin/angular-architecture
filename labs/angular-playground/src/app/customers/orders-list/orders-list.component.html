@@ -1,0 +1,10 @@
+<table class="table table-striped">
+  <tr>
+    <th>Product</th>
+    <th>Price</th>
+  </tr>
+  <tr *ngFor="let order of orders">
+    <td>{{ order.name }}</td>
+    <td>{{ order.price }}</td>
+  </tr>
+</table>

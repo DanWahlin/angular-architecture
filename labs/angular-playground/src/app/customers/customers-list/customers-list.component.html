@@ -1,0 +1,13 @@
+<table *ngIf="customers" class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>City</th>
+  </tr>
+  <tr *ngFor="let cust of customers">
+    <td>{{ cust.name }}</td>
+    <td>{{ cust.city }}</td>
+  </tr>
+</table>
+<div *ngIf="!customers" [ngClass]="customersClass">
+  No customers found
+</div>
