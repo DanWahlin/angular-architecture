@@ -1,0 +1,12 @@
+<h1>Customers</h1>
+<ul *ngIf="customers">
+  <li *ngFor="let cust of customers">{{ cust.name }} {{ cust.orderTotalWithTax | currency}}</li>
+</ul>
+
+<br /><br />
+
+<ul>
+    <li *ngFor="let msg of logMessages">
+        {{ msg.title }} {{ msg.value | json }}
+    </li>
+</ul>

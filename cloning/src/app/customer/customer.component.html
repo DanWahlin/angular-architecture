@@ -1,0 +1,7 @@
+<h1>Customers</h1>
+<h2 *ngIf="customer">{{ customer.name }}</h2>
+<!-- <button (click)="getCustomer()">Get Customer</button> -->
+<br />
+<app-customer-details [customer]="customer" (customerChanged)="changed($event)"></app-customer-details>
+<br /><br />
+<app-customer-list [customers]="customers"></app-customer-list>

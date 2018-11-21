@@ -1,0 +1,20 @@
+<div *ngIf="customer">
+    Name: <input type="text" [value]="customer.name" 
+        (input)="customer.name=$event.target.value">
+    <br />
+    City: <input type="text" [value]="customer.address.city" 
+        (input)="customer.address.city=$event.target.value">
+    <br />
+    Order Total: <input type="text" [value]="customer.orderTotal" 
+        (input)="customer.orderTotal=$event.target.value">
+    <br />
+    Order Total (with tax): {{ customer.orderTotalWithTax | currency }}
+    <br /><br />
+    <button (click)="change()">Update Customer</button>
+    <br /><br />
+    <ul>
+        <li *ngFor="let msg of logMessages">
+            {{ msg.title }} {{ msg.value | json }}
+        </li>
+    </ul>
+</div>
