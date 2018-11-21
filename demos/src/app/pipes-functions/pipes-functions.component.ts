@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DataService } from '../core/services/data.service';
-import { IProduct } from '../shared/interfaces';
+import { Product } from '../shared/interfaces';
 
 @Component({
   selector: 'app-pipes-functions',
@@ -10,9 +10,9 @@ import { IProduct } from '../shared/interfaces';
   styles: []
 })
 export class PipesFunctionsComponent implements OnInit {
-  products$: Observable<IProduct[]>;
+  products$: Observable<Product[]>;
   tax = .08;
-  newProduct: IProduct = {
+  newProduct: Product = {
     id: null,
     name: '',
     price: null

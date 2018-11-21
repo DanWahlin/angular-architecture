@@ -1,11 +1,11 @@
-export interface ICustomer {
+export interface Customer {
     id: number;
     name: string;
     city: string;
     age: number;
 }
 
-export interface IProduct {
+export interface Product {
     id: number;
     name: string;
     price: number;

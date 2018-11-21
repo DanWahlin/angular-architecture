@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ICustomer } from '../shared/interfaces';
+import { Customer } from '../shared/interfaces';
 import { DataService } from '../core/services/data.service';
 
 @Component({
@@ -9,17 +9,17 @@ import { DataService } from '../core/services/data.service';
 })
 export class StructuringComponentsComponent implements OnInit {
 
-  customers: ICustomer[] = [];
-  customer: ICustomer;
+  customers: Customer[] = [];
+  customer: Customer;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.dataService.getCustomers()
-        .subscribe((custs: ICustomer[]) => this.customers = custs);
+        .subscribe((custs: Customer[]) => this.customers = custs);
   }
 
-  selected(cust: ICustomer) {
+  selected(cust: Customer) {
     this.customer = cust;
   }
 

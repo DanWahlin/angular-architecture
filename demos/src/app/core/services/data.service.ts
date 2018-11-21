@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ICustomer, IProduct } from '../../shared/interfaces';
+import { Customer, Product } from '../../shared/interfaces';
 import { ClonerService } from './cloner.service';
+import { List } from 'immutable';
 
 @Injectable()
 export class DataService {
 
-  customers: ICustomer[] = [
+  customers: Customer[] = [
     {
       id: 1,
       name: 'John Doe',
@@ -30,7 +31,7 @@ export class DataService {
     }
   ];
 
-  products: IProduct[] =  [
+  products: Product[] =  [
     {
       id: 1,
       name: 'Basketball',
@@ -83,20 +84,29 @@ export class DataService {
     }
   ];
 
-  private customersSubject$ = new BehaviorSubject<ICustomer[]>(this.customers);
+  immutableCustomers = List<Customer>();
+  immutableProducts = List<Product>();
+
+  private customersSubject$ = new BehaviorSubject<Customer[]>(this.customers);
   customersChanged$ = this.customersSubject$.asObservable();
 
   constructor(private cloner: ClonerService) { }
 
-  getCustomers() : Observable<ICustomer[]> {
+  getCustomers() : Observable<Customer[]> {
+    // Use the following code if using immutable.js
+    // return of(this.immutableCustomers.toJS());
+
     return of(this.customers);
   }
 
-  getProducts() : Observable<IProduct[]> {
+  getProducts() : Observable<Product[]> {
+    // Use this for immutable.js
+    // return of(this.immutableProducts.toJS());
+
     return of(this.products);
   }
 
-  addCustomer() : Observable<ICustomer[]> {
+  addCustomer() : Observable<Customer[]> {
     let id = this.customers[this.customers.length - 1].id + 1;
     this.customers.push({
       id: id,
@@ -108,7 +118,7 @@ export class DataService {
     return of(this.customers);
   }
 
-  addCustomerClone() : Observable<ICustomer[]> {
+  addCustomerClone() : Observable<Customer[]> {
     return this.addCustomer().pipe(
       map(custs => {
         return this.cloner.deepClone(custs);
@@ -116,7 +126,19 @@ export class DataService {
     )
   }
 
-  addProduct(newProduct: IProduct) {
+  addCustomerImmutable() : Observable<Customer[]> {
+    let id = this.immutableCustomers[this.immutableCustomers.size - 1].id + 1;
+    this.immutableCustomers.push({
+      id: id,
+      name: 'New Customer ' + id,
+      city: 'Somewhere',
+      age: id * 5
+    });
+    this.customersSubject$.next(this.customers);
+    return of(this.immutableCustomers.toJS());
+  }
+
+  addProduct(newProduct: Product) {
     this.products.push({
       id: this.products.length,
       name: newProduct.name,

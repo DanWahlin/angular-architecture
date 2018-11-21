@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { ICustomer } from '../../shared/interfaces';
+import { Customer } from '../../shared/interfaces';
 
 @Component({
   selector: 'app-customer-details',
@@ -8,7 +8,7 @@ import { ICustomer } from '../../shared/interfaces';
 })
 export class CustomerDetailsComponent implements OnInit {
 
-  @Input() customer: ICustomer;
+  @Input() customer: Customer;
 
   constructor() { }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EventBusService, Events } from './core/services/event-bus.service';
-import { ICustomer } from './shared/interfaces';
+import { Customer } from './shared/interfaces';
 import { Subscription } from 'rxjs';
 import { DataService } from './core/services/data.service';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
@@ -13,8 +13,8 @@ import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent implements OnInit { 
-  customers: ICustomer[];
-  customer: ICustomer;
+  customers: Customer[];
+  customer: Customer;
   eventbusSub: Subscription;
   customersChangedSub: Subscription;
   

@@ -9,6 +9,8 @@ import { CoreModule } from './core/core.module';
 import { CommunicationModule } from './communication/communication.module';
 import { PipesFunctionsModule } from './pipes-functions/pipes-functions.module';
 import { SubjectsModule } from './subjects/subjects.module';
+import { ComponentInheritanceComponent } from './component-inheritance/component-inheritance.component';
+import { ComponentInheritanceModule } from './component-inheritance/component-inheritance.module';
 
 @NgModule({
   imports: [ 
@@ -19,7 +21,8 @@ import { SubjectsModule } from './subjects/subjects.module';
     StructuringComponentsModule,
     PipesFunctionsModule,
     CommunicationModule,
-    SubjectsModule
+    SubjectsModule,
+    ComponentInheritanceModule
   ],
   declarations: [ AppComponent ],
   bootstrap:    [ AppComponent ]

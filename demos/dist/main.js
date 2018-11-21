@@ -25,14 +25,14 @@ function webpackAsyncContext(req) {
 	var ids = map[req];
 	if(!ids) {
 		return Promise.resolve().then(function() {
-			var e = new Error('Cannot find module "' + req + '".');
+			var e = new Error("Cannot find module '" + req + "'");
 			e.code = 'MODULE_NOT_FOUND';
 			throw e;
 		});
 	}
 	return __webpack_require__.e(ids[1]).then(function() {
-		var module = __webpack_require__(ids[0]);
-		return module;
+		var id = ids[0];
+		return __webpack_require__(id);
 	});
 }
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
@@ -90,7 +90,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".circle {\n    height:20px;\n    width:20px;\n    border-radius: 50px;\n    padding-left:6px;\n    background: red;\n    color: white;\n    margin-top: 15px;\n    margin-right: 10px;\n}"
+module.exports = ".circle {\n    height:20px;\n    width:20px;\n    border-radius: 50px;\n    padding-left:6px;\n    background: red;\n    color: white;\n    margin-top: 15px;\n    margin-right: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxZQUFZO0lBQ1osV0FBVztJQUNYLG9CQUFvQjtJQUNwQixpQkFBaUI7SUFDakIsZ0JBQWdCO0lBQ2hCLGFBQWE7SUFDYixpQkFBaUI7SUFDakIsbUJBQW1CO0NBQ3RCIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2lyY2xlIHtcbiAgICBoZWlnaHQ6MjBweDtcbiAgICB3aWR0aDoyMHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDUwcHg7XG4gICAgcGFkZGluZy1sZWZ0OjZweDtcbiAgICBiYWNrZ3JvdW5kOiByZWQ7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIG1hcmdpbi10b3A6IDE1cHg7XG4gICAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -101,7 +101,7 @@ module.exports = ".circle {\n    height:20px;\n    width:20px;\n    border-radiu
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n  <nav class=\"navbar navbar-default\">\n    <div class=\"navbar-header\">\n      <a href=\"#/\"><img src=\"assets/angular.png\" class=\"logo\" /></a>\n    </div>\n    <ul class=\"nav navbar-nav nav-pills\">\n      <li routerLinkActive=\"active\">\n        <a routerLink=\"/planning\">Planning</a>\n      </li>\n      <li routerLinkActive=\"active\">\n        <a routerLink=\"/features-modules\">Features/Modules</a>\n      </li>\n      <li routerLinkActive=\"active\">\n        <a routerLink=\"/structuring-components\">Components</a>\n      </li>\n      <li routerLinkActive=\"active\">\n          <a routerLink=\"/communication\">Communication</a>\n      </li>\n      <li routerLinkActive=\"active\">\n        <a routerLink=\"/pipes-functions\">Pipes/Functions</a>\n    </li>\n    </ul>\n    <strong *ngIf=\"customers\" class=\"pull-right circle\">\n        {{ customers.length }}\n    </strong>\n  </nav>\n\n\n  <strong *ngIf=\"customer\" class=\"pull-right\" style=\"padding-right: 10px;\">\n      Current Customer: {{ customer.name }}\n  </strong>\n  \n  <main>\n    <router-outlet></router-outlet>\n  </main>\n  \n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"navbar-header\">\n    <a href=\"#/\">\n      <img src=\"assets/angular.png\" class=\"logo\" />\n    </a>\n  </div>\n  <ul class=\"nav navbar-nav nav-pills\">\n    <li routerLinkActive=\"active\">\n      <a routerLink=\"/planning\">Planning</a>\n    </li>\n    <li routerLinkActive=\"active\">\n      <a routerLink=\"/features-modules\">Features/Modules</a>\n    </li>\n    <li routerLinkActive=\"active\">\n      <a routerLink=\"/structuring-components\">Components</a>\n    </li>\n    <li routerLinkActive=\"active\">\n      <a routerLink=\"/pipes-functions\">Pipes/Functions</a>\n    </li>\n    <li routerLinkActive=\"active\">\n      <a routerLink=\"/communication\">Communication</a>\n    </li>\n    <li routerLinkActive=\"active\">\n      <a routerLink=\"/subjects\">Subjects</a>\n    </li>\n  </ul>\n  <strong *ngIf=\"customers\" class=\"pull-right circle\">\n    {{ customers.length }}\n  </strong>\n</nav>\n\n\n<strong *ngIf=\"customer\" class=\"pull-right\" style=\"padding-right: 10px;\">\n  Current Customer: {{ customer.name }}\n</strong>\n\n<main>\n  <router-outlet></router-outlet>\n</main>"
 
 /***/ }),
 
@@ -118,6 +118,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _core_services_event_bus_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core/services/event-bus.service */ "./src/app/core/services/event-bus.service.ts");
 /* harmony import */ var _core_services_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./core/services/data.service */ "./src/app/core/services/data.service.ts");
+/* harmony import */ var ngx_auto_unsubscribe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-auto-unsubscribe */ "./node_modules/ngx-auto-unsubscribe/dist/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -127,6 +128,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -140,13 +142,15 @@ var AppComponent = /** @class */ (function () {
         //Example of using an event bus to provide loosely coupled communication (mediator pattern)
         this.eventbusSub = this.eventbus.on(_core_services_event_bus_service__WEBPACK_IMPORTED_MODULE_1__["Events"].CustomerSelected, (function (cust) { return _this.customer = cust; }));
         //Example of using BehaviorSubject to be notified when a service changes
-        this.dataServiceSub = this.dataService.customersChanged$.subscribe(function (custs) { return _this.customers = custs; });
+        this.customersChangedSub = this.dataService.customersChanged$.subscribe(function (custs) { return _this.customers = custs; });
     };
     AppComponent.prototype.ngOnDestroy = function () {
-        this.eventbusSub.unsubscribe();
-        this.dataServiceSub.unsubscribe();
+        // AutoUnsubscribe decorator above makes these calls unnecessary
+        // this.eventbusSub.unsubscribe();
+        // this.customersChangedSub.unsubscribe();
     };
     AppComponent = __decorate([
+        Object(ngx_auto_unsubscribe__WEBPACK_IMPORTED_MODULE_3__["AutoUnsubscribe"])(),
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
@@ -180,12 +184,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_core_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./core/core.module */ "./src/app/core/core.module.ts");
 /* harmony import */ var _communication_communication_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./communication/communication.module */ "./src/app/communication/communication.module.ts");
 /* harmony import */ var _pipes_functions_pipes_functions_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pipes-functions/pipes-functions.module */ "./src/app/pipes-functions/pipes-functions.module.ts");
+/* harmony import */ var _subjects_subjects_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./subjects/subjects.module */ "./src/app/subjects/subjects.module.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -207,7 +213,8 @@ var AppModule = /** @class */ (function () {
                 _planning_planning_module__WEBPACK_IMPORTED_MODULE_4__["PlanningModule"],
                 _structuring_components_structuring_components_module__WEBPACK_IMPORTED_MODULE_5__["StructuringComponentsModule"],
                 _pipes_functions_pipes_functions_module__WEBPACK_IMPORTED_MODULE_8__["PipesFunctionsModule"],
-                _communication_communication_module__WEBPACK_IMPORTED_MODULE_7__["CommunicationModule"]
+                _communication_communication_module__WEBPACK_IMPORTED_MODULE_7__["CommunicationModule"],
+                _subjects_subjects_module__WEBPACK_IMPORTED_MODULE_9__["SubjectsModule"]
             ],
             declarations: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
@@ -285,6 +292,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommunicationComponent", function() { return CommunicationComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _core_services_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/services/data.service */ "./src/app/core/services/data.service.ts");
+/* harmony import */ var subsink__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! subsink */ "./node_modules/subsink/dist/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -296,14 +304,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var CommunicationComponent = /** @class */ (function () {
     function CommunicationComponent(dataService) {
         this.dataService = dataService;
         this.customers = [];
+        this.subs = new subsink__WEBPACK_IMPORTED_MODULE_2__["SubSink"]();
     }
     CommunicationComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.dataService.getCustomers()
+        this.subs.sink = this.dataService.getCustomers()
             .subscribe(function (custs) { return _this.customers = custs; });
     };
     CommunicationComponent.prototype.selected = function (cust) {
@@ -318,6 +328,9 @@ var CommunicationComponent = /** @class */ (function () {
         var _this = this;
         this.dataService.addCustomerClone()
             .subscribe(function (custs) { return _this.customers = custs; });
+    };
+    CommunicationComponent.prototype.ngOnDestroy = function () {
+        this.subs.unsubscribe();
     };
     CommunicationComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -441,7 +454,7 @@ var CustomerDetailsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "tr {\n    cursor: pointer;\n}"
+module.exports = "tr {\n    cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tbXVuaWNhdGlvbi9jdXN0b21lcnMtbGlzdC9jdXN0b21lcnMtbGlzdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksZ0JBQWdCO0NBQ25CIiwiZmlsZSI6InNyYy9hcHAvY29tbXVuaWNhdGlvbi9jdXN0b21lcnMtbGlzdC9jdXN0b21lcnMtbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsidHIge1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn0iXX0= */"
 
 /***/ }),
 
@@ -576,6 +589,8 @@ var CoreModule = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClonerService", function() { return ClonerService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var clone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clone */ "./node_modules/clone/clone.js");
+/* harmony import */ var clone__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(clone__WEBPACK_IMPORTED_MODULE_1__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -583,88 +598,17 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
-// https://github.com/codeandcats/fast-clone/blob/master/index.js
+
 var ClonerService = /** @class */ (function () {
     function ClonerService() {
     }
     ClonerService.prototype.deepClone = function (value) {
-        var type = typeof value;
-        switch (type) {
-            case 'object':
-                // null and undefined
-                if (value == null) {
-                    return value;
-                }
-                var result = void 0;
-                if (value instanceof Date) {
-                    result = new Date();
-                    result.setTime(value.getTime());
-                    return result;
-                }
-                else if (value instanceof RegExp) {
-                    result = this.newRegExp(value);
-                    return result;
-                }
-                result = JSON.parse(JSON.stringify(value));
-                this.fixTypes(value, result);
-                return result;
-            default:
-                return value;
-        }
-    };
-    ClonerService.prototype.fixPropertyValue = function (original, copy, key) {
-        var originalValue = original[key];
-        var originalType = typeof originalValue;
-        switch (originalType) {
-            case 'object':
-                if (originalValue instanceof Date) {
-                    var newValue = new Date();
-                    newValue.setTime(originalValue.getTime());
-                    copy[key] = newValue;
-                }
-                else if (originalValue instanceof RegExp) {
-                    copy[key] = this.newRegExp(originalValue);
-                }
-                else if (originalValue == null) {
-                    copy[key] = originalValue;
-                }
-                else {
-                    this.fixTypes(originalValue, copy[key]);
-                }
-                break;
-            case 'number':
-                if (isNaN(originalValue)) {
-                    copy[key] = NaN;
-                }
-                else if (originalValue === Infinity) {
-                    copy[key] = Infinity;
-                }
-                break;
-            default:
-                break;
-        }
-    };
-    ClonerService.prototype.fixTypes = function (original, copy) {
-        var _this = this;
-        if (original instanceof Array) {
-            for (var index = 0; index < original.length; index++) {
-                this.fixPropertyValue(original, copy, index);
-            }
-        }
-        else {
-            var keys = Object.getOwnPropertyNames(original);
-            keys.forEach(function (key) {
-                _this.fixPropertyValue(original, copy, key);
-            });
-        }
-    };
-    ClonerService.prototype.newRegExp = function (value) {
-        var regexpText = String(value);
-        var slashIndex = regexpText.lastIndexOf('/');
-        return new RegExp(regexpText.slice(1, slashIndex), regexpText.slice(slashIndex + 1));
+        return clone__WEBPACK_IMPORTED_MODULE_1__(value);
     };
     ClonerService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        })
     ], ClonerService);
     return ClonerService;
 }());
@@ -687,6 +631,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _cloner_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./cloner.service */ "./src/app/core/services/cloner.service.ts");
+/* harmony import */ var immutable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! immutable */ "./node_modules/immutable/dist/immutable.es.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -776,13 +721,19 @@ var DataService = /** @class */ (function () {
                 price: 1599.99
             }
         ];
+        this.immutableCustomers = Object(immutable__WEBPACK_IMPORTED_MODULE_4__["List"])();
+        this.immutableProducts = Object(immutable__WEBPACK_IMPORTED_MODULE_4__["List"])();
         this.customersSubject$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](this.customers);
         this.customersChanged$ = this.customersSubject$.asObservable();
     }
     DataService.prototype.getCustomers = function () {
+        // Use the following code if using immutable.js
+        // return of(this.immutableCustomers.toJS());
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.customers);
     };
     DataService.prototype.getProducts = function () {
+        // Use this for immutable.js
+        // return of(this.immutableProducts.toJS());
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.products);
     };
     DataService.prototype.addCustomer = function () {
@@ -801,6 +752,25 @@ var DataService = /** @class */ (function () {
         return this.addCustomer().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (custs) {
             return _this.cloner.deepClone(custs);
         }));
+    };
+    DataService.prototype.addCustomerImmutable = function () {
+        var id = this.immutableCustomers[this.immutableCustomers.size - 1].id + 1;
+        this.immutableCustomers.push({
+            id: id,
+            name: 'New Customer ' + id,
+            city: 'Somewhere',
+            age: id * 5
+        });
+        this.customersSubject$.next(this.customers);
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.immutableCustomers.toJS());
+    };
+    DataService.prototype.addProduct = function (newProduct) {
+        this.products.push({
+            id: this.products.length,
+            name: newProduct.name,
+            price: +newProduct.price
+        });
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.products);
     };
     DataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
@@ -879,6 +849,78 @@ var Events;
 
 /***/ }),
 
+/***/ "./src/app/core/services/subject.service.ts":
+/*!**************************************************!*\
+  !*** ./src/app/core/services/subject.service.ts ***!
+  \**************************************************/
+/*! exports provided: SubjectService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SubjectService", function() { return SubjectService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var SubjectService = /** @class */ (function () {
+    function SubjectService() {
+        this.customers = [];
+        this.intervalIds = [];
+    }
+    SubjectService.prototype.start = function () {
+        var _this = this;
+        this.initSubjects();
+        // simulate array getting new data from a data source
+        var intervalId = setInterval(function () {
+            var len = _this.customers.length;
+            _this.customers.push({
+                name: 'Customers ' + len,
+                city: 'City ' + len
+            });
+            var clone = JSON.parse(JSON.stringify(_this.customers));
+            _this.subject$.next(clone);
+            _this.behaviorSubject$.next(clone);
+            _this.replaySubject$.next(clone);
+            _this.asyncSubject$.next(clone);
+            if (_this.customers.length > 10) {
+                _this.asyncSubject$.complete();
+            }
+        }, 3000);
+        this.intervalIds.push(intervalId);
+    };
+    SubjectService.prototype.initSubjects = function () {
+        this.subject$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
+        this.subjectObservable$ = this.subject$.asObservable();
+        this.behaviorSubject$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](this.customers);
+        this.behaviorSubjectObservable$ = this.behaviorSubject$.asObservable();
+        this.replaySubject$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["ReplaySubject"]();
+        this.replaySubjectObservable$ = this.replaySubject$.asObservable();
+        this.asyncSubject$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["AsyncSubject"]();
+        this.asyncSubjectObservable$ = this.asyncSubject$.asObservable();
+    };
+    SubjectService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], SubjectService);
+    return SubjectService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/pipes-functions/pipes-functions-routing.module.ts":
 /*!*******************************************************************!*\
   !*** ./src/app/pipes-functions/pipes-functions-routing.module.ts ***!
@@ -930,7 +972,7 @@ var PipesFunctionsRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Pipes versus Functions</h1>\nThis example shows how using pipes (where possible) instead of functions in a template can enhance performance. See the console.\n<h3>Calling a Function from a Template</h3>\n<table class=\"table table-striped\">\n  <tr>\n    <th>Name</th>\n    <th>Total</th>\n  </tr>\n  <tr *ngFor=\"let product of products$ | async\">\n    <td>{{ product.name }}</td>\n    <td>{{ getTotalPrice(product.price) | currency }}</td>\n  </tr>\n</table>\n\n<br />\n<br />\n<h3>Using a Pipe (and @memo() decorator) in a Template</h3>\n<table class=\"table table-striped\">\n  <tr>\n    <th>Name</th>\n    <th>Total</th>\n  </tr>\n  <tr *ngFor=\"let product of products$ | async\">\n    <td>{{ product.name }}</td>\n    <td>{{ product.price | addtax:product.price | currency }}</td>\n  </tr>\n</table>"
+module.exports = "<h1>Pipes versus Functions</h1>\nThis example shows how using pipes (where possible) instead of functions in a template can enhance performance. See the console.\n<br /><br />\n<h4>Add Product</h4>\nName: <input type=\"text\" (input)=\"newProduct.name = $event.target.value\" [value]=\"newProduct.name\" /> \n<br />\nPrice: <input type=\"text\" (input)=\"newProduct.price = $event.target.value\" [value]=\"newProduct.price\" /> \n<br /><br />\n<button class=\"btn btn-primary\" (click)=\"addProduct()\">Add Product</button>\n<br />\n\n<h3>Calling a Function from a Template</h3>\n<table class=\"table table-striped\">\n  <tr>\n    <th>Name</th>\n    <th>Total</th>\n  </tr>\n  <tr *ngFor=\"let product of products$ | async\">\n    <td>{{ product.name }}</td>\n    <td>{{ addTax(product.price) | currency }}</td>\n  </tr>\n</table>\n\n<h3>Using a Pipe in a Template</h3>\n<table class=\"table table-striped\">\n  <tr>\n    <th>Name</th>\n    <th>Total</th>\n  </tr>\n  <tr *ngFor=\"let product of products$ | async\">\n    <td>{{ product.name }}</td>\n    <td>{{ product.price | addtax | currency }}</td>\n  </tr>\n</table>\n\n<h3>Using a Pipe (and @memo() decorator) in a Template</h3>\n<table class=\"table table-striped\">\n  <tr>\n    <th>Name</th>\n    <th>Total</th>\n  </tr>\n  <tr *ngFor=\"let product of products$ | async\">\n    <td>{{ product.name }}</td>\n    <td>{{ product.price | addtaxmemo | currency }}</td>\n  </tr>\n</table>"
 
 /***/ }),
 
@@ -961,13 +1003,21 @@ var PipesFunctionsComponent = /** @class */ (function () {
     function PipesFunctionsComponent(dataService) {
         this.dataService = dataService;
         this.tax = .08;
+        this.newProduct = {
+            id: null,
+            name: '',
+            price: null
+        };
     }
     PipesFunctionsComponent.prototype.ngOnInit = function () {
         this.products$ = this.dataService.getProducts();
     };
-    PipesFunctionsComponent.prototype.getTotalPrice = function (price) {
-        console.log('totalPrice() function called');
+    PipesFunctionsComponent.prototype.addTax = function (price) {
+        console.log('addTax() function called');
         return price + (price * this.tax);
+    };
+    PipesFunctionsComponent.prototype.addProduct = function () {
+        this.products$ = this.dataService.addProduct(this.newProduct);
     };
     PipesFunctionsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1159,16 +1209,16 @@ var PlanningModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/shared/addtax.pipe.ts":
-/*!***************************************!*\
-  !*** ./src/app/shared/addtax.pipe.ts ***!
-  \***************************************/
-/*! exports provided: AddTaxPipe */
+/***/ "./src/app/shared/addtax-memo.pipe.ts":
+/*!********************************************!*\
+  !*** ./src/app/shared/addtax-memo.pipe.ts ***!
+  \********************************************/
+/*! exports provided: AddTaxMemoPipe */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddTaxPipe", function() { return AddTaxPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddTaxMemoPipe", function() { return AddTaxMemoPipe; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var memo_decorator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! memo-decorator */ "./node_modules/memo-decorator/index.js");
 /* harmony import */ var memo_decorator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(memo_decorator__WEBPACK_IMPORTED_MODULE_1__);
@@ -1183,26 +1233,70 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-function getTotalPrice(price) {
-    console.log('addtax pipe called');
-    var total = price + (price * .08);
-    return total;
-}
-var AddTaxPipe = /** @class */ (function () {
-    function AddTaxPipe() {
+var AddTaxMemoPipe = /** @class */ (function () {
+    function AddTaxMemoPipe() {
     }
-    AddTaxPipe.prototype.transform = function (price) {
+    AddTaxMemoPipe.prototype.transform = function (price) {
         if (price) {
-            return getTotalPrice(price);
+            return this.getTotalPrice(price);
         }
         return price;
+    };
+    AddTaxMemoPipe.prototype.getTotalPrice = function (price) {
+        console.log('addtaxmemo pipe called');
+        var total = price + (price * .08);
+        return total;
     };
     __decorate([
         memo_decorator__WEBPACK_IMPORTED_MODULE_1___default()(),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Number]),
         __metadata("design:returntype", Number)
-    ], AddTaxPipe.prototype, "transform", null);
+    ], AddTaxMemoPipe.prototype, "transform", null);
+    AddTaxMemoPipe = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
+            name: 'addtaxmemo'
+        })
+    ], AddTaxMemoPipe);
+    return AddTaxMemoPipe;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shared/addtax.pipe.ts":
+/*!***************************************!*\
+  !*** ./src/app/shared/addtax.pipe.ts ***!
+  \***************************************/
+/*! exports provided: AddTaxPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddTaxPipe", function() { return AddTaxPipe; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var AddTaxPipe = /** @class */ (function () {
+    function AddTaxPipe() {
+    }
+    AddTaxPipe.prototype.transform = function (price) {
+        if (price) {
+            return this.getTotalPrice(price);
+        }
+        return price;
+    };
+    AddTaxPipe.prototype.getTotalPrice = function (price) {
+        console.log('addtax pipe called');
+        var total = price + (price * .08);
+        return total;
+    };
     AddTaxPipe = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
             name: 'addtax'
@@ -1228,12 +1322,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _addtax_pipe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./addtax.pipe */ "./src/app/shared/addtax.pipe.ts");
+/* harmony import */ var _addtax_memo_pipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./addtax-memo.pipe */ "./src/app/shared/addtax-memo.pipe.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1245,8 +1341,8 @@ var SharedModule = /** @class */ (function () {
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]
             ],
-            exports: [_addtax_pipe__WEBPACK_IMPORTED_MODULE_2__["AddTaxPipe"]],
-            declarations: [_addtax_pipe__WEBPACK_IMPORTED_MODULE_2__["AddTaxPipe"]]
+            exports: [_addtax_pipe__WEBPACK_IMPORTED_MODULE_2__["AddTaxPipe"], _addtax_memo_pipe__WEBPACK_IMPORTED_MODULE_3__["AddTaxMemoPipe"]],
+            declarations: [_addtax_pipe__WEBPACK_IMPORTED_MODULE_2__["AddTaxPipe"], _addtax_memo_pipe__WEBPACK_IMPORTED_MODULE_3__["AddTaxMemoPipe"]]
         })
     ], SharedModule);
     return SharedModule;
@@ -1319,7 +1415,7 @@ var CustomerDetailsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "tr {\n    cursor: pointer;\n}"
+module.exports = "tr {\n    cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3RydWN0dXJpbmctY29tcG9uZW50cy9jdXN0b21lcnMtbGlzdC9jdXN0b21lcnMtbGlzdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksZ0JBQWdCO0NBQ25CIiwiZmlsZSI6InNyYy9hcHAvc3RydWN0dXJpbmctY29tcG9uZW50cy9jdXN0b21lcnMtbGlzdC9jdXN0b21lcnMtbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsidHIge1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn0iXX0= */"
 
 /***/ }),
 
@@ -1542,6 +1638,225 @@ var StructuringComponentsModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/subjects/subjects-routing.module.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/subjects/subjects-routing.module.ts ***!
+  \*****************************************************/
+/*! exports provided: SubjectsRoutingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SubjectsRoutingModule", function() { return SubjectsRoutingModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _subjects_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./subjects.component */ "./src/app/subjects/subjects.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var routes = [
+    { path: 'subjects', component: _subjects_component__WEBPACK_IMPORTED_MODULE_2__["SubjectsComponent"] }
+];
+var SubjectsRoutingModule = /** @class */ (function () {
+    function SubjectsRoutingModule() {
+    }
+    SubjectsRoutingModule.components = [_subjects_component__WEBPACK_IMPORTED_MODULE_2__["SubjectsComponent"]];
+    SubjectsRoutingModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild(routes)],
+            exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
+        })
+    ], SubjectsRoutingModule);
+    return SubjectsRoutingModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/subjects/subjects.component.html":
+/*!**************************************************!*\
+  !*** ./src/app/subjects/subjects.component.html ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>Using RxJS Subjects</h1>\nAll of the functionality for this demo is in core/data.service.ts and app.component.ts. Click Start to begin.\n<br /><br />\n\n<button (click)=\"start()\">Start</button>\n\n<h2 class=\"status\">Status: {{ status }}</h2>\n\n<h3>Subject Observable Data</h3>\n<ul>\n  <li *ngFor=\"let data of subjectObservableData\">{{ data.length }}</li>\n</ul>\n\n<br />\n<h3>BehaviorSubject Observable Data</h3>\nNote how this picks up the last value emitted event though it subscribed after the value was sent out. That's because BehaviorSubject allows an initial value to be sent to an observer as they subscribe.\n<br />\n<ul>\n  <li *ngFor=\"let data of behaviorSubjectObservableData\">{{ data.length }}</li>\n</ul>\n\n<br />\n<h3>ReplaySubject Observable Data</h3>\nNote how this stays in sync with everything above even though it subscribes 10 seconds after the subject. That's because it's replaying everything up to that point from a cache it maintains.\n<br />\n<ul>\n  <li *ngFor=\"let data of replaySubjectObservableData\">{{ data.length }}</li>\n</ul>\n\n<br />\n<h3>AsyncSubject Observable Data</h3>\nThis only plays the last item before it completes - nothing before that. It \"completes\" in the data service once the customers array length is greater than 10. \n<br />\n<ul>\n  <li *ngFor=\"let data of asyncSubjectObservableData\">{{ data.length }}</li>\n</ul>\n<br /><br />"
+
+/***/ }),
+
+/***/ "./src/app/subjects/subjects.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/subjects/subjects.component.ts ***!
+  \************************************************/
+/*! exports provided: SubjectsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SubjectsComponent", function() { return SubjectsComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _core_services_subject_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/services/subject.service */ "./src/app/core/services/subject.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var SubjectsComponent = /** @class */ (function () {
+    function SubjectsComponent(subjectService) {
+        this.subjectService = subjectService;
+        this.subjectObservableData = [];
+        this.behaviorSubjectObservableData = [];
+        this.replaySubjectObservableData = [];
+        this.asyncSubjectObservableData = [];
+        this.timeoutIds = [];
+    }
+    SubjectsComponent.prototype.ngOnInit = function () { };
+    SubjectsComponent.prototype.start = function () {
+        this.subjectService.start();
+        this.runAction('Calling SubjectService start()', null, null);
+        this.runAction('Subscribing to Subject', ActionType.subject, 2000);
+        this.runAction('Subscribing to BehaviorSubject (6 seconds after subject)', ActionType.behaviorSubject, 8000);
+        this.runAction('Subscribing to ReplaySubject (10 seconds after subject)', ActionType.replaySubject, 13000);
+        this.runAction('Subscribing to AsyncSubject (12 seconds after subject)', ActionType.asyncSubject, 15000);
+    };
+    SubjectsComponent.prototype.runAction = function (actionText, actionType, delay) {
+        var _this = this;
+        var action;
+        switch (actionType) {
+            case ActionType.subject:
+                action = function () {
+                    _this.subjectSub = _this.subjectService.subjectObservable$.subscribe(function (custs) {
+                        _this.subjectObservableData.push(custs);
+                    });
+                };
+                break;
+            case ActionType.behaviorSubject:
+                action = function () {
+                    _this.behaviorSub = _this.subjectService.behaviorSubjectObservable$.subscribe(function (custs) {
+                        _this.behaviorSubjectObservableData.push(custs);
+                    });
+                };
+                break;
+            case ActionType.replaySubject:
+                action = function () {
+                    _this.replaySub = _this.subjectService.replaySubjectObservable$.subscribe(function (custs) {
+                        _this.replaySubjectObservableData.push(custs);
+                    });
+                };
+                break;
+            case ActionType.asyncSubject:
+                action = function () {
+                    _this.asyncSub = _this.subjectService.asyncSubjectObservable$.subscribe(function (custs) {
+                        _this.asyncSubjectObservableData.push(custs);
+                    });
+                };
+                break;
+        }
+        // update status and perform action
+        var timeoutId = setTimeout(function () {
+            _this.status = actionText;
+            if (action) {
+                console.log('in');
+                action();
+            }
+        }, (delay) ? delay : 0);
+        this.timeoutIds.push(timeoutId);
+    };
+    SubjectsComponent.prototype.ngOnDestroy = function () {
+        if (this.subjectSub) {
+            this.subjectSub.unsubscribe();
+        }
+        if (this.behaviorSub) {
+            this.behaviorSub.unsubscribe();
+        }
+        if (this.replaySub) {
+            this.replaySub.unsubscribe();
+        }
+        if (this.asyncSub) {
+            this.asyncSub.unsubscribe();
+        }
+        for (var _i = 0, _a = this.timeoutIds; _i < _a.length; _i++) {
+            var id = _a[_i];
+            clearInterval(id);
+        }
+    };
+    SubjectsComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-subjects',
+            template: __webpack_require__(/*! ./subjects.component.html */ "./src/app/subjects/subjects.component.html"),
+            styles: ["\n    .status {\n      color: red;\n    }"
+            ]
+        }),
+        __metadata("design:paramtypes", [_core_services_subject_service__WEBPACK_IMPORTED_MODULE_1__["SubjectService"]])
+    ], SubjectsComponent);
+    return SubjectsComponent;
+}());
+
+var ActionType;
+(function (ActionType) {
+    ActionType[ActionType["subject"] = 0] = "subject";
+    ActionType[ActionType["behaviorSubject"] = 1] = "behaviorSubject";
+    ActionType[ActionType["replaySubject"] = 2] = "replaySubject";
+    ActionType[ActionType["asyncSubject"] = 3] = "asyncSubject";
+})(ActionType || (ActionType = {}));
+
+
+/***/ }),
+
+/***/ "./src/app/subjects/subjects.module.ts":
+/*!*********************************************!*\
+  !*** ./src/app/subjects/subjects.module.ts ***!
+  \*********************************************/
+/*! exports provided: SubjectsModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SubjectsModule", function() { return SubjectsModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _subjects_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./subjects-routing.module */ "./src/app/subjects/subjects-routing.module.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var SubjectsModule = /** @class */ (function () {
+    function SubjectsModule() {
+    }
+    SubjectsModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                _subjects_routing_module__WEBPACK_IMPORTED_MODULE_2__["SubjectsRoutingModule"]
+            ],
+            declarations: [_subjects_routing_module__WEBPACK_IMPORTED_MODULE_2__["SubjectsRoutingModule"].components]
+        })
+    ], SubjectsModule);
+    return SubjectsModule;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/environments/environment.ts":
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
@@ -1596,7 +1911,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/danwahlin/Dropbox/Projects/GitHub/Angular-Architecture/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/danwahlin/Dropbox/Projects/GitHub/Angular-Architecture/demos/src/main.ts */"./src/main.ts");
 
 
 /***/ })

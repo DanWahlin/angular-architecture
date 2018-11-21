@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { ICustomer } from '../shared/interfaces';
+import { Customer } from '../shared/interfaces';
 import { DataService } from '../core/services/data.service';
 import { SubSink } from 'subsink';
 
@@ -10,29 +10,29 @@ import { SubSink } from 'subsink';
 })
 export class CommunicationComponent implements OnInit, OnDestroy {
 
-  customers: ICustomer[] = [];
-  customer: ICustomer;
+  customers: Customer[] = [];
+  customer: Customer;
   private subs = new SubSink();
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.subs.sink = this.dataService.getCustomers()
-        .subscribe((custs: ICustomer[]) => this.customers = custs);
+        .subscribe((custs: Customer[]) => this.customers = custs);
   }
 
-  selected(cust: ICustomer) {
+  selected(cust: Customer) {
     this.customer = cust;
   }
 
   addCustomerPush() {
     this.dataService.addCustomer()
-        .subscribe((custs: ICustomer[]) => this.customers = custs);
+        .subscribe((custs: Customer[]) => this.customers = custs);
   }
 
   addCustomerClone() {
     this.dataService.addCustomerClone()
-        .subscribe((custs: ICustomer[]) => this.customers = custs);
+        .subscribe((custs: Customer[]) => this.customers = custs);
   }
 
   ngOnDestroy() {

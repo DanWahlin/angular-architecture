@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
-import { ICustomer } from '../../shared/interfaces';
+import { Customer } from '../../shared/interfaces';
 
 @Component({
   selector: 'app-customers-list',
@@ -8,8 +8,8 @@ import { ICustomer } from '../../shared/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomersListComponent implements OnInit {
-  @Input() customers: ICustomer[];
-  @Output() customerSelected = new EventEmitter<ICustomer>();
+  @Input() customers: Customer[];
+  @Output() customerSelected = new EventEmitter<Customer>();
   logMessages: string[] = [];
 
   constructor() { }
@@ -24,7 +24,7 @@ export class CustomersListComponent implements OnInit {
     }
   }
 
-  selectCustomer(cust: ICustomer) {
+  selectCustomer(cust: Customer) {
     this.customerSelected.emit(cust);
   }
 
