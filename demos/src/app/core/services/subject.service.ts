@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Subject, BehaviorSubject, ReplaySubject, AsyncSubject, Observable } from 'rxjs';
+import { Subject, BehaviorSubject, ReplaySubject, 
+         AsyncSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
