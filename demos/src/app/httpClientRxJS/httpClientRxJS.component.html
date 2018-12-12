@@ -1,0 +1,26 @@
+<h1>HttpClient and RxJS Operators</h1>
+
+This example shows how to use key RxJS operators such as map, tap, forkJoin, and switchMap.
+
+<h2>Characters</h2>
+<ul>
+  <li *ngFor="let char of data?.characters">
+    {{ char.name }}
+  </li>
+</ul>
+
+<h2>Planets</h2>
+<ul>
+  <li *ngFor="let planet of data?.planets">
+    {{ planet.name }}
+  </li>
+</ul>
+
+<br />
+<button (click)="showJSON = !showJSON">Show JSON</button>
+<pre *ngIf="showJSON">
+{{ data | json }}
+</pre>
+
+<pre>
+{{ charactersAndHomeworlds$ | async | json }}

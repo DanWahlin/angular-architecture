@@ -9,8 +9,8 @@ import { CoreModule } from './core/core.module';
 import { CommunicationModule } from './communication/communication.module';
 import { PipesFunctionsModule } from './pipes-functions/pipes-functions.module';
 import { SubjectsModule } from './subjects/subjects.module';
-import { ComponentInheritanceComponent } from './component-inheritance/component-inheritance.component';
 import { ComponentInheritanceModule } from './component-inheritance/component-inheritance.module';
+import { HttpClientRxJSModule } from './httpClientRxJS/httpClientRxJS.module';
 
 @NgModule({
   imports: [ 
@@ -22,7 +22,8 @@ import { ComponentInheritanceModule } from './component-inheritance/component-in
     PipesFunctionsModule,
     CommunicationModule,
     SubjectsModule,
-    ComponentInheritanceModule
+    ComponentInheritanceModule,
+    HttpClientRxJSModule
   ],
   declarations: [ AppComponent ],
   bootstrap:    [ AppComponent ]

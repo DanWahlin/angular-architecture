@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { DataService } from './services/data.service';
 import { ClonerService } from './services/cloner.service';
 import { EventBusService } from './services/event-bus.service';
+import { HttpClientRxJSService } from './services/httpClientRxJS.service';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [ HttpClientModule ],
   declarations: [],
-  providers: [ DataService, ClonerService, EventBusService ]
+  providers: [ DataService, ClonerService, EventBusService, HttpClientRxJSService ]
 })
 export class CoreModule { }
