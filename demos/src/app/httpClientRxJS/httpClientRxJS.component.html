@@ -18,7 +18,7 @@ This example shows how to use key RxJS operators such as map, tap, forkJoin, and
 
 <h2>People and Homeworlds</h2>
 <ul>
-  <li *ngFor="let char of charactersWithHomeworld | async">
+  <li *ngFor="let char of charactersWithHomeworld$ | async">
     <span *ngIf="char && char.homeworld">{{ char.name  }} ({{ char.homeworld.name }})</span>
   </li>
 </ul>

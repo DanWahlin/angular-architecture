@@ -12,7 +12,7 @@ export class HttpClientRxJSComponent implements OnInit  {
 
   characters$: Observable<any[]>;
   characterWithHomeworld$: Observable<{}>;
-  charactersWithHomeworld: Observable<any>;
+  charactersWithHomeworld$: Observable<any>;
   planets$: Observable<any[]>;
   charactersAndPlanets: { characters: any[], planets: any[]};
   showCharactersAndPlanetsJSON = false;
@@ -22,9 +22,6 @@ export class HttpClientRxJSComponent implements OnInit  {
   constructor(private dataService: HttpClientRxJSService) { }
 
   ngOnInit() {
-    // this.characters$ = this.dataService.getCharacters();
-    // this.planets$ = this.dataService.getPlanets();
-
     // Get both characters and planets at same time
     // Uses forkJoin
     this.dataService.getCharactersAndPlanets()
@@ -35,7 +32,7 @@ export class HttpClientRxJSComponent implements OnInit  {
     this.characterWithHomeworld$ = 
       this.dataService.getCharacterAndHomeworld();
 
-      this.charactersWithHomeworld = this.dataService.getCharactersAndHomeworlds();
+    this.charactersWithHomeworld$ = this.dataService.getCharactersAndHomeworlds();
   }
 
 }
