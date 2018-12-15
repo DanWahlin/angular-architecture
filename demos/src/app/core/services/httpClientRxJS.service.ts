@@ -28,13 +28,13 @@ export class HttpClientRxJSService {
   getPlanets() {
     return this.http.get(this.baseUrl + 'planets')
       .pipe(
-        tap(results => {
+        tap(res => {
           console.log('Before getPlanets map');
         }),
         map(res => {
           return res['results'];
         }),
-        tap(results => {
+        tap(res => {
           console.log('After getPlanets map');
         })
       );
@@ -63,7 +63,7 @@ export class HttpClientRxJSService {
     )
     .pipe(
       map((res) => {
-        return { characters: res[0], planets: res[1]}
+        return { characters: res[0], planets: res[1] };
       }),
       catchError(error => of(error))
     );
@@ -76,7 +76,7 @@ export class HttpClientRxJSService {
           // convert array to observable
           return from(res['results']);
         }),
-        mergeMap((person: any) => {
+        mergeMap((person: any) => { 
             return this.http.get(person['homeworld'])
               .pipe(
                 map(hw => {
@@ -101,8 +101,7 @@ export class HttpClientRxJSService {
                 return character;
               })
             )
-        }),
-
+        })
       );
   }
 
