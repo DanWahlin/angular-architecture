@@ -13,13 +13,13 @@ export class HttpClientRxJSService {
   getCharacters() {
     return this.http.get(this.baseUrl + 'people')
       .pipe(
-        tap(results => {
+        tap(res => {
           console.log('Before getCharacters map');
         }),
         map(res => {
           return res['results'];
         }),
-        tap(results => {
+        tap(res => {
           console.log('After getCharacters map');
         })
       );
