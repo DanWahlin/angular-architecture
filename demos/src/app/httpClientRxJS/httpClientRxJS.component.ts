@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { combineAll, concatMapTo, combineLatest, buffer } from 'rxjs/operators';
 import { HttpClientRxJSService } from '../core/services/httpClientRxJS.service';
 
 @Component({
@@ -10,10 +11,13 @@ import { HttpClientRxJSService } from '../core/services/httpClientRxJS.service';
 export class HttpClientRxJSComponent implements OnInit  {
 
   characters$: Observable<any[]>;
-  charactersAndHomeworlds$: Observable<{}>;
+  characterWithHomeworld$: Observable<{}>;
+  charactersWithHomeworld: Observable<any>;
   planets$: Observable<any[]>;
-  data: { characters: any[], planets: any[]};
-  showJSON = false;
+  charactersAndPlanets: { characters: any[], planets: any[]};
+  showCharactersAndPlanetsJSON = false;
+  showCharacterAndHomeworldJSON = false;
+  
 
   constructor(private dataService: HttpClientRxJSService) { }
 
@@ -21,11 +25,17 @@ export class HttpClientRxJSComponent implements OnInit  {
     // this.characters$ = this.dataService.getCharacters();
     // this.planets$ = this.dataService.getPlanets();
 
-    //Get both characters and planets at same time
+    // Get both characters and planets at same time
+    // Uses forkJoin
     this.dataService.getCharactersAndPlanets()
-      .subscribe(data => this.data = data);
-    this.charactersAndHomeworlds$ = 
+      .subscribe(data => this.charactersAndPlanets = data);
+
+    // Get character and its homeworld
+    // Uses switchMap
+    this.characterWithHomeworld$ = 
       this.dataService.getCharacterAndHomeworld();
+
+      this.charactersWithHomeworld = this.dataService.getCharactersAndHomeworlds();
   }
 
 }
