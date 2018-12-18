@@ -1,0 +1,20 @@
+<div class="control-panel">
+  <div class="button-panel">
+    <button mat-raised-button color="primary" type="button" (click)="getCustomers()" matTooltip="Refresh the customers">Refresh</button>
+    <button mat-raised-button color="primary" type="button" (click)="enableAddMode()" *ngIf="!selected" matTooltip="Add a new hero">Add</button>
+  </div>
+</div>
+<div class="content-container">
+  <div class="list-container">
+    <div *ngIf="customers$ | async as customers">
+      <mat-spinner *ngIf="loading$ | async;else customerList" mode="indeterminate" color="accent"></mat-spinner>
+      <ng-template #customerList>
+        <app-customer-list [customers]="customers" [selectedCustomer]="selected" [commands]="commands"></app-customer-list>
+      </ng-template>
+    </div>
+  </div>
+  <div class="detail-container">
+    <app-customer-detail *ngIf="selected" [hero]="selected" [commands]="commands">
+    </app-customer-detail>
+  </div>
+</div>
