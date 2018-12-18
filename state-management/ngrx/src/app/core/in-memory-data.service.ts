@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {
-  RequestInfo,
-  RequestInfoUtilities,
-  ParsedRequestUrl
-} from 'angular-in-memory-web-api';
-
+import { RequestInfo } from 'angular-in-memory-web-api';
 import { Customer } from './model/customer';
 import { Order } from './model/order';
 
@@ -27,18 +22,6 @@ export class InMemoryDataService {
   /** Create the in-memory database on start or by command */
   createDb(reqInfo?: RequestInfo) {
     this.db = getDbData();
-
-    if (reqInfo) {
-      const body = reqInfo.utils.getJsonBody(reqInfo.req) || {};
-      if (body.clear === true) {
-        // tslint:disable-next-line:forin
-        for (const coll in this.db) {
-          this.db[coll].length = 0;
-        }
-      }
-
-      this.active = !!body.active;
-    }
     return this.db;
   }
 
@@ -53,31 +36,6 @@ export class InMemoryDataService {
       collection.reduce((prev, cur) => Math.max(prev, cur.id || 0), this.maxId);
     return this.maxId;
   }
-
-  /**
-   * Override `parseRequestUrl`
-   * Manipulates the request URL or the parsed result.
-   * If in-mem is inactive, clear collectionName so that service passes request thru.
-   * If in-mem is active, after parsing with the default parser,
-   * @param url from request URL
-   * @param utils for manipulating parsed URL
-   */
-  parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
-    const parsed = utils.parseRequestUrl(url);
-    parsed.collectionName = this.active
-      ? mapCollectionName(parsed.collectionName)
-      : undefined;
-    return parsed;
-  }
-}
-
-function mapCollectionName(name: string): string {
-  return (
-    ({
-      customer: 'customers',
-      order: 'orders'
-    } as any)[name] || name
-  );
 }
 
 /**
