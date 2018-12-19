@@ -18,8 +18,7 @@ export class SorterService {
             if (prop && prop.indexOf('.') > -1) {
               aVal = this.resolveProperty(prop, a);
               bVal = this.resolveProperty(prop, b);
-            }
-            else {
+            } else {
               aVal = a[prop];
               bVal = b[prop];
             }
@@ -30,11 +29,9 @@ export class SorterService {
 
             if (aVal === bVal) {
                 return 0;
-            }
-            else if (aVal > bVal) {
+            } else if (aVal > bVal) {
                 return this.direction * -1;
-            }
-            else {
+            } else {
                 return this.direction * 1;
             }
         });

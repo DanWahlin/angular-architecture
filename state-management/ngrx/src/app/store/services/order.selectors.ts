@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Store, createSelector, createFeatureSelector } from '@ngrx/store';
+import { Store, createSelector, createFeatureSelector, select } from '@ngrx/store';
 
 import { EntityState } from '../reducers';
 import { OrderState } from '../reducers/order.reducer';
@@ -25,8 +25,7 @@ const getOrdersLoading = createSelector(
 @Injectable()
 export class OrderSelectors {
   constructor(private store: Store<EntityState>) {}
-  // selectors$
-  orders$ = this.store.select(getAllOrders);
-  orderState$ = this.store.select(getOrdersState);
-  loading$ = this.store.select(getOrdersLoading);
+  orders$ = this.store.pipe(select(getAllOrders));
+  orderState$ = this.store.pipe(select(getOrdersState));
+  loading$ = this.store.pipe(select(getOrdersLoading));
 }

@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-export const metaReducers: MetaReducer<any>[] = environment.production ? []: []; 
+export const metaReducers: MetaReducer<any>[] = environment.production ? [] : [];
 
 @NgModule({
   imports: [

@@ -18,7 +18,7 @@ export class OrdersComponent implements OnInit {
 
   constructor(private store: Store<EntityState>,
               private orderSelectors: OrderSelectors,
-              private route: ActivatedRoute) { 
+              private route: ActivatedRoute) {
       this.orders$ = this.orderSelectors.orders$;
       this.loading$ = this.orderSelectors.loading$;
    }

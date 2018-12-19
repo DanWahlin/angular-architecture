@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Customer } from '../../core/model/customer';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,13 +23,13 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
   customer: Customer;
   loading$: Observable<boolean>;
   sub: Subscription;
-  
+
   constructor(
       private store: Store<EntityState>,
       private customerSelectors: CustomerSelectors,
       private router: Router,
       private formBuilder: FormBuilder,
-      private route: ActivatedRoute) { 
+      private route: ActivatedRoute) {
         this.sub = this.customerSelectors.customer$.subscribe(cust => {
           if (cust) {
             this.customer = cust;
@@ -40,7 +40,7 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
       }
 
 
-  
+
   ngOnInit() {
       const id = +this.route.snapshot.paramMap.get('id');
       this.store.dispatch(new CustomerAction.GetCustomer(id));

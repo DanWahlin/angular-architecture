@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
 import { CustomersListComponent } from './customers-list/customers-list.component';
@@ -11,9 +9,7 @@ import { CustomersRoutingModule } from './customers-routing.module';
 import { CustomersEditComponent } from './customers-edit/customers-edit.component';
 
 @NgModule({
-    imports: [ CommonModule, FormsModule, SharedModule, CustomersRoutingModule ],
-    declarations: [ CustomersListComponent, FilterTextboxComponent,
-                    CustomersComponent,
-                    CustomersEditComponent]
+    imports: [ CommonModule, SharedModule, CustomersRoutingModule ],
+    declarations: [ CustomersListComponent, FilterTextboxComponent, CustomersComponent, CustomersEditComponent]
 })
 export class CustomersModule { }

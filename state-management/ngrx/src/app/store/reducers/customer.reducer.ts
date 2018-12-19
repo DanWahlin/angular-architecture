@@ -137,7 +137,7 @@ export function reducer(
 }
 
 function modifyCustomerState(customerState: CustomerState, customerChanges: Partial<Customer>): CustomerState {
-  
+
   return {
     ...customerState,
     loading: false,

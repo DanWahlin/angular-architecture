@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Store, createSelector, createFeatureSelector } from '@ngrx/store';
+import { Store, createSelector, createFeatureSelector, select } from '@ngrx/store';
 
 import { EntityState } from '../reducers';
 import { CustomerState } from '../reducers/customer.reducer';
@@ -31,9 +31,9 @@ export class CustomerSelectors {
 
   constructor(private store: Store<EntityState>) {}
 
-  customers$ = this.store.select(getAllCustomers);
-  customer$ = this.store.select(getCustomer);
-  customerState$ = this.store.select(getCustomerState);
-  loading$ = this.store.select(getCustomersLoading);
+  customers$ = this.store.pipe(select(getAllCustomers));
+  customer$ = this.store.pipe(select(getCustomer));
+  customerState$ = this.store.pipe(select(getCustomerState));
+  loading$ = this.store.pipe(select(getCustomersLoading));
 
 }

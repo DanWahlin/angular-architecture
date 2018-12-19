@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { concatMap, switchMap } from 'rxjs/operators';
@@ -16,11 +16,11 @@ export class CustomerEffects {
 
   @Effect()
   getCustomers$: Observable<Action> = this.actions$
-    .ofType(CustomerActions.GET_CUSTOMERS)
     .pipe(
+      ofType(CustomerActions.GET_CUSTOMERS),
       switchMap(() =>
         toAction(
-          this.CustomerDataService.getCustomers(),
+          this.customerDataService.getCustomers(),
           CustomerActions.GetCustomersSuccess,
           CustomerActions.GetCustomersError
         )
@@ -29,11 +29,11 @@ export class CustomerEffects {
 
     @Effect()
     getCustomer$: Observable<Action> = this.actions$
-      .ofType(CustomerActions.GET_CUSTOMER)
       .pipe(
+        ofType(CustomerActions.GET_CUSTOMER),
         switchMap((action: GetCustomerAction) =>
           toAction(
-            this.CustomerDataService.getCustomer(action.payload),
+            this.customerDataService.getCustomer(action.payload),
             CustomerActions.GetCustomerSuccess,
             CustomerActions.GetCustomerError
           )
@@ -42,11 +42,11 @@ export class CustomerEffects {
 
   @Effect()
   addCustomer$: Observable<Action> = this.actions$
-    .ofType(CustomerActions.ADD_CUSTOMER)
     .pipe(
+      ofType(CustomerActions.ADD_CUSTOMER),
       concatMap((action: CustomerAction) =>
         toAction(
-          this.CustomerDataService.addCustomer(action.payload),
+          this.customerDataService.addCustomer(action.payload),
           CustomerActions.AddCustomerSuccess,
           CustomerActions.AddCustomerError
         )
@@ -55,11 +55,11 @@ export class CustomerEffects {
 
   @Effect()
   deleteCustomer$: Observable<Action> = this.actions$
-    .ofType(CustomerActions.DELETE_CUSTOMER)
     .pipe(
+      ofType(CustomerActions.DELETE_CUSTOMER),
       concatMap((action: CustomerAction) =>
         toAction(
-          this.CustomerDataService.deleteCustomer(action.payload),
+          this.customerDataService.deleteCustomer(action.payload),
           CustomerActions.DeleteCustomerSuccess,
           CustomerActions.DeleteCustomerError
         )
@@ -68,11 +68,11 @@ export class CustomerEffects {
 
   @Effect()
   updateCustomer$: Observable<Action> = this.actions$
-    .ofType<CustomerActions.UpdateCustomer>(CustomerActions.UPDATE_CUSTOMER)
     .pipe(
+      ofType<CustomerActions.UpdateCustomer>(CustomerActions.UPDATE_CUSTOMER),
       concatMap((action: CustomerAction) =>
         toAction(
-          this.CustomerDataService.updateCustomer(action.payload),
+          this.customerDataService.updateCustomer(action.payload),
           CustomerActions.UpdateCustomerSuccess,
           CustomerActions.UpdateCustomerError
         )
@@ -80,8 +80,8 @@ export class CustomerEffects {
     );
 
   constructor(
-    private store: Store<EntityState>,
     private actions$: Actions,
-    private CustomerDataService: CustomerDataService
+    private customerDataService: CustomerDataService
   ) {}
+
 }
