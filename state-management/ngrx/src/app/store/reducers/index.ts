@@ -1,19 +1,19 @@
 import { ActionReducerMap } from '@ngrx/store';
 
-import * as fromActions from '../actions';
-import * as fromCustomers from './customer.reducer';
-import * as fromOrders from './order.reducer';
+import * as actions from '../actions';
+import * as customersReducers from './customer.reducer';
+import * as ordersReducers from './order.reducer';
 
-export type Action = fromActions.CustomerAction;
+export type Action = actions.CustomerAction;
 
 export interface EntityState {
-  customers: fromCustomers.CustomerState;
-  customer: fromCustomers.CustomerState;
-  orders: fromOrders.OrderState;
+  customers: customersReducers.CustomerState;
+  customer: customersReducers.CustomerState;
+  orders: ordersReducers.OrderState;
 }
 
 export const reducers: ActionReducerMap<EntityState> = {
-  customers: fromCustomers.reducer,
-  customer: fromCustomers.reducer,
-  orders: fromOrders.reducer
+  customers: customersReducers.reducer,
+  customer: customersReducers.reducer,
+  orders: ordersReducers.reducer
 };

@@ -5,7 +5,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { reducers } from './reducers';
-import { effects } from './effects';
+import { CustomerEffects } from './effects/customer.effects';
+import { OrderEffects } from './effects/order.effects';
 import { CustomerDataService, CustomerSelectors, OrderDataService, OrderSelectors } from './services';
 
 @NgModule({
@@ -13,7 +14,7 @@ import { CustomerDataService, CustomerSelectors, OrderDataService, OrderSelector
     CommonModule,
     HttpClientModule,
     StoreModule.forFeature('entityCache', reducers),
-    EffectsModule.forFeature(effects)
+    EffectsModule.forFeature([ CustomerEffects, OrderEffects ])
   ],
   providers: [
     CustomerDataService,

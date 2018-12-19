@@ -12,18 +12,6 @@ export const GET_ORDERS = '[Order] GET_ORDERS';
 export const GET_ORDERS_SUCCESS = '[Order] GET_ORDERS_SUCCESS';
 export const GET_ORDERS_ERROR = '[Order] GET_ORDERS_ERROR';
 
-// export const ADD_ORDER = '[Order] ADD_ORDER';
-// export const ADD_ORDER_ERROR = '[Order] ADD_ORDER_ERROR';
-// export const ADD_ORDER_SUCCESS = '[Order] ADD_ORDER_SUCCESS';
-
-// export const UPDATE_ORDER = '[Order] UPDATE_ORDER';
-// export const UPDATE_ORDER_SUCCESS = '[Order] UPDATE_ORDER_SUCCESS';
-// export const UPDATE_ORDER_ERROR = '[Order] UPDATE_ORDER_ERROR';
-
-// export const DELETE_ORDER = '[Order] DELETE_ORDER';
-// export const DELETE_ORDER_SUCCESS = '[Order] DELETE_ORDER_SUCCESS';
-// export const DELETE_ORDER_ERROR = '[Order] DELETE_ORDER_ERROR';
-
 export abstract class OrderAction implements DataAction<Order> {
   readonly type: string;
   constructor(public readonly payload: Order) {}
