@@ -62,55 +62,7 @@ export class GetOrderError extends OrderErrorAction {
   readonly type = GET_ORDER_ERROR;
 }
 
-// export class AddOrder extends OrderAction {
-//   readonly type = ADD_ORDER;
-// }
-
-// export class AddOrderSuccess extends OrderAction {
-//   readonly type = ADD_ORDER_SUCCESS;
-// }
-
-// export class AddOrderError extends OrderErrorAction {
-//   readonly type = ADD_ORDER_ERROR;
-// }
-
-// export class UpdateOrder extends OrderAction {
-//   readonly type = UPDATE_ORDER;
-// }
-
-// export class UpdateOrderSuccess extends OrderAction {
-//   readonly type = UPDATE_ORDER_SUCCESS;
-// }
-
-// export class UpdateOrderError extends OrderErrorAction {
-//   readonly type = UPDATE_ORDER_ERROR;
-// }
-
-// export class DeleteOrder extends OrderAction {
-//   readonly type = DELETE_ORDER;
-// }
-
-// export class DeleteOrderSuccess extends OrderAction {
-//   readonly type = DELETE_ORDER_SUCCESS;
-// }
-
-// export class DeleteOrderError extends OrderErrorAction {
-//   readonly type = DELETE_ORDER_ERROR;
-// }
-
 export type AllOrderActions =
   | GetOrders
   | GetOrdersSuccess
   | GetOrdersError;
-  // | GetOrder
-  // | GetOrderSuccess
-  // | GetOrderError
-  // | UpdateOrder
-  // | UpdateOrderSuccess
-  // | UpdateOrderError
-  // | AddOrder
-  // | AddOrderSuccess
-  // | AddOrderError
-  // | DeleteOrder
-  // | DeleteOrderSuccess
-  // | DeleteOrderError;
