@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action, Store } from '@ngrx/store';
+import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { concatMap, switchMap } from 'rxjs/operators';
 import * as CustomerActions from '../actions';
 import { CustomerDataService } from '../services';
-import { EntityState } from '../reducers';
 
 const toAction = CustomerActions.toAction();
 type CustomerAction = CustomerActions.CustomerAction;
