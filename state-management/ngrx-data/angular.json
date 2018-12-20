@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngrx-demo": {
+    "ngrx-data": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -20,11 +20,7 @@
               "includePaths": ["src/styles"]
             },
             "assets": ["src/assets", "src/favicon.ico"],
-            "styles": [
-              "src/styles/theme.scss",
-              "src/styles/mixin.scss",
-              "src/styles/styles.scss"
-            ],
+            "styles": [],
             "scripts": []
           },
           "configurations": {
@@ -50,18 +46,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngrx-demo:build"
+            "browserTarget": "ngrx-data:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngrx-demo:build:production"
+              "browserTarget": "ngrx-data:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngrx-demo:build"
+            "browserTarget": "ngrx-data:build"
           }
         },
         "test": {
@@ -89,7 +85,7 @@
         }
       }
     },
-    "ngrx-demo-e2e": {
+    "ngrx-data-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -98,7 +94,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "ngrx-demo:serve"
+            "devServerTarget": "ngrx-data:serve"
           }
         },
         "lint": {
@@ -111,7 +107,7 @@
       }
     }
   },
-  "defaultProject": "ngrx-demo",
+  "defaultProject": "ngrx-data",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",

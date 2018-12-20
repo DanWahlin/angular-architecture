@@ -15,7 +15,6 @@ export class CustomersComponent implements OnInit {
     loading$: Observable<boolean>;
 
     constructor(private customersService: CustomersService) {
-        this.customers$ = this.customersService.entities$;
         this.loading$ = this.customersService.loading$;
     }
 
@@ -24,19 +23,7 @@ export class CustomersComponent implements OnInit {
     }
 
     getCustomers() {
-        this.customersService.getAll();
-    }
-
-    add(customer: Customer) {
-        this.customersService.add(customer);
-    }
-
-    delete(customer: Customer) {
-        this.customersService.delete(customer);
-    }
-
-    update(customer: Customer) {
-        this.customersService.update(customer);
+        this.customers$ = this.customersService.getAll();
     }
 
 }

@@ -20,11 +20,7 @@
               "includePaths": ["src/styles"]
             },
             "assets": ["src/assets", "src/favicon.ico"],
-            "styles": [
-              "src/styles/theme.scss",
-              "src/styles/mixin.scss",
-              "src/styles/styles.scss"
-            ],
+            "styles": [],
             "scripts": []
           },
           "configurations": {
