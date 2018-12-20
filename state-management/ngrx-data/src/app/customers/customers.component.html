@@ -1,0 +1,5 @@
+<h1>{{ title }}</h1>
+<br />
+<div *ngIf="customers$ | async as customers">
+    <app-customers-list [customers]="customers"></app-customers-list>
+</div>

@@ -16,8 +16,8 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
 
   customerForm = this.formBuilder.group({
     id: [],
-    name: ['', Validators.required],
-    city: ['', Validators.required]
+    name: [ '', Validators.required ],
+    city: [ '', Validators.required ]
   });
 
   customer: Customer;
@@ -25,25 +25,25 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
   sub: Subscription;
 
   constructor(
-    private store: Store<EntityState>,
-    private customerSelectors: CustomerSelectors,
-    private router: Router,
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute) {
-    this.sub = this.customerSelectors.customer$.subscribe(cust => {
-      if (cust) {
-        this.customer = cust;
-        this.customerForm.patchValue(this.customer);
+      private store: Store<EntityState>,
+      private customerSelectors: CustomerSelectors,
+      private router: Router,
+      private formBuilder: FormBuilder,
+      private route: ActivatedRoute) {
+        this.sub = this.customerSelectors.customer$.subscribe(cust => {
+          if (cust) {
+            this.customer = cust;
+            this.customerForm.patchValue(this.customer);
+          }
+        });
+        this.loading$ = this.customerSelectors.loading$;
       }
-    });
-    this.loading$ = this.customerSelectors.loading$;
-  }
 
 
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.store.dispatch(new CustomerAction.GetCustomer(id));
+      const id = +this.route.snapshot.paramMap.get('id');
+      this.store.dispatch(new CustomerAction.GetCustomer(id));
   }
 
   submit() {
@@ -53,18 +53,6 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
       this.router.navigate(['/customers']);
     }
 
-  }
-
-  add(customer: Customer) {
-    this.store.dispatch(new CustomerAction.AddCustomer(customer));
-  }
-
-  delete(customer: Customer) {
-    this.store.dispatch(new CustomerAction.DeleteCustomer(customer));
-  }
-
-  update(customer: Customer) {
-    this.store.dispatch(new CustomerAction.UpdateCustomer(customer));
   }
 
   ngOnDestroy() {
