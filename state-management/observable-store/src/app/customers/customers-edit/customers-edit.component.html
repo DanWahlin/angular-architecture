@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>{{ this.customerForm.controls.name.value }}</h1>
+  <form [formGroup]="customerForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="name">Id</label>
+      <input type="text" class="form-control" formControlName="id" readonly />
+    </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" formControlName="name" />
+      <div class="alert alert-danger" [hidden]="!customer || customerForm.controls.name.valid">Name is required</div>
+    </div>
+    <div class="form-group">
+      <label for="alterEgo">City</label>
+      <input type="text" class="form-control" formControlName="city" />
+      <div class="alert alert-danger" [hidden]="!customer || customerForm.controls.city.valid">Alter Ego is required</div>
+    </div>
+    <button type="button" class="btn btn-danger" (click)="delete()" *ngIf="customer && customer.id">Delete</button>&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary" [disabled]="!customerForm.valid">Submit</button>
+  </form>
+  <br />
+  <a routerLink="/customers">View all customers</a>
+</div>
