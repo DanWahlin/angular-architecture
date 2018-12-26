@@ -2,23 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { ObservableStore } from '@codewithdan/observable-store';
 
 import { Order } from '../core/model';
-import { AppStore } from '../core/store/app.store';
+import { StoreState } from '../shared/interfaces';
 
 @Injectable({
     providedIn: 'root'
 })
-export class OrdersService {
-    ordersUrl = 'assets/orders.json';
+export class OrdersService extends ObservableStore<StoreState> {
 
-    constructor(private http: HttpClient, private store: AppStore) { }
+    apiUrl = 'assets/orders.json';
+
+    constructor(private http: HttpClient) { 
+        super({ trackStateHistory: true });
+     }
 
     private fetchOrders() {
-        return this.http.get<Order[]>(this.ordersUrl)
+        return this.http.get<Order[]>(this.apiUrl)
             .pipe(
                 map(orders => {
-                    this.store.setState({ orders }, OrdersStoreActions.GetOrders);
+                    this.setState({ orders }, OrdersStoreActions.GetOrders);
                     return orders;
                 }),
                 catchError(this.handleError)
@@ -26,7 +30,7 @@ export class OrdersService {
     }
 
     getAll() {
-        let state = this.store.getState();
+        let state = this.getState();
         // pull from store cache
         if (state && state.orders) {
             return of(state.orders);
@@ -38,7 +42,7 @@ export class OrdersService {
     }
 
     get(id: number) {
-        let state = this.store.getState();
+        let state = this.getState();
         // pull from store cache
         if (state && state.orders) {
             return of(this.filterOrders(id, state.orders));

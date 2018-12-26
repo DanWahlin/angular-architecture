@@ -2,24 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
+import { ObservableStore } from '@codewithdan/observable-store';
 
 import { Customer } from '../core/model';
-import { AppStore } from '../core/store/app.store';
+import { StoreState } from '../shared/interfaces';
 
 @Injectable({
     providedIn: 'root'
 })
-export class CustomersService {
+export class CustomersService extends ObservableStore<StoreState> {
 
     apiUrl = 'api/customers';
 
-    constructor(private http: HttpClient, private store: AppStore) {  }
+    constructor(private http: HttpClient) { 
+        super({ trackStateHistory: true });
+     }
 
     private fetchCustomers() {
         return this.http.get<Customer[]>(this.apiUrl)
             .pipe(
                 map(customers => {
-                    this.store.setState({ customers }, CustomersStoreActions.GetCustomers);
+                    this.setState({ customers }, CustomersStoreActions.GetCustomers);
                     return customers;
                 }),
                 catchError(this.handleError)
@@ -27,7 +30,7 @@ export class CustomersService {
     }
 
     getAll() {
-        const state = this.store.getState();
+        const state = this.getState();
         // pull from store cache
         if (state && state.customers) {
             return of(state.customers);
@@ -47,7 +50,7 @@ export class CustomersService {
                 map(custs => {
                     let filteredCusts = custs.filter(cust => cust.id === id);
                     const customer = (filteredCusts && filteredCusts.length) ? filteredCusts[0] : null;                
-                    this.store.setState({ customer }, CustomersStoreActions.GetCustomer);
+                    this.setState({ customer }, CustomersStoreActions.GetCustomer);
                     return customer;
                 }),
                 catchError(this.handleError)
