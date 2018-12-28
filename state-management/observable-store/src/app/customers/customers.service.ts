@@ -16,7 +16,7 @@ export class CustomersService extends ObservableStore<StoreState> {
 
     constructor(private http: HttpClient) { 
         super({ trackStateHistory: true });
-     }
+    }
 
     private fetchCustomers() {
         return this.http.get<Customer[]>(this.apiUrl)
@@ -33,6 +33,7 @@ export class CustomersService extends ObservableStore<StoreState> {
         const state = this.getState();
         // pull from store cache
         if (state && state.customers) {
+            console.log(this.stateHistory);
             return of(state.customers);
         }
         // doesn't exist in store so fetch from server
