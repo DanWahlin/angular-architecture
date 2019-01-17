@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AcmeSharedModule } from 'projects/acme-shared/src/public_api';
+import { AcmeSharedModule } from 'acme-shared';
 
 @NgModule({
   declarations: [
