@@ -1,0 +1,17 @@
+<div *ngIf="orders$ | async as orders">
+    <h1>Orders</h1>
+
+    <table class="table table-hover orders-table" 
+           *ngFor="let order of orders">
+        <tr *ngFor="let orderItem of order.orderItems">
+            <td>{{ orderItem.productName }}</td>
+            <td>{{ orderItem.itemCost | currency:'USD':'symbol' }}</td>    
+        </tr>
+    </table>
+</div>
+<div *ngIf="loading$ | async">
+    Loading...
+</div>
+<br />
+<a routerLink="/customers">View All Customers</a>
+

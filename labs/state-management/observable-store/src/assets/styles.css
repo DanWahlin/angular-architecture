@@ -1,0 +1,38 @@
+html {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+main {
+    position: relative;
+    padding-top: 70px;
+}
+
+/* Ensure display:flex and others don't override a [hidden] */
+[hidden] { display: none !important; }
+
+footer {
+    margin-top: 15px;
+}
+
+th {
+    cursor: pointer;
+}
+
+td {
+    width:33%;
+}
+
+.app-title {
+    line-height:50px;
+    font-size:20px;
+    color: white;
+}
+
+thead {
+    background-color: #efefef;
+}
+
+.white {
+    color: white;
+}
