@@ -11,8 +11,6 @@ export class ShoppingCartService {
   private shoppingCartSubject$ = new Subject<number>();
   shoppingCartChanged$ = this.shoppingCartSubject$.asObservable();
 
-  constructor() { }
-
   addToCart() {
     this.itemsInCart++;
     this.shoppingCartSubject$.next(this.itemsInCart);
