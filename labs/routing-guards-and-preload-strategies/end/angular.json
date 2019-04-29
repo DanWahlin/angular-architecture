@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "routing-guards": {
+    "routing-guards-and-preload-strategies": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/routing-guards",
+            "outputPath": "dist/routing-guards-and-preload-strategies",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -52,18 +52,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "routing-guards:build"
+            "browserTarget": "routing-guards-and-preload-strategies:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "routing-guards:build:production"
+              "browserTarget": "routing-guards-and-preload-strategies:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "routing-guards:build"
+            "browserTarget": "routing-guards-and-preload-strategies:build"
           }
         },
         "test": {
@@ -87,7 +87,7 @@
         }
       }
     },
-    "routing-guards-e2e": {
+    "routing-guards-and-preload-strategies-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -95,11 +95,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "routing-guards:serve"
+            "devServerTarget": "routing-guards-and-preload-strategies:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "routing-guards:serve:production"
+              "devServerTarget": "routing-guards-and-preload-strategies:serve:production"
             }
           }
         },
@@ -113,5 +113,5 @@
       }
     }
   },
-  "defaultProject": "routing-guards"
+  "defaultProject": "routing-guards-and-preload-strategies"
 }

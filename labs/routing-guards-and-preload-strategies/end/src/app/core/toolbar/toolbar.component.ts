@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
-  labTitle = 'routing-guards';
+  labTitle = 'routing-guards-and-preload-strategies';
   labState = 'end';
 }
