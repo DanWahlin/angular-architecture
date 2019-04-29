@@ -53,3 +53,5 @@ Notice the villains chunk loads but it does not get navigated in the UI.
 #### Step 6
 
 Bonus: How could we make the Villains module not load at all? Try it.
+
+Hint: Add the AuthGuard to the canLoad property of the villains route in AppRoutingModule.
