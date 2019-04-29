@@ -8,5 +8,15 @@
       "**/config/*.js": {
         "when": "$(basename).js.map"
       }
+    },
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#378fe7",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBar.inactiveForeground": "#e7e7e799",
+      "activityBarBadge.background": "#ab1460",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "statusBar.background": "#1976d2",
+      "statusBarItem.hoverBackground": "#378fe7",
+      "statusBar.foreground": "#e7e7e7"
     }
 }
