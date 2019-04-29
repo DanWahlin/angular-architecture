@@ -1,6 +1,6 @@
 # Routing Guards Lab
 
-## Lab 2: Routing Guards and Preload Strategies
+## Lab 3: Routing Guards and Preload Strategies
 
 This lab will walk you through adding preload strategies to help load your javascript files before a user needs them. It will also walk you through how to run logic before a route changes to allow or prevent navigation to a route.
 
@@ -32,7 +32,7 @@ In this exercise you'll prevent users from navigating to one of your routes (and
 
 Create a CanActivate routing guard in the CoreModule named AuthGuard using the CLI. (hint: `ng g g core/Auth`)
 
-### Step 2
+#### Step 2
 
 Use `a-guard-can-activate` snippet to replace the code in the new file, and name the class `AuthGuard`
 
