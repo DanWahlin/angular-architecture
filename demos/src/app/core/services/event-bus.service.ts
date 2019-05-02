@@ -5,7 +5,7 @@ import { filter, map } from 'rxjs/operators';
 @Injectable()
 export class EventBusService {
 
-    private subject = new Subject<any>();
+    private subject = new Subject();
 
     constructor() { }
 

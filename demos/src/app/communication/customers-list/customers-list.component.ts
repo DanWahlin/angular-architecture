@@ -8,16 +8,12 @@ import { EventBusService, EmitEvent, Events } from '../../core/services/event-bu
   styleUrls: [ './customers-list.component.css' ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomersListComponent implements OnInit {
+export class CustomersListComponent {
   @Input() customers: Customer[];
   @Output() customerSelected = new EventEmitter<Customer>();
   logMessages: string[] = [];
 
   constructor(private eventbus: EventBusService) { }
-
-  ngOnInit() {
-
-  }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
     if (simpleChanges['customers']) {

@@ -6,13 +6,8 @@ import { Customer } from '../../shared/interfaces';
   templateUrl: './customer-details.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomerDetailsComponent implements OnInit {
+export class CustomerDetailsComponent {
 
   @Input() customer: Customer;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }
