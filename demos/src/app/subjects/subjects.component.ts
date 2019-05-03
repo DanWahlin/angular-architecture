@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { Subscription } from 'rxjs';
 import { SubjectService } from '../core/services/subject.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-subjects',
@@ -19,11 +19,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   replaySubjectObservableData = [];
   asyncSubjectObservableData = [];
   timeoutIds = [];
-
-  subjectSub: Subscription;
-  behaviorSub: Subscription;
-  replaySub: Subscription;
-  asyncSub: Subscription;
+  subsink = new SubSink();
 
   constructor(private subjectService: SubjectService) { }
 
@@ -43,7 +39,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     switch (actionType) {
       case ActionType.subject:
         action = () => {
-          this.subjectSub = this.subjectService.subjectObservable$.subscribe(custs => {
+          this.subsink.sink = this.subjectService.subjectObservable$.subscribe(custs => {
             this.subjectObservableData.push(custs);
           })
         };
@@ -51,7 +47,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
 
       case ActionType.behaviorSubject:
         action = () => {
-          this.behaviorSub = this.subjectService.behaviorSubjectObservable$.subscribe(custs => {
+          this.subsink.sink = this.subjectService.behaviorSubjectObservable$.subscribe(custs => {
             this.behaviorSubjectObservableData.push(custs);
           })
         };
@@ -59,7 +55,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
 
       case ActionType.replaySubject:
         action = () => {
-          this.replaySub = this.subjectService.replaySubjectObservable$.subscribe(custs => {
+          this.subsink.sink = this.subjectService.replaySubjectObservable$.subscribe(custs => {
             this.replaySubjectObservableData.push(custs);
           })
         };
@@ -67,7 +63,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
 
       case ActionType.asyncSubject:
         action = () => {
-          this.asyncSub = this.subjectService.asyncSubjectObservable$.subscribe(custs => {
+          this.subsink.sink = this.subjectService.asyncSubjectObservable$.subscribe(custs => {
             this.asyncSubjectObservableData.push(custs);
           })
         };
@@ -86,18 +82,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.subjectSub) {
-      this.subjectSub.unsubscribe();
-    }
-    if (this.behaviorSub) {
-      this.behaviorSub.unsubscribe();
-    }
-    if (this.replaySub) {
-      this.replaySub.unsubscribe();
-    }
-    if (this.asyncSub) {
-      this.asyncSub.unsubscribe();
-    }
+    this.subsink.unsubscribe();
     for (let id of this.timeoutIds) {
       clearInterval(id);
     }

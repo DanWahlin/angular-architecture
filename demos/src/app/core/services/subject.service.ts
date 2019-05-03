@@ -40,7 +40,7 @@ export class SubjectService {
       this.replaySubject$.next(clone);
       this.asyncSubject$.next(clone);
 
-      if (this.customers.length > 10) {
+      if (this.customers.length > 5) {
         this.asyncSubject$.complete();
       }
     }, 3000);
