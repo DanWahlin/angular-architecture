@@ -5,12 +5,10 @@ import { filter, map } from 'rxjs/operators';
 @Injectable()
 export class EventBusService {
 
-    private subject = new Subject();
-
-    constructor() { }
+    private subject$ = new Subject();
 
     on(event: Events, action: any): Subscription {
-         return this.subject
+         return this.subject$
               .pipe(
                     filter((e: EmitEvent) => {
                       return e.name === event;
@@ -23,7 +21,7 @@ export class EventBusService {
     }
 
     emit(event: EmitEvent) {
-        this.subject.next(event);
+        this.subject$.next(event);
     }
 }
 
