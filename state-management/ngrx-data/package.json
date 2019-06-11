@@ -24,9 +24,9 @@
     "@ngrx/entity": "^6.1.2",
     "@ngrx/store": "^6.1.2",
     "@ngrx/store-devtools": "^6.1.2",
-    "angular-in-memory-web-api": "^0.7.0",
+    "angular-in-memory-web-api": "^0.8.0",
     "core-js": "^2.5.4",
-    "ngrx-data": "^6.1.0-beta.3",
+    "@ngrx/data": "^8.0.1",
     "rxjs": "^6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "^0.8.26"
