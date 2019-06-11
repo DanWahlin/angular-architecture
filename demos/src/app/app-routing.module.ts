@@ -6,7 +6,7 @@ import { FeaturesModulesComponent } from './features-modules/features-modules.co
 
 const routes: Routes = [
   { path: '', pathMatch:'full', redirectTo: '/planning' },
-  { path: 'features-modules', loadChildren: 'app/features-modules/features-modules.module#FeaturesModulesModule' }
+  { path: 'features-modules', loadChildren: () => import('app/features-modules/features-modules.module').then(m => m.FeaturesModulesModule) }
 ];
 
 @NgModule({
