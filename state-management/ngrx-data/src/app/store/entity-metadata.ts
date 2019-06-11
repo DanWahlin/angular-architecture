@@ -1,4 +1,4 @@
-import { EntityMetadataMap } from 'ngrx-data';
+import { EntityMetadataMap } from '@ngrx/data';
 
 const entityMetadata: EntityMetadataMap = {
   Customer: {},
