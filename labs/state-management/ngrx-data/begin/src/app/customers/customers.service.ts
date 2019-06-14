@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from 'ngrx-data';
+import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { Customer } from '../core/model/customer';
 
 @Injectable({ providedIn: 'root' })
