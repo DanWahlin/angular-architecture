@@ -10,17 +10,17 @@ export class SubjectService {
 
   customers = [];
   intervalIds = [];
-  private subject$: Subject<ICustomer>;
-  subjectObservable$: Observable<ICustomer>;
+  private subject$: Subject<ICustomer[]>;
+  subjectObservable$: Observable<ICustomer[]>;
 
   private behaviorSubject$;
-  behaviorSubjectObservable$: Observable<ICustomer>;
+  behaviorSubjectObservable$: Observable<ICustomer[]>;
 
-  private replaySubject$: ReplaySubject<ICustomer>;
-  replaySubjectObservable$: Observable<ICustomer>;
+  private replaySubject$: ReplaySubject<ICustomer[]>;
+  replaySubjectObservable$: Observable<ICustomer[]>;
 
-  private asyncSubject$: AsyncSubject<ICustomer>;
-  asyncSubjectObservable$: Observable<ICustomer>;
+  private asyncSubject$: AsyncSubject<ICustomer[]>;
+  asyncSubjectObservable$: Observable<ICustomer[]>;
 
   constructor() { }
 
@@ -34,7 +34,7 @@ export class SubjectService {
         name: 'Customers ' + len,
         city: 'City ' + len
       });
-      let clone = JSON.parse(JSON.stringify(this.customers));
+      let clone: ICustomer[] = JSON.parse(JSON.stringify(this.customers));
       this.subject$.next(clone);
       this.behaviorSubject$.next(clone);
       this.replaySubject$.next(clone);
