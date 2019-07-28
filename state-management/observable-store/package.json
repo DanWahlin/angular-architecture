@@ -19,7 +19,7 @@
     "@angular/platform-browser": "~8.0.0",
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
-    "@codewithdan/observable-store": "^1.0.20",
+    "@codewithdan/observable-store": "^1.0.22",
     "angular-in-memory-web-api": "^0.8.0",
     "core-js": "^2.5.4",
     "rxjs": "^6.3.3",
