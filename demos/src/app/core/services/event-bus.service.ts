@@ -12,14 +12,10 @@ export class EventBusService {
     on(event: Events, action: any): Subscription {
          return this.subject$
               .pipe(
-                    filter((e: EmitEvent) => {
-                      return e.name === event;
-                    }),
-                    map((e: EmitEvent) => {
-                      return e.value;
-                    })
+                    filter((e: EmitEvent) => e.name === event),
+                    map((e: EmitEvent) => e.value)
                   )
-                    .subscribe(action);
+              .subscribe(action);
     }
 
     emit(event: EmitEvent) {
