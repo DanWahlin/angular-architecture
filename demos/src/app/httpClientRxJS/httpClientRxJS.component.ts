@@ -37,15 +37,15 @@ export class HttpClientRxJSComponent implements OnInit  {
 
     this.charactersWithHomeworld$ = this.dataService.getCharactersAndHomeworlds();
 
-    this.formGroup = new FormGroup({
-      characterName: new FormControl('', [Validators.required])
-    });
-
     this.searchCharacters();
   }
 
 
   searchCharacters() {
+    this.formGroup = new FormGroup({
+      characterName: new FormControl('', [Validators.required])
+    });
+
     this.searchCharacters$ = this.formGroup.get('characterName').valueChanges
       .pipe(
         debounceTime(500), 
