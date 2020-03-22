@@ -7,7 +7,9 @@ import { Customer, Product } from '../../shared/interfaces';
 import { ClonerService } from './cloner.service';
 import { List } from 'immutable';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DataService {
 
   customers: Customer[] = [

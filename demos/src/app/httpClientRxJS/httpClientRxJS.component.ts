@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { combineAll, concatMapTo, combineLatest, buffer } from 'rxjs/operators';
+import { switchMap, debounceTime } from 'rxjs/operators';
 import { HttpClientRxJSService } from '../core/services/httpClientRxJS.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-httpclientrxjs',
@@ -10,6 +11,8 @@ import { HttpClientRxJSService } from '../core/services/httpClientRxJS.service';
 })
 export class HttpClientRxJSComponent implements OnInit  {
 
+  formGroup: FormGroup;
+  searchCharacters$: Observable<any[]>;
   characters$: Observable<any[]>;
   characterWithHomeworld$: Observable<{}>;
   charactersWithHomeworld$: Observable<any>;
@@ -33,6 +36,22 @@ export class HttpClientRxJSComponent implements OnInit  {
       this.dataService.getCharacterAndHomeworld();
 
     this.charactersWithHomeworld$ = this.dataService.getCharactersAndHomeworlds();
+
+    this.formGroup = new FormGroup({
+      characterName: new FormControl('', [Validators.required])
+    });
+
+    this.searchCharacters();
   }
 
+
+  searchCharacters() {
+    this.searchCharacters$ = this.formGroup.get('characterName').valueChanges
+      .pipe(
+        debounceTime(500), 
+        switchMap(name => {
+          return this.dataService.getCharacter(name);
+        })
+      );
+  }
 }

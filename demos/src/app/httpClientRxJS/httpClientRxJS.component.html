@@ -3,6 +3,20 @@
 This example shows how to use key RxJS operators such as 
 map, tap, forkJoin, switchMap, and mergeMap.
 
+<h2>Character Search</h2>
+Enter a Star Wars character name (partial names are fine):
+<br />
+<form [formGroup]="formGroup">
+  <input type="text" formControlName="characterName">
+</form>
+
+<div *ngIf="(searchCharacters$ | async) as characters">
+  <h3>Character</h3>
+  <ul>
+    <li *ngFor="let char of characters">{{ char.name }}</li>
+  </ul>
+</div>
+
 <h2>Characters</h2>
 <ul>
   <li *ngFor="let char of charactersAndPlanets?.characters">
