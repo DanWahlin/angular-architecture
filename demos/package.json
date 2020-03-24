@@ -26,7 +26,7 @@
     "memo-decorator": "^1.0.2",
     "ngx-auto-unsubscribe": "^2.4.1",
     "rxjs": "^6.5.4",
-    "subsink": "^1.0.0",
+    "subsink": "^1.0.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
