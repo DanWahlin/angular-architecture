@@ -1,14 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin, of, from } from 'rxjs';
-import { tap, map, switchMap, catchError, mergeMap, zip, concatMap, buffer, toArray, concatAll } from 'rxjs/operators';
+import { tap, map, switchMap, catchError, mergeMap, concatMap, toArray } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class HttpClientRxJSService {
 
   baseUrl = 'https://swapi.co/api/';
 
   constructor(private http: HttpClient) { }
+
+  getCharacter(name: string) {
+    if (name) {
+      return this.http.get(this.baseUrl + 'people/?search=' + name)
+        .pipe(
+          map(res => res['results']),
+          catchError(error => of(null))
+        )
+    }
+    return of(null);
+  }
 
   getCharacters() {
     return this.http.get(this.baseUrl + 'people')
@@ -76,6 +89,7 @@ export class HttpClientRxJSService {
           // convert array to observable
           return from(res['results']);
         }),
+        // concatMap((person: any) => {
         mergeMap((person: any) => { 
             return this.http.get(person['homeworld'])
               .pipe(
