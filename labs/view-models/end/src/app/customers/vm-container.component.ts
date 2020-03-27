@@ -16,10 +16,11 @@ import { CustomerVm } from './customer-vm';
   template: `
   <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
 
-  <!-- 9. Bind to "showDeleted" as a checkbox and toggle it when changed -->
+  <!-- Bind to "showDeleted" as a checkbox and toggle it when changed -->
   <div (click)="toggleShowDeleted()"><input type="checkbox" [checked]="showDeleted"> Show Deleted</div>
 
-  <div *ngIf="vms$ | async as vms" class="row" >
+  <div *ngIf="vms$ | async as vms" class="row">
+    
     <!-- Customer List -->
     <div class="col-md-2">
       <app-vm-customer-list [vms]="vms" (selected)="selected($event)"></app-vm-customer-list>
@@ -39,7 +40,7 @@ export class VmContainerComponent {
   vms$: Observable<CustomerVm[]>;
   selectedVm: CustomerVm;
 
-  // 6. Add "showDeleted" boolean property
+  // Add "showDeleted" boolean property
   showDeleted = false;
 
   constructor(private dataService: CustomerOrdersDataService) {
@@ -49,12 +50,12 @@ export class VmContainerComponent {
   /** Create observable of Customer ViewModels from cached customers */
   createVm$() {
     this.vms$ = this.dataService.customers$.pipe(
-      map(customers => {
-        // 7. Filter customers before mapping to include or exclude deleted customers based on showDeleted flag.
-        return customers
-          .filter(customer => this.showDeleted || !customer.isDeleted)
-          .map(customer => CustomerVm.create(customer))
-      })
+      map(customers => 
+        // Filter customers before mapping to include or exclude deleted customers based on showDeleted flag.
+      customers
+        .filter(customer => this.showDeleted || !customer.isDeleted)
+        .map(customer => CustomerVm.create(customer))
+      )
     );
   }
 
@@ -78,7 +79,7 @@ export class VmContainerComponent {
     this.selectedVm = vm.clone();
   }
 
-  // 8. The toggleShowDeleted method should (a) toggle the flag and (b) re-create the ViewModel observable
+  // The toggleShowDeleted method should (a) toggle the flag and (b) re-create the ViewModel observable
   toggleShowDeleted() {
     this.showDeleted = !this.showDeleted;
     this.createVm$();

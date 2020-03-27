@@ -14,7 +14,6 @@ import { expandCollapse } from '../animations';
       <div><a routerLink="vm-class">3. ViewModel Class</a></div>
       <div><a routerLink="vm-class-plus">3(b). ViewModel Wonder Class (digression)</a></div>
       <div><a routerLink="customers-orders">4. Customers & Orders</a></div>
-      <div><a routerLink="lab">5. Lab</a></div>
     </div>
     <p></p>
     <div><a (click)="resetData()">Reset data</a></div>

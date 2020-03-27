@@ -16,7 +16,7 @@ export class CustomerVm {
   birthDate?: Date;
   photo?: string;
 
-  // 1. Add "pet" and "isDeleted"
+  // Add "pet" and "isDeleted" properties
   pet: string;
   isDeleted: boolean;
 

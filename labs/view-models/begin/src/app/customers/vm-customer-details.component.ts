@@ -12,7 +12,7 @@ import { ngIfAnim } from '../animations';
     <h4>Details</h4>
     <table class="table">
       <tr>
-        <!-- 4. Increase rowspan to 6 (to make room for "Pet") -->
+        <!-- Increase rowspan to 6 (to make room for "Pet") -->
         <td rowspan="5"><img class="details" src="{{vm.photo}}"></td>
         <td><b>First Name</b>: </td>
         <td><input [(ngModel)]="vm.first" placeholder="First"></td>
@@ -26,7 +26,7 @@ import { ngIfAnim } from '../animations';
         <td><input [(ngModel)]="vm.city" placeholder="City"></td>
       </tr>
 
-      <!-- 3. Add Pet as an input -->
+      <!-- Add Pet as an input -->
 
       <tr>
         <td>Birth Date: </td>
@@ -40,10 +40,9 @@ import { ngIfAnim } from '../animations';
       </tr>
     </table>
 
-    <!-- 5. Add isDeleted as a checkbox below the table -->
+    <!-- Add isDeleted as a checkbox below the table -->
 
     <div class="button-row">
-      <!-- Now a-->
       <button (click)="save.emit(vm)" class="btn btn-success" [disabled]="vm.saveDisabled">Save</button>
       <button (click)="cancel.emit()" class="btn btn-light">Cancel</button>
     </div>

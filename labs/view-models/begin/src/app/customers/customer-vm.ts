@@ -16,7 +16,7 @@ export class CustomerVm {
   birthDate?: Date;
   photo?: string;
 
-  // 1. Add "pet" and "isDeleted"
+  // Add "pet" and "isDeleted" properties
 
   /** Create CustomerVm from a Customer */
   static create(customer: Partial<Customer> = {}): CustomerVm {
@@ -43,7 +43,7 @@ export class CustomerVm {
  */
 function toCustomer(customer: Partial<Customer>): Partial<Customer> {
 
-  // 2. Include "pet" and "isDeleted" among the managed properties here as well, both in and out.
+  // Include "pet" and "isDeleted" among the managed properties here as well, both in and out.
   const { id = null, first = '', last = '', city = '', birthDate = null, photo = Customer.missingPerson } = customer;
   return { id, first, last, city, birthDate, photo };
 }
