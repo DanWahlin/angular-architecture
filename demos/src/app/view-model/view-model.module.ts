@@ -15,7 +15,7 @@ const routes: Routes = [
       { path: 'vm-class', loadChildren: () => import('./3-vm/vm.module').then(m => m.VmModule) },
       { path: 'vm-class-plus', loadChildren: () => import('./3b-vm-plus/vm-plus.module').then(m => m.VmPlusModule) },
       { path: 'customers-orders', loadChildren: () => import('./4-customers-orders/co.module').then(m => m.CustomersOrdersModule) },
-      { path: 'lab', loadChildren: () => import('./5-lab/lab.module').then(m => m.LabModule) },
+      // { path: 'lab', loadChildren: () => import('./5-lab/lab.module').then(m => m.LabModule) },
     ]
   }
 ];

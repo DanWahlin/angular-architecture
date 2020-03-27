@@ -1,0 +1,17 @@
+<div class="wrapper">
+  <h2>View Model Lab</h2>
+
+  <ul>
+    <li><a class="pointer" (click)="resetData()">Reset Data</a></li>
+    <li><a class="pointer" (click)="showJson=!showJson">{{ showJson ? 'Hide Customers' : 'Show Customers' }}</a></li>
+  </ul>
+
+  <section id="content">
+    <router-outlet></router-outlet>
+  </section>
+
+  <div *ngIf="showJson" [@expandCollapse]>
+    <pre id="customer-json">{{ dataservice.customers$ | async | json }}</pre>
+  </div>
+  <p></p>
+</div>
