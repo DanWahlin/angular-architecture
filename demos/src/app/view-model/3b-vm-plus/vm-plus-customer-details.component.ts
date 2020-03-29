@@ -32,7 +32,7 @@ import { ngIfAnim } from '../../animations';
       </tr>
       <tr>
         <td>Age: </td>
-        <td>{{ vm.birthDate | age }} </td>
+        <td>{{ vm.age }} </td>
       </tr>
     </table>
 
