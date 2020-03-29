@@ -1,4 +1,3 @@
-
 import { calcFullName } from '../../shared/fullname.pipe';
 import { OrderGraph } from '../services';
 
@@ -17,12 +16,12 @@ export interface LineItemVm {
   id: number;
   productId: number;
   productName: string;
-  price: number,
+  price: number;
   quantity: number;
 }
 
 /** Creates an Order ViewModel from customer and order graph */
-export function createOrderVm(customer: { first: string, last: string }, orderGraph: OrderGraph): OrderVm {
+export function createOrderVm(customer: { first: string; last: string }, orderGraph: OrderGraph): OrderVm {
   const { order, lineItems, products } = orderGraph;
 
   // Join line items and their products into LineItem ViewModels
@@ -33,7 +32,7 @@ export function createOrderVm(customer: { first: string, last: string }, orderGr
       productId: item.productId,
       productName,
       price,
-      quantity: item.quantity,
+      quantity: item.quantity
     };
 
     return lineItemVm;

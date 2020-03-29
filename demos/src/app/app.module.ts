@@ -1,8 +1,8 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppComponent }  from './app.component';
+import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PlanningModule } from './planning/planning.module';
 import { StructuringComponentsModule } from './structuring-components/structuring-components.module';
@@ -15,9 +15,9 @@ import { ComponentInheritanceModule } from './component-inheritance/component-in
 import { HttpClientRxJSModule } from './httpClientRxJS/httpClientRxJS.module';
 
 @NgModule({
-  imports: [ 
+  imports: [
     BrowserModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     CoreModule,
     AppRoutingModule,
     PlanningModule,
@@ -29,7 +29,7 @@ import { HttpClientRxJSModule } from './httpClientRxJS/httpClientRxJS.module';
     ComponentInheritanceModule,
     HttpClientRxJSModule
   ],
-  declarations: [ AppComponent ],
-  bootstrap:    [ AppComponent ]
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

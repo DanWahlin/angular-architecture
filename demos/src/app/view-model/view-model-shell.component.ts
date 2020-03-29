@@ -17,14 +17,16 @@ import { expandCollapse } from '../animations';
     </div>
     <p></p>
     <div><a (click)="resetData()">Reset data</a></div>
-    <div><a (click)="showJson=!showJson">{{ showJson ? 'Hide customers' : 'Show customers' }}</a></div>
+    <div>
+      <a (click)="showJson = !showJson">{{ showJson ? 'Hide customers' : 'Show customers' }}</a>
+    </div>
 
     <section id="content">
       <router-outlet></router-outlet>
     </section>
 
     <div *ngIf="showJson" [@expandCollapse]>
-      <pre id="customer-json" >{{ dataservice.customers$ | async | json }}</pre>
+      <pre id="customer-json">{{ dataservice.customers$ | async | json }}</pre>
     </div>
     <p></p>
   `

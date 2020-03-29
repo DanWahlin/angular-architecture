@@ -14,32 +14,27 @@ import { CustomerVm } from './customer-vm';
   selector: 'app-vm-container',
   styleUrls: ['../view-model.css'],
   template: `
+    <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
 
-  <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
+    <div *ngIf="vms$ | async as vms" class="row">
+      <!-- Customer List -->
+      <div class="col-md-2">
+        <app-vm-customer-list [vms]="vms" (selected)="selected($event)"></app-vm-customer-list>
+      </div>
 
-  <div *ngIf="vms$ | async as vms" class="row" >
-
-    <!-- Customer List -->
-    <div class="col-md-2">
-      <app-vm-customer-list [vms]="vms" (selected)="selected($event)"></app-vm-customer-list>
+      <!-- Customer Detail -->
+      <div class="col-md-5">
+        <app-vm-customer-details [vm]="selectedVm" (cancel)="cancel()" (save)="save($event)"></app-vm-customer-details>
+      </div>
     </div>
-
-    <!-- Customer Detail -->
-    <div class="col-md-5">
-      <app-vm-customer-details [vm]="selectedVm" (cancel)="cancel()" (save)="save($event)"></app-vm-customer-details>
-    </div>
-
-  </div>
-
-  `,
+  `
 })
 export class VmContainerComponent {
-
   vms$: Observable<CustomerVm[]>;
   selectedVm: CustomerVm;
 
   constructor(private dataService: CustomerOrdersDataService) {
-    this.createVm$()
+    this.createVm$();
   }
 
   /** Create observable of Customer ViewModels from cached customers */
@@ -60,9 +55,7 @@ export class VmContainerComponent {
   save(vm: CustomerVm) {
     this.selectedVm = null;
     const customer = vm.toCustomer();
-    customer.id == null
-      ? this.dataService.addCustomer(customer)
-      : this.dataService.updateCustomer(customer);
+    customer.id == null ? this.dataService.addCustomer(customer) : this.dataService.updateCustomer(customer);
   }
 
   selected(vm: CustomerVm) {

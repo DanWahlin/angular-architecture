@@ -3,22 +3,17 @@ import { Injectable } from '@angular/core';
 import { of, ReplaySubject, Observable } from 'rxjs';
 import { concatMap, first, map } from 'rxjs/operators';
 
-import {
-  addEntity, collectionSnapshot, updateEntity,
-  Customer, EntityCache, LineItem, Order, Product
-} from '../model';
+import { addEntity, collectionSnapshot, updateEntity, Customer, EntityCache, LineItem, Order, Product } from '../model';
 
 import { getNewCache } from './data';
 import { OrderGraph, ProductMap } from './order-graph';
 
-
-/** 
+/**
  * Simulate getting and saving model data in a reactive (RxJS) and immutable way.
  * Kind of sort of like a data service facade you might write with Ngrx Data.
  */
-@Injectable({ providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class CustomerOrdersDataService {
-
   private nextId: number;
 
   private cacheStore = new ReplaySubject<EntityCache>(1);
@@ -31,10 +26,18 @@ export class CustomerOrdersDataService {
   products$ = this.cache$.pipe(map(p => p.products));
 
   // Collection snapshots of the latest state of the collection. For those who don't like Observables :-)
-  get customers() { return collectionSnapshot<Customer>('customers', this.cache$); }
-  get lineItems() { return collectionSnapshot<LineItem>('lineItems', this.cache$); }
-  get orders() { return collectionSnapshot<Order>('orders', this.cache$); }
-  get products() { return collectionSnapshot<Product>('products', this.cache$); }
+  get customers() {
+    return collectionSnapshot<Customer>('customers', this.cache$);
+  }
+  get lineItems() {
+    return collectionSnapshot<LineItem>('lineItems', this.cache$);
+  }
+  get orders() {
+    return collectionSnapshot<Order>('orders', this.cache$);
+  }
+  get products() {
+    return collectionSnapshot<Product>('products', this.cache$);
+  }
 
   /** Reinitialize cache with clones of the source raw data  */
   reset() {
@@ -45,17 +48,19 @@ export class CustomerOrdersDataService {
 
   // #region get methods
   /**
-  * Terminating Observable of the Customer with this id. Undefined if not found. 
-  * Must subscribe but no need to unsubscribe.
-  */
+   * Terminating Observable of the Customer with this id. Undefined if not found.
+   * Must subscribe but no need to unsubscribe.
+   */
   getCustomerById(customerId: number): Observable<Customer | undefined> {
     // get from cache but pretend to get it from the server
-    return this.customers$.pipe(first(), map(customers => customers.find(o => o.id === customerId)));
+    return this.customers$.pipe(
+      first(),
+      map(customers => customers.find(o => o.id === customerId))
+    );
   }
 
-
   /**
-   * Terminating Observable of an order, that order's lineItems, and the lineItems' products as a hash map. 
+   * Terminating Observable of an order, that order's lineItems, and the lineItems' products as a hash map.
    * Must subscribe but no need to unsubscribe.
    */
   getOrderGraphByOrderId(orderId: number): Observable<OrderGraph> {
@@ -68,7 +73,7 @@ export class CustomerOrdersDataService {
   }
 
   /**
-   * Terminating Observable of an order, that order's lineItems, and the lineItems' products as a hash map. 
+   * Terminating Observable of an order, that order's lineItems, and the lineItems' products as a hash map.
    * Must subscribe but no need to unsubscribe.
    */
   getOrderGraphForOrder(order: Order): Observable<OrderGraph> {
@@ -83,9 +88,9 @@ export class CustomerOrdersDataService {
     );
 
     return lineItems$.pipe(
-      concatMap(lineItems => this.getLineItemProducts(lineItems).pipe(
-        map(products => ({ order, lineItems, products }))
-      )),
+      concatMap(lineItems =>
+        this.getLineItemProducts(lineItems).pipe(map(products => ({ order, lineItems, products })))
+      )
     );
   }
 
@@ -95,11 +100,10 @@ export class CustomerOrdersDataService {
    */
   private getLineItemProducts = (lineItems: LineItem[]) => {
     // product ids referenced by line items
-    const productIds = lineItems && lineItems.length > 0
-      ? lineItems.map(item => item.productId) : [];
+    const productIds = lineItems && lineItems.length > 0 ? lineItems.map(item => item.productId) : [];
 
     return this.getProductMap(productIds);
-  }
+  };
 
   /**
    * Terminating Observable emitting a product map of products with the given product ids
@@ -111,9 +115,10 @@ export class CustomerOrdersDataService {
         first(),
         // the ordered products referenced in the line items
         map(products => products.filter(p => productIds.includes(p.id))),
-  
+
         // convert ordered products array into a product hash map
-        map(orderedProducts => orderedProducts.reduce((acc, product) => {
+        map(orderedProducts =>
+          orderedProducts.reduce((acc, product) => {
             acc[product.id] = product;
             return acc;
           }, {} as ProductMap)
@@ -125,7 +130,7 @@ export class CustomerOrdersDataService {
   }
 
   /**
-   * Observable of Orders belonging to a Customer. 
+   * Observable of Orders belonging to a Customer.
    * @returns a non-terminating observable of Orders. Must unsubscribe!
    */
   watchCustomerOrders(customerOrId: Customer | number): Observable<Order[]> {
@@ -137,19 +142,19 @@ export class CustomerOrdersDataService {
   // #endregion get methods
 
   // #region save methods
-  addCustomer(customer: Partial<Customer> = {}): Customer  {
+  addCustomer(customer: Partial<Customer> = {}): Customer {
     const id = this.nextId++;
     const newCustomer = Customer.create(id, customer);
     return addEntity<Customer>(newCustomer, 'customers', this.cacheStore);
   }
 
-  addLineItem(lineItem: Partial<LineItem> = {}, order?: Order, product?: Product): LineItem  {
+  addLineItem(lineItem: Partial<LineItem> = {}, order?: Order, product?: Product): LineItem {
     const id = this.nextId++;
     const newLineItem = LineItem.create(id, lineItem, order, product);
     return addEntity<LineItem>(newLineItem, 'lineItems', this.cacheStore);
   }
 
-  addOrder(order: Partial<Order> = {}, customer?: Customer): Order  {
+  addOrder(order: Partial<Order> = {}, customer?: Customer): Order {
     const id = this.nextId++;
     const newOrder = Order.create(id, order, customer);
     return addEntity<Order>(newOrder, 'orders', this.cacheStore);

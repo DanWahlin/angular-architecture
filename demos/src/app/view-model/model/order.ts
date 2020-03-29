@@ -8,7 +8,7 @@ export class Order {
 
   static create(id: number, order: Partial<Order> = {}, customer?: Partial<Customer>) {
     // Defaults
-    const newOrder: Order =  Object.assign(new Order(), {
+    const newOrder: Order = Object.assign(new Order(), {
       // Defaults
       customerId: customer ? customer.id : 0,
       orderDate: new Date(),

@@ -5,7 +5,6 @@ import { Customer } from '../model';
   selector: 'app-simple-customer-list',
   styleUrls: ['../view-model.css'],
   template: `
-
     <h4>Customers</h4>
 
     <table class="table table-striped nav">
@@ -13,7 +12,6 @@ import { Customer } from '../model';
         <td>{{ customer | fullname }}</td>
       </tr>
     </table>
-
   `
 })
 export class SimpleCustomerListComponent {

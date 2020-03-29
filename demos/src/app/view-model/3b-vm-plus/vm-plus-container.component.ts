@@ -15,28 +15,23 @@ import { CustomerVmPlus } from './customer-vm-plus';
   selector: 'app-vm-plus-container',
   styleUrls: ['../view-model.css'],
   template: `
+    <!-- Notice that there are no more event bindings! -->
+    <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
 
-  <!-- Notice that there are no more event bindings! -->
-  <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
+    <div *ngIf="vms$ | async as vms" class="row">
+      <!-- Customer List -->
+      <div class="col-md-2">
+        <app-vm-plus-customer-list [vms]="vms"></app-vm-plus-customer-list>
+      </div>
 
-  <div *ngIf="vms$ | async as vms" class="row" >
-
-    <!-- Customer List -->
-    <div class="col-md-2">
-      <app-vm-plus-customer-list [vms]="vms"></app-vm-plus-customer-list>
+      <!-- Customer Details -->
+      <div class="col-md-5">
+        <app-vm-plus-customer-details [vm]="selectedVm"></app-vm-plus-customer-details>
+      </div>
     </div>
-
-    <!-- Customer Details -->
-    <div class="col-md-5">
-      <app-vm-plus-customer-details [vm]="selectedVm"></app-vm-plus-customer-details>
-    </div>
-
-  </div>
-
-  `,
+  `
 })
 export class VmPlusContainerComponent {
-
   vms$: Observable<CustomerVmPlus[]>;
   selectedVm: CustomerVmPlus;
 
@@ -62,9 +57,7 @@ export class VmPlusContainerComponent {
   save(vm: CustomerVmPlus) {
     this.selectedVm = null;
     const customer = vm.toCustomer();
-    customer.id == null
-      ? this.dataService.addCustomer(customer)
-      : this.dataService.updateCustomer(customer);
+    customer.id == null ? this.dataService.addCustomer(customer) : this.dataService.updateCustomer(customer);
   }
 
   selected(vm: CustomerVmPlus) {
@@ -78,7 +71,7 @@ export class VmPlusContainerComponent {
       // Question: should we do this just because we can?
       this.cancel.bind(this),
       this.save.bind(this),
-      this.selected.bind(this),
+      this.selected.bind(this)
     );
     return vm;
   }

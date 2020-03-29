@@ -17,8 +17,11 @@ const routes: Routes = [{ path: '', component: CustomersOrdersShellComponent }];
 @NgModule({
   imports: [CommonModule, FormsModule, SharedModule, RouterModule.forChild(routes)],
   declarations: [
-    CustomerDetailsComponent, CustomerListComponent, OrderDetailsComponent,
-    CustomersOrdersContainerComponent, CustomersOrdersShellComponent
+    CustomerDetailsComponent,
+    CustomerListComponent,
+    OrderDetailsComponent,
+    CustomersOrdersContainerComponent,
+    CustomersOrdersShellComponent
   ]
 })
-export class CustomersOrdersModule { }
+export class CustomersOrdersModule {}

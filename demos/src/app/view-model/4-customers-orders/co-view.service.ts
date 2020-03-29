@@ -22,7 +22,8 @@ export class CustomersOrdersViewService {
 
   private createCustomerVms$(): Observable<CustomerVm[]> {
     return this.dataService.customers$.pipe(
-      map(customers => customers.map(customer => {
+      map(customers =>
+        customers.map(customer => {
           const watchOrders$ = this.dataService.watchCustomerOrders(customer);
           return CustomerVm.create(customer, watchOrders$);
         })
@@ -31,16 +32,14 @@ export class CustomersOrdersViewService {
   }
 
   selectedOrderVm(orderId: number, customerVm: CustomerVm): Observable<OrderVm> {
-    return this.dataService.getOrderGraphByOrderId(orderId).pipe(
-      map(orderGraph => createOrderVm(customerVm, orderGraph))
-    );
+    return this.dataService
+      .getOrderGraphByOrderId(orderId)
+      .pipe(map(orderGraph => createOrderVm(customerVm, orderGraph)));
   }
 
   saveCustomer(customerVm: CustomerVm) {
     const customer = customerVm.toCustomer();
-    customer.id == null
-      ? this.dataService.addCustomer(customer)
-      : this.dataService.updateCustomer(customer);
+    customer.id == null ? this.dataService.addCustomer(customer) : this.dataService.updateCustomer(customer);
   }
 
   /** Limited save. Can only update certain aspects of an existing order .*/

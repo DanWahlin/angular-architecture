@@ -1,7 +1,7 @@
-import { Order  } from './order';
+import { Order } from './order';
 import { Product } from './product';
 
- export class LineItem {
+export class LineItem {
   id: number;
   orderId: number;
   productId: number;
@@ -16,7 +16,7 @@ import { Product } from './product';
       productId: product ? product.id : 0,
       quantity: 1,
       isDeleted: false,
-      ...lineItem,
+      ...lineItem
     });
     return newLineItem;
   }

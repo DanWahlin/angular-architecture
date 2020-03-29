@@ -23,14 +23,17 @@ h3.lab.end {
   background-color: #28a745;
 }
 
-table.nav tr { 
-  cursor: pointer; 
-  color: #337ab7; 
-} 
+table.nav tr {
+  cursor: pointer;
+  color: #337ab7;
+}
 
-table.nav tr:hover { text-decoration: underline; } 
+table.nav tr:hover {
+  text-decoration: underline;
+}
 
-td.right, th.right {
+td.right,
+th.right {
   text-align: right;
 }
 
@@ -66,5 +69,5 @@ section#lab-content {
 }
 
 #customer-json {
-  max-width: 35em;;
+  max-width: 35em;
 }

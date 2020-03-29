@@ -11,4 +11,6 @@ export interface OrderGraph {
 }
 
 /** Map of Product Ids to Products */
-export interface ProductMap { [key: number]: Product; }
+export interface ProductMap {
+  [key: number]: Product;
+}

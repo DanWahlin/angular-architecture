@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * Guard logic for each model type to ensure we add and update properly
  * Add a guard for each type (ex: Customer) in your model.
  */
@@ -12,7 +12,7 @@ import { EntityCache } from './entity-cache';
 
 /**
  * A guard function that ensures the operation is valid for the given entity.
- * Ensures that the change entity that your about to add or update 
+ * Ensures that the change entity that your about to add or update
  * has all and only the properties required and that its FKs are valid.
  * May fill in or remove properties to protect the integrity of the entity collection.
  * Throws an error if the operation cannot be performed on this entity.
@@ -25,17 +25,17 @@ type EntityGuardFn = (entity: {}, isAdd?: boolean, cache?: EntityCache) => {};
 
 /** An object with guard functions for each entity collection in the model. */
 export const modelGuards: { [key: string]: EntityGuardFn } = {
-  customers:  customerGuard,
-  lineItems:  lineItemGuard,
-  orders:  orderGuard,
-  products:  productGuard,
+  customers: customerGuard,
+  lineItems: lineItemGuard,
+  orders: orderGuard,
+  products: productGuard
 };
 
 // #region private guard fns for each entity type in the model
 
 /** Ensure customer has only the allowed properties. */
 function customerGuard(customer: Partial<Customer>): Partial<Customer> {
-  // Allow only the properties the client may save. 
+  // Allow only the properties the client may save.
   // "Customer.secretSauce" cannot be changed!
   // tslint:disable-next-line: no-shadowed-variable
   const { id, first, last, city, birthDate, photo, isDeleted, pet } = customer;
@@ -47,7 +47,8 @@ function lineItemGuard(lineItem: Partial<LineItem>, isAdd: boolean, cache: Entit
   // Allow only the properties the client may save
   const { id, orderId, productId, quantity, isDeleted: isRemoved } = lineItem;
   if (isAdd) {
-    const bad = null == cache.orders.find(o => o.id === orderId) || null == cache.products.find(p => p.id === productId);
+    const bad =
+      null == cache.orders.find(o => o.id === orderId) || null == cache.products.find(p => p.id === productId);
     if (bad) {
       throw new Error('LineItem foreign keys not found in cached orders or products');
     }
@@ -57,17 +58,16 @@ function lineItemGuard(lineItem: Partial<LineItem>, isAdd: boolean, cache: Entit
   }
 }
 
-
 /** Ensure Order has only allowed props and the customerId inks to a Customer in cache. */
 function orderGuard(order: Partial<Order>, isAdd: boolean, cache: EntityCache): Partial<Order> {
   // Allow only the properties the client may save
-  const {id, customerId, memo, orderDate } = order;
+  const { id, customerId, memo, orderDate } = order;
   if (isAdd) {
     const bad = isAdd && null == cache.customers.find(c => c.id === customerId);
     if (bad) {
       throw new Error(`Order.customerId (${customerId}) not found in cached customers`);
     }
-    return {id, customerId, memo, orderDate } ;
+    return { id, customerId, memo, orderDate };
   } else {
     return { id, memo, orderDate }; // can't change the customerId
   }

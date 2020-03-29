@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { Customer } from '../model';
 import { CustomerOrdersDataService } from '../services';
 
-/** 
- * Master/Detail following the Container/Presenter pattern 
+/**
+ * Master/Detail following the Container/Presenter pattern
  * Master: customer list
  * Detail: detail about the selected customer
  */
@@ -13,27 +13,25 @@ import { CustomerOrdersDataService } from '../services';
   selector: 'app-simple-container',
   styleUrls: ['../view-model.css'],
   template: `
+    <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
 
-  <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
+    <div *ngIf="customers$ | async as customers" class="row">
+      <!-- Customer List -->
+      <div class="col-md-2">
+        <app-simple-customer-list
+          [customers]="customers"
+          (customerSelected)="selected($event)"
+        ></app-simple-customer-list>
+      </div>
 
-  <div *ngIf="customers$ | async as customers" class="row" >
-
-    <!-- Customer List -->
-    <div class="col-md-2">
-      <app-simple-customer-list [customers]="customers" (customerSelected)="selected($event)"></app-simple-customer-list>
+      <!-- Customer Details -->
+      <div class="col-md-5">
+        <app-simple-customer-details [customer]="selectedCustomer"></app-simple-customer-details>
+      </div>
     </div>
-
-    <!-- Customer Details -->
-    <div class="col-md-5">
-      <app-simple-customer-details [customer]="selectedCustomer"></app-simple-customer-details>
-    </div>
-
-  </div>
-
   `
 })
 export class SimpleContainerComponent {
-
   customers$: Observable<Customer[]>;
   selectedCustomer: Customer;
 

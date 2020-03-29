@@ -16,8 +16,10 @@ const routes: Routes = [{ path: '', component: SimpleShellComponent }];
 @NgModule({
   imports: [CommonModule, FormsModule, SharedModule, RouterModule.forChild(routes)],
   declarations: [
-    SimpleCustomerListComponent, SimpleCustomerDetailsComponent,
-    SimpleContainerComponent, SimpleShellComponent
+    SimpleCustomerListComponent,
+    SimpleCustomerDetailsComponent,
+    SimpleContainerComponent,
+    SimpleShellComponent
   ]
 })
-export class SimpleModule { }
+export class SimpleModule {}

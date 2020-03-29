@@ -14,7 +14,10 @@ const routes: Routes = [
       { path: 'isolation', loadChildren: () => import('./2-isolation/iso.module').then(m => m.IsoModule) },
       { path: 'vm-class', loadChildren: () => import('./3-vm/vm.module').then(m => m.VmModule) },
       { path: 'vm-class-plus', loadChildren: () => import('./3b-vm-plus/vm-plus.module').then(m => m.VmPlusModule) },
-      { path: 'customers-orders', loadChildren: () => import('./4-customers-orders/co.module').then(m => m.CustomersOrdersModule) }
+      {
+        path: 'customers-orders',
+        loadChildren: () => import('./4-customers-orders/co.module').then(m => m.CustomersOrdersModule)
+      }
     ]
   }
 ];
@@ -22,4 +25,4 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forRoot(routes)],
   declarations: [CustomersOrdersShellComponent]
 })
-export class ViewModelModule { }
+export class ViewModelModule {}

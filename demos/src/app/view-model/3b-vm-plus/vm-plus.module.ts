@@ -16,8 +16,10 @@ const routes: Routes = [{ path: '', component: VmPlusShellComponent }];
 @NgModule({
   imports: [CommonModule, FormsModule, SharedModule, RouterModule.forChild(routes)],
   declarations: [
-    VmPlusCustomerDetailsComponent, VmPlusCustomerListComponent,
-    VmPlusContainerComponent, VmPlusShellComponent
+    VmPlusCustomerDetailsComponent,
+    VmPlusCustomerListComponent,
+    VmPlusContainerComponent,
+    VmPlusShellComponent
   ]
 })
-export class VmPlusModule { }
+export class VmPlusModule {}
