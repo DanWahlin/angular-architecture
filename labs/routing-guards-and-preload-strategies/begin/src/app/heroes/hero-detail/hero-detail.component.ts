@@ -7,14 +7,14 @@ import {
   Output,
   ViewChild,
   SimpleChanges
-} from '@angular/core';
+} from "@angular/core";
 
-import { Hero } from '../../core';
+import { Hero } from "../../core";
 
 @Component({
-  selector: 'app-hero-detail',
-  templateUrl: './hero-detail.component.html',
-  styleUrls: ['./hero-detail.component.scss']
+  selector: "app-hero-detail",
+  templateUrl: "./hero-detail.component.html",
+  styleUrls: ["./hero-detail.component.scss"]
 })
 export class HeroDetailComponent implements OnChanges {
   @Input() hero: Hero;
@@ -22,7 +22,7 @@ export class HeroDetailComponent implements OnChanges {
   @Output() add = new EventEmitter<Hero>();
   @Output() update = new EventEmitter<Hero>();
 
-  @ViewChild('name') nameElement: ElementRef;
+  @ViewChild("name", { static: true }) nameElement: ElementRef;
 
   addMode = false;
   editingHero: Hero;
@@ -33,7 +33,7 @@ export class HeroDetailComponent implements OnChanges {
       this.editingHero = { ...this.hero };
       this.addMode = false;
     } else {
-      this.editingHero = { id: undefined, name: '', saying: '' };
+      this.editingHero = { id: undefined, name: "", saying: "" };
       this.addMode = true;
     }
   }

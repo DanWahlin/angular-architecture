@@ -7,15 +7,15 @@ import {
   Output,
   ViewChild,
   SimpleChanges
-} from '@angular/core';
+} from "@angular/core";
 
-import { Villain } from '../../core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Villain } from "../../core";
+import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
-  selector: 'app-villain-detail',
-  templateUrl: './villain-detail.component.html',
-  styleUrls: ['./villain-detail.component.scss']
+  selector: "app-villain-detail",
+  templateUrl: "./villain-detail.component.html",
+  styleUrls: ["./villain-detail.component.scss"]
 })
 export class VillainDetailComponent implements OnChanges {
   @Input() villain: Villain;
@@ -23,14 +23,14 @@ export class VillainDetailComponent implements OnChanges {
   @Output() add = new EventEmitter<Villain>();
   @Output() update = new EventEmitter<Villain>();
 
-  @ViewChild('name') nameElement: ElementRef;
+  @ViewChild("name", { static: true }) nameElement: ElementRef;
 
   addMode = false;
 
   form = this.fb.group({
     id: [],
-    name: ['', Validators.required],
-    saying: ['']
+    name: ["", Validators.required],
+    saying: [""]
   });
 
   constructor(private fb: FormBuilder) {}
