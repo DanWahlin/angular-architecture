@@ -14,8 +14,7 @@ const routes: Routes = [
     // Note that this is the Angular 8+ way to lazy load routes
     path: "heroes",
     loadChildren: () =>
-      import("./heroes/heroes.module").then(m => m.HeroesModule),
-    data: { preload: true }
+      import("./heroes/heroes.module").then(m => m.HeroesModule)
   },
   {
     // Note that this is the Angular 8+ way to lazy load routes
@@ -24,6 +23,7 @@ const routes: Routes = [
       import("./villains/villains.module").then(m => m.VillainsModule),
 
     // Solution - Apply the AuthGuard
+    data: { preload: true },
     canActivate: [AuthGuard]
   }
 ];
