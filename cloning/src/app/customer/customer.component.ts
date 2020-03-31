@@ -10,7 +10,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject<boolean>();
+  sub = new Subscription();
   customer: Customer;
   customers: Customer[];
 
@@ -22,31 +22,25 @@ export class CustomerComponent implements OnInit, OnDestroy {
   }
   
   getCustomer() {
-    this.customersService.getCustomer(2)
-      .pipe(takeUntil(this.destroy$))
+    this.sub.add(this.customersService.getCustomer(2)
       .subscribe(cust => {
         //console.log(cust === this.customer);
         this.customer = cust;
-      });
+      }));
   }
 
   changed(customer: any) {
-    this.customersService.updateCustomer(customer)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe();
+    this.sub.add(this.customersService.updateCustomer(customer).subscribe());
     this.getCustomer();
     this.getCustomers();
   }
 
   getCustomers() {
-    this.customersService.getCustomers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(custs => this.customers = custs);
+    this.sub.add(this.customersService.getCustomers().subscribe(custs => this.customers = custs));
   }
 
   ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();    
+    this.sub.unsubscribe();    
   }
 
 }
