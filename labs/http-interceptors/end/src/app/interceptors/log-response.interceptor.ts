@@ -7,26 +7,14 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap, finalize } from 'rxjs/operators';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class LogResponseTimeInterceptor implements HttpInterceptor {
-  /**
-   * Credit: https://angular.io/guide/http#http-interceptors
-   */
-  // intercept_alternative(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-  //   const started = Date.now();
-  //   return next.handle(req).pipe(
-  //     tap(event => {
-  //       if (event instanceof HttpResponse) {
-  //         const elapsed = Date.now() - started;
-  //         console.log(`HTTP: Request for ${req.urlWithParams} took ${elapsed} ms.`);
-  //       }
-  //     })
-  //   );
-  // }
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     const started = Date.now();
     let ok: string;
 
@@ -40,7 +28,9 @@ export class LogResponseTimeInterceptor implements HttpInterceptor {
       // Log when response observable either completes or errors
       finalize(() => {
         const elapsed = Date.now() - started;
-        console.log(`${req.method} "${req.urlWithParams}" \n\t ${ok} in ${elapsed} ms.`);
+        console.log(
+          `${req.method} "${req.urlWithParams}" \n\t ${ok} in ${elapsed} ms.`
+        );
       })
     );
   }
