@@ -18,6 +18,6 @@ export class LogResponseTimeInterceptor implements HttpInterceptor {
     const started = Date.now();
     let ok: string;
 
-    return next.handle(req.clone()); // Remove this
+    return next.handle(req);
   }
 }
