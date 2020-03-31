@@ -29,7 +29,7 @@ export class CustomerComponent implements OnInit, OnDestroy {
       }));
   }
 
-  changed(customer: any) {
+  changed(customer: Customer) {
     this.sub.add(this.customersService.updateCustomer(customer).subscribe());
     this.getCustomer();
     this.getCustomers();
