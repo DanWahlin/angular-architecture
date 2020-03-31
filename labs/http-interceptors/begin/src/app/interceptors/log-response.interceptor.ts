@@ -4,10 +4,10 @@ import {
   HttpRequest,
   HttpEvent,
   HttpResponse
-} from "@angular/common/http";
-import { Observable } from "rxjs";
-import { tap, finalize } from "rxjs/operators";
-import { Injectable } from "@angular/core";
+} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap, finalize } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class LogResponseTimeInterceptor implements HttpInterceptor {
@@ -18,6 +18,6 @@ export class LogResponseTimeInterceptor implements HttpInterceptor {
     const started = Date.now();
     let ok: string;
 
-    //
+    return next.handle(req.clone()); // Remove this
   }
 }
