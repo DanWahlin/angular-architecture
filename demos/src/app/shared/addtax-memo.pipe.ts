@@ -1,10 +1,11 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, OnDestroy } from '@angular/core';
 import memo from 'memo-decorator';
 
 @Pipe({
   name: 'addtaxmemo'
 })
-export class AddTaxMemoPipe implements PipeTransform {
+export class AddTaxMemoPipe implements PipeTransform, OnDestroy {
+
   @memo()
   transform(price: number): number {
     if (price) {
@@ -17,6 +18,10 @@ export class AddTaxMemoPipe implements PipeTransform {
     console.log('addtaxmemo pipe called');
     let total = price + (price * .08);
     return total;
+  }
+
+  ngOnDestroy() {
+    console.log('Pipe Destroyed....BOOM!')
   }
 
 }
