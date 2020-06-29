@@ -21,7 +21,7 @@
     "@angular/router": "~10.0.1",
     "core-js": "^2.5.4",
     "immutable": "^4.0.0-rc.12",
-    "rxjs": "~6.5.4",
+    "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2",
     "clone": "^2.1.2"
