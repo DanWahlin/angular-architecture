@@ -3,8 +3,7 @@ import { AcmeSharedComponent } from './acme-shared.component';
 
 @NgModule({
   declarations: [AcmeSharedComponent],
-  imports: [
-  ],
-  exports: [AcmeSharedComponent]
+  imports: [],
+  exports: [AcmeSharedComponent],
 })
-export class AcmeSharedModule { }
+export class AcmeSharedModule {}
