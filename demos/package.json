@@ -25,7 +25,7 @@
     "immutable": "^4.0.0-rc.12",
     "memo-decorator": "^1.0.2",
     "ngx-auto-unsubscribe": "^2.4.1",
-    "rxjs": "^6.5.4",
+    "rxjs": "^6.5.5",
     "subsink": "^1.0.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
