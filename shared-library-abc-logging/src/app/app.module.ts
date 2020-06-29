@@ -3,12 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
-import { BrowserLoggerModule } from 'projects/browser-logger/src/public-api';
+import { BrowserLoggerModule } from 'browser-logger';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, BrowserLoggerModule.forRoot(environment)],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

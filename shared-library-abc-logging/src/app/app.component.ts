@@ -38,8 +38,8 @@ import { BrowserLoggerService } from 'browser-logger';
         color: #fff;
         cursor: pointer;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class AppComponent {
   title = 'abc-logging';

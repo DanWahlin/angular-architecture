@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 
 interface LoggingFunction {
-  (value: any, ...rest: any[]): void;
+  (...args: any[]): void;
 }
 export interface LoggerService {
   info: LoggingFunction;
@@ -14,33 +14,33 @@ export interface LoggerService {
 export class BrowserLoggerService implements LoggerService {
   constructor(@Inject('env') private env) {}
 
-  info(value: any, ...rest: any[]): void {
+  info(...args: any[]): void {
     if (!this.env.production) {
-      console.info(value, rest);
+      console.info.apply(null, args);
     } else {
       // App Insights or your favorite service
     }
   }
 
-  log(value: any, ...rest: any[]): void {
+  log(...args: any[]): void {
     if (!this.env.production) {
-      console.log(value, rest);
+      console.log.apply(null, args);
     } else {
       // App Insights or your favorite service
     }
   }
 
-  warn(value: any, ...rest: any[]): void {
+  warn(...args: any[]): void {
     if (!this.env.production) {
-      console.warn(value, rest);
+      console.warn.apply(null, args);
     } else {
       // App Insights or your favorite service
     }
   }
 
-  error(value: any, ...rest: any[]): void {
+  error(...args: any[]): void {
     if (!this.env.production) {
-      console.error(value, rest);
+      console.error.apply(null, args);
     } else {
       // App Insights or your favorite service
     }
