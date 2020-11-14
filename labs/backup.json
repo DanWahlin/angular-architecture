@@ -240,13 +240,6 @@
                         }, 
                         {
                             "items" : [
-
-                            ], 
-                            "stepId" : NumberInt(4), 
-                            "description" : "<p>Perform the following tasks:</p><ul><li>Click on a customer to view their details.</li><li>Edit a customer and save the changes.</li><li>Delete a customer (while editing) using the checkbox and save the change.</li><li>Select the&nbsp;<strong>Show Deleted</strong>&nbsp;checkbox and notice that the deleted customer displays.</li></ul><p><br></p><p>Because this lab uses a ViewModel ...</p><ol><li>Notice how the changes you made to the customer in the details component do not affect the customer list component or the container, until they are saved.</li><li>Notice how the pet and isDeleted properties now exist on the customer?</li></ol><p><br></p>"
-                        }, 
-                        {
-                            "items" : [
                                 {
                                     "items" : [
 
@@ -285,7 +278,7 @@
                                     "itemId" : NumberInt(4)
                                 }
                             ], 
-                            "stepId" : NumberInt(5), 
+                            "stepId" : NumberInt(4), 
                             "description" : "<p>Perform the following tasks within the <strong>VmContainerComponent</strong> class:</p><ul><li>Add a <strong>showDeleted</strong> boolean property.</li><li>Locate the <strong>createVm$</strong> function and modify it to filter customers based on the <strong>showDeleted</strong> or <strong>customer.isDeleted</strong> status as shown below:</li></ul>"
                         }, 
                         {
@@ -301,14 +294,14 @@
                                     "itemId" : NumberInt(1)
                                 }
                             ], 
-                            "stepId" : NumberInt(6), 
+                            "stepId" : NumberInt(5), 
                             "description" : "<p>Open a terminal window at the root of the <strong>begin</strong> folder and run the following command to build and run the project. Fix any build errors if necessary before continuing.</p>"
                         }, 
                         {
                             "items" : [
 
                             ], 
-                            "stepId" : NumberInt(7), 
+                            "stepId" : NumberInt(6), 
                             "description" : "<p>Perform the following tasks:</p><ul><li>Click on a customer to view their details.</li><li>Edit a customer and save the changes.</li><li>Delete a customer (while editing) using the checkbox and save the change.</li><li>Select the&nbsp;<strong>Show Deleted</strong>&nbsp;checkbox and notice that the deleted customer displays.</li></ul><p><br></p><p>Because this lab uses a ViewModel ...</p><ol><li>Notice how the changes you made to the customer in the details component do not affect the customer list component or the container, until they are saved.</li><li>Notice how the pet and isDeleted properties now exist on the customer?</li></ol><p><br></p>"
                         }
                     ], 

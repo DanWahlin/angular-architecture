@@ -180,22 +180,6 @@ Locate the `toCustomer()` function in the `customer-vm.ts` file. Include **pet**
 
 #### Step 4
 
-Perform the following tasks:
-
-*   Click on a customer to view their details.
-*   Edit a customer and save the changes.
-*   Delete a customer (while editing) using the checkbox and save the change.
-*   Select the **Show Deleted** checkbox and notice that the deleted customer displays.
-
-  
-
-Because this lab uses a ViewModel ...
-
-1.  Notice how the changes you made to the customer in the details component do not affect the customer list component or the container, until they are saved.
-2.  Notice how the pet and isDeleted properties now exist on the customer?
-
-#### Step 5
-
 Perform the following tasks within the **VmContainerComponent** class:
 
 *   Add a **showDeleted** boolean property.
@@ -228,7 +212,7 @@ this.showDeleted = !this.showDeleted;
 this.createVm$();
 ```
 
-#### Step 6
+#### Step 5
 
 Open a terminal window at the root of the **begin** folder and run the following command to build and run the project. Fix any build errors if necessary before continuing.
 
@@ -237,7 +221,7 @@ Open a terminal window at the root of the **begin** folder and run the following
 ng serve -o
 ```
 
-#### Step 7
+#### Step 6
 
 Perform the following tasks:
 
