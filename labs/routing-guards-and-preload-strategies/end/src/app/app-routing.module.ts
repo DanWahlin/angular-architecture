@@ -32,8 +32,9 @@ const routes: Routes = [
   imports: [
     // Solution - PreloadAllModules or PreloadSelectedModulesList or NetworkAwarePreloadStrategy
     RouterModule.forRoot(routes, {
-      preloadingStrategy: NetworkAwarePreloadStrategy
-    })
+    preloadingStrategy: NetworkAwarePreloadStrategy,
+    relativeLinkResolution: 'legacy'
+})
   ],
 
   exports: [RouterModule]
