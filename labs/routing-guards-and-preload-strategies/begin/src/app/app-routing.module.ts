@@ -9,25 +9,23 @@ const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "heroes" },
   {
     path: "heroes",
-    loadChildren: "./heroes/heroes.module#HeroesModule"
+    loadChildren: () => import('./heroes/heroes.module').then(m => m.HeroesModule)
   },
   {
     path: "villains",
-    loadChildren: "./villains/villains.module#VillainsModule"
+    loadChildren: () => import('./villains/villains.module').then(m => m.VillainsModule)
   }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(
-      routes
-      // Uncomment the line of code below. Put the Preload Strategy here
-      // PreloadAllModules
-      // PreloadSelectedModulesList,
-      // NetworkAwarePreloadStrategy
-
-      // { preloadStrategy: PreloadAllModules }
-    )
+    RouterModule.forRoot(routes
+// Uncomment the line of code below. Put the Preload Strategy here
+// PreloadAllModules
+// PreloadSelectedModulesList,
+// NetworkAwarePreloadStrategy
+// { preloadStrategy: PreloadAllModules }
+, { relativeLinkResolution: 'legacy' })
   ],
   exports: [RouterModule]
 })
