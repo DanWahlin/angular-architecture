@@ -41,6 +41,7 @@ import { ngIfAnim } from '../animations';
     </table>
 
     <!-- Add isDeleted as a checkbox below the table -->
+    <div><input type="checkbox" [(ngModel)]="vm.isDeleted"> Is Deleted</div>
 
     <div class="button-row">
       <button (click)="save.emit(vm)" class="btn btn-success" [disabled]="vm.saveDisabled">Save</button>

@@ -18,6 +18,7 @@ import { CustomerVm } from './customer-vm';
   <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
 
   <!-- Bind to "showDeleted" as a checkbox and toggle it when changed -->
+  <div (click)="toggleShowDeleted()"><input type="checkbox" [checked]="showDeleted"> Show Deleted</div>
 
   <div *ngIf="vms$ | async as vms" class="row">
 
