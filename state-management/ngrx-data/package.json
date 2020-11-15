@@ -25,7 +25,7 @@
     "@ngrx/store": "^8.1.0",
     "@ngrx/store-devtools": "^8.1.0",
     "@ngrx/data": "^8.1.0",
-    "angular-in-memory-web-api": "^0.8.0",
+    "angular-in-memory-web-api": "^0.11.0",
     "core-js": "^2.5.4",
     "rxjs": "^6.5.2",
     "tslib": "^1.9.0",
