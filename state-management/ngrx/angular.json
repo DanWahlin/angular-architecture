@@ -21,14 +21,13 @@
             },
             "assets": ["src/assets", "src/favicon.ico"],
             "styles": [],
-            "scripts": []
+            "scripts": [],
+            "aot": true
           },
           "configurations": {
             "production": {
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -38,6 +37,12 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -111,7 +116,8 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "scss"
+      "styleext": "scss",
+      "style": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": "app"
