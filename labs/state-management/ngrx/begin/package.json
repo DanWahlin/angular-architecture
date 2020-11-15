@@ -24,10 +24,10 @@
     "rxjs": "^6.5.2",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1",
-    "@ngrx/effects": "^8.1.0",
-    "@ngrx/entity": "^8.1.0",
-    "@ngrx/store": "^8.1.0",
-    "@ngrx/store-devtools": "^8.1.0"
+    "@ngrx/effects": "^10.0.1",
+    "@ngrx/entity": "^10.0.1",
+    "@ngrx/store": "^10.0.1",
+    "@ngrx/store-devtools": "^10.0.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.2",
