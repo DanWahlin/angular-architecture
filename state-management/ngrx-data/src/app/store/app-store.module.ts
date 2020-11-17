@@ -9,11 +9,24 @@ import { entityConfig } from './entity-metadata';
 
 const apiRoot = environment.apiUrlBase + '/';
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
+  /**
+   * The API root is /api/* by default. You can override it here.
+   */
   root: apiRoot,
+  /**
+   * By default the APIs are at api/collection-name in the entityHttpResourceUrls.
+   * We're overriding that behavior here just to show how it can be done.
+   */
   entityHttpResourceUrls: {
-    Customer: { entityResourceUrl: apiRoot + 'customers/', collectionResourceUrl: apiRoot + 'customers/' },
-    Order: { entityResourceUrl: apiRoot + 'orders/', collectionResourceUrl: apiRoot + 'orders/' },
-  }
+    Customer: {
+      entityResourceUrl: apiRoot + 'customers/',
+      collectionResourceUrl: apiRoot + 'customers/',
+    },
+    Order: {
+      entityResourceUrl: apiRoot + 'orders/',
+      collectionResourceUrl: apiRoot + 'orders/',
+    },
+  },
 };
 
 @NgModule({
@@ -21,8 +34,10 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     EntityDataModule.forRoot(entityConfig),
-    environment.production ? [] : StoreDevtoolsModule.instrument()
+    environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
-  providers: [ { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig } ]
+  providers: [
+    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig },
+  ],
 })
 export class AppStoreModule {}
