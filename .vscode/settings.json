@@ -1,25 +1,20 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "files.exclude": {
-      "**/app/**/*.js.map": true,
-      "**/app/**/*.js": true,
-      
-      "**/config/*.js.map": true,
-      "**/config/*.js": {
-        "when": "$(basename).js.map"
-      }
-    },
-    "workbench.colorCustomizations": {
-      "activityBar.background": "#378fe7",
-      "activityBar.activeBackground": "#378fe7",
-      "activityBar.activeBorder": "#ab1460",
-      "activityBar.foreground": "#e7e7e7",
-      "activityBar.inactiveForeground": "#e7e7e799",
-      "activityBarBadge.background": "#ab1460",
-      "activityBarBadge.foreground": "#e7e7e7",
-      "statusBar.background": "#1975d2",
-      "statusBarItem.hoverBackground": "#378fe7",
-      "statusBar.foreground": "#e7e7e7"
-    },
-    "peacock.color": "#1975d2"
+  "peacock.color": "1975d2",
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#1975d2",
+    "activityBar.activeBorder": "#f18dbf",
+    "activityBar.background": "#1975d2",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#f18dbf",
+    "activityBarBadge.foreground": "#15202b",
+    "statusBar.background": "#1975d2",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#378fe7",
+    "titleBar.activeBackground": "#1975d2",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#1975d299",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  }
 }
