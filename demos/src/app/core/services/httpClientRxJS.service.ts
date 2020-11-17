@@ -8,7 +8,7 @@ import { tap, map, switchMap, catchError, mergeMap, concatMap, toArray } from 'r
 })
 export class HttpClientRxJSService {
 
-  baseUrl = 'https://swapi.co/api/';
+  baseUrl = 'https://swapi.dev/api/';
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +24,7 @@ export class HttpClientRxJSService {
   }
 
   getCharacters() {
-    return this.http.get(this.baseUrl + 'people')
+    return this.http.get(this.baseUrl + 'people/')
       .pipe(
         tap(res => {
           console.log('Before getCharacters map');
@@ -39,7 +39,7 @@ export class HttpClientRxJSService {
   }
 
   getPlanets() {
-    return this.http.get(this.baseUrl + 'planets')
+    return this.http.get(this.baseUrl + 'planets/')
       .pipe(
         tap(res => {
           console.log('Before getPlanets map');
@@ -70,10 +70,10 @@ export class HttpClientRxJSService {
   }
 
   getCharactersAndPlanets() {
-    return forkJoin(
+    return forkJoin([
       this.getCharacters(),
       this.getPlanets()
-    )
+    ])
     .pipe(
       map((res) => {
         return { characters: res[0], planets: res[1] };
@@ -83,7 +83,7 @@ export class HttpClientRxJSService {
   }
 
   getCharactersAndHomeworlds() {
-    return this.http.get(this.baseUrl + 'people')
+    return this.http.get(this.baseUrl + 'people/')
       .pipe(
         switchMap(res => {
           // convert array to observable
@@ -91,7 +91,7 @@ export class HttpClientRxJSService {
         }),
         // concatMap((person: any) => {
         mergeMap((person: any) => { 
-            return this.http.get(person['homeworld'])
+            return this.http.get(this.convertHttps(person['homeworld']))
               .pipe(
                 map(hw => {
                   person['homeworld'] = hw;
@@ -104,11 +104,11 @@ export class HttpClientRxJSService {
   }
 
   getCharacterAndHomeworld() {
-    const url = this.baseUrl + 'people/1';
+    const url = this.baseUrl + 'people/1/';
     return this.http.get(url)
       .pipe(
         switchMap(character => {
-          return this.http.get(character['homeworld'])
+          return this.http.get(this.convertHttps(character['homeworld']))
             .pipe(
               map(hw => {
                 character['homeworld'] = hw;
@@ -122,8 +122,18 @@ export class HttpClientRxJSService {
   getCharacterHomeworld(charUrl) {
     return this.http.get(charUrl)
       .pipe(
-        switchMap(character => this.http.get(character['homeworld']))
+        switchMap(character => {
+          return this.http.get(this.convertHttps(character['homeworld']));
+        })
       );
+  }
+
+  // API requires https but returns hypermedia links that are http://. Fixing that.
+  convertHttps(url) {
+    if (url) {
+      return url.replace('http://', 'https://');
+    }
+    return url;
   }
 
 }
