@@ -6,14 +6,23 @@ import { SubSink } from 'subsink';
 @Component({
   selector: 'app-subjects',
   templateUrl: './subjects.component.html',
-  styles: [`
-    .status {
-      color: red;
-    }`
-  ]
+  styles: [
+    `
+      .status-area {
+        color: red;
+        width: 100%;
+        height: 120px;
+        scroll-behavior: smooth;
+        overflow-y: scroll;
+      }
+      .status {
+        color: red;
+      }
+    `,
+  ],
 })
 export class SubjectsComponent implements OnInit, OnDestroy {
-  status: string;
+  status: string = '';
   subjectObservableData = [];
   behaviorSubjectObservableData = [];
   replaySubjectObservableData = [];
@@ -21,17 +30,29 @@ export class SubjectsComponent implements OnInit, OnDestroy {
   timeoutIds = [];
   subsink = new SubSink();
 
-  constructor(private subjectService: SubjectService) { }
+  constructor(private subjectService: SubjectService) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   start() {
     this.subjectService.start();
     this.runAction('Calling SubjectService start()', null, null);
     this.runAction('Subscribing to Subject', ActionType.subject, 2000);
-    this.runAction('Subscribing to BehaviorSubject (6 seconds after subject)', ActionType.behaviorSubject, 8000);
-    this.runAction('Subscribing to ReplaySubject (10 seconds after subject)', ActionType.replaySubject, 13000);
-    this.runAction('Subscribing to AsyncSubject (12 seconds after subject)', ActionType.asyncSubject, 15000);
+    this.runAction(
+      'Subscribing to BehaviorSubject (6 seconds after subject)',
+      ActionType.behaviorSubject,
+      8000
+    );
+    this.runAction(
+      'Subscribing to ReplaySubject (10 seconds after subject)',
+      ActionType.replaySubject,
+      13000
+    );
+    this.runAction(
+      'Subscribing to AsyncSubject (12 seconds after subject)',
+      ActionType.asyncSubject,
+      15000
+    );
   }
 
   runAction(actionText: string, actionType: ActionType, delay: number) {
@@ -39,45 +60,56 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     switch (actionType) {
       case ActionType.subject:
         action = () => {
-          this.subsink.sink = this.subjectService.subjectObservable$.subscribe(custs => {
-            this.subjectObservableData.push(custs);
-          })
+          this.subsink.sink = this.subjectService.subjectObservable$.subscribe(
+            (custs) => {
+              this.subjectObservableData.push(custs);
+            }
+          );
         };
         break;
 
       case ActionType.behaviorSubject:
         action = () => {
-          this.subsink.sink = this.subjectService.behaviorSubjectObservable$.subscribe(custs => {
-            this.behaviorSubjectObservableData.push(custs);
-          })
+          this.subsink.sink = this.subjectService.behaviorSubjectObservable$.subscribe(
+            (custs) => {
+              this.behaviorSubjectObservableData.push(custs);
+            }
+          );
         };
         break;
 
       case ActionType.replaySubject:
         action = () => {
-          this.subsink.sink = this.subjectService.replaySubjectObservable$.subscribe(custs => {
-            this.replaySubjectObservableData.push(custs);
-          })
+          this.subsink.sink = this.subjectService.replaySubjectObservable$.subscribe(
+            (custs) => {
+              this.replaySubjectObservableData.push(custs);
+            }
+          );
         };
         break;
 
       case ActionType.asyncSubject:
         action = () => {
-          this.subsink.sink = this.subjectService.asyncSubjectObservable$.subscribe(custs => {
-            this.asyncSubjectObservableData.push(custs);
-          })
+          this.subsink.sink = this.subjectService.asyncSubjectObservable$.subscribe(
+            (custs) => {
+              this.asyncSubjectObservableData.push(custs);
+            }
+          );
         };
         break;
     }
 
     // update status and perform action
-    let timeoutId = setTimeout(() => {
-      this.status = actionText;
-      if (action) {
-        console.log('in')
-        action();
-      }
-    }, (delay) ? delay : 0);
+    let timeoutId = setTimeout(
+      () => {
+        this.status = this.status + actionText.trim() + '\n';
+        if (action) {
+          console.log('in');
+          action();
+        }
+      },
+      delay ? delay : 0
+    );
     this.timeoutIds.push(timeoutId);
   }
 
@@ -87,12 +119,11 @@ export class SubjectsComponent implements OnInit, OnDestroy {
       clearInterval(id);
     }
   }
-
 }
 
 enum ActionType {
   subject,
   behaviorSubject,
   replaySubject,
-  asyncSubject
+  asyncSubject,
 }
