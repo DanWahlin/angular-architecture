@@ -99,13 +99,8 @@ export function reducer(
     case CustomerActions.UPDATE_CUSTOMER: {
       return {
         ...state,
-        customers: state.customers.map(h => {
-          if (h.id === action.payload.id) {
-            state.loading = true;
-          }
-          return h;
-        })
-      };
+        loading: isLoading(state.customers, action)
+      }
     }
 
     case CustomerActions.UPDATE_CUSTOMER_SUCCESS: {
@@ -115,14 +110,7 @@ export function reducer(
     case CustomerActions.UPDATE_CUSTOMER_ERROR: {
       return {
         ...state,
-        loading: false,
-        customers: state.customers.map(h => {
-          if (h.id === action.payload.requestData.id) {
-            // Huh? No idea what the error is!
-            state.error = true;
-          }
-          return h;
-        })
+        loading: false
       };
     }
 
@@ -134,6 +122,15 @@ export function reducer(
     }
   }
   return state;
+}
+
+function isLoading(customers: Customer[], action: any) {
+  for (let customer of customers) {
+    if (customer.id === action.payload.id) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function modifyCustomerState(customerState: CustomerState, customerChanges: Partial<Customer>): CustomerState {
