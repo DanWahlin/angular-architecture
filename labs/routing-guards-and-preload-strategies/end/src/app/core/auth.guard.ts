@@ -10,6 +10,7 @@ export class AuthGuard implements CanActivate {
   constructor() {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return false;
+    return true;
+    // return false;
   }
 }

@@ -1,55 +1,63 @@
 <h1>Using RxJS Subjects</h1>
-All of the functionality for this demo is in core/subject.service.ts and the subjects folder. Click Start to begin.
+All of the functionality for this demo is in core/subject.service.ts and the
+subjects folder. Click Start to begin.
 <br /><br />
 
 <button (click)="start()">Start</button>
 
-<h2 class="status">Status: {{ status }}</h2>
+<h2 class="status">Status:</h2>
+<textarea class="status-area"> {{ status }} </textarea>
 
-  <div class="row">
-    <div class="col-md-3">
-      <h4>Subject</h4>
-      <ul>
-        <li *ngFor="let data of subjectObservableData">{{ data.length }}</li>
-      </ul>
-    </div>
-    <div class="col-md-3">
-      <h4>BehaviorSubject</h4>
-      <br />
-      <ul>
-        <li *ngFor="let data of behaviorSubjectObservableData">{{ data.length }}</li>
-      </ul>
-    </div>
-    <div class="col-md-3">
-      <h4>ReplaySubject</h4>
-      <br />
-      <ul>
-        <li *ngFor="let data of replaySubjectObservableData">{{ data.length }}</li>
-      </ul>
-    </div>
-    <div class="col-md-3">
-      <h4>AsyncSubject</h4>
-      <br />
-      <ul>
-        <li *ngFor="let data of asyncSubjectObservableData">{{ data.length }}</li>
-      </ul>
-    </div>
+<div class="row">
+  <div class="col-md-3">
+    <h4>Subject</h4>
+    <ul>
+      <li *ngFor="let data of subjectObservableData">{{ data.length }}</li>
+    </ul>
   </div>
-
+  <div class="col-md-3">
+    <h4>BehaviorSubject</h4>
+    <br />
+    <ul>
+      <li *ngFor="let data of behaviorSubjectObservableData">
+        {{ data.length }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-3">
+    <h4>ReplaySubject</h4>
+    <br />
+    <ul>
+      <li *ngFor="let data of replaySubjectObservableData">
+        {{ data.length }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-3">
+    <h4>AsyncSubject</h4>
+    <br />
+    <ul>
+      <li *ngFor="let data of asyncSubjectObservableData">{{ data.length }}</li>
+    </ul>
+  </div>
+</div>
 
 <br />
 <strong>Subject</strong>
 Only subscribers receive data
 <br /><br />
 <strong>BehaviorSubject</strong>
-Note how this picks up the last value emitted event though it subscribed after the value was sent out. That's because
-BehaviorSubject allows an initial value to be sent to an observer as they subscribe.
+Note how this picks up the last value emitted event though it subscribed after
+the value was sent out. That's because BehaviorSubject allows an initial value
+to be sent to an observer as they subscribe.
 <br /><br />
 <strong>ReplaySubject</strong>
-Note how this stays in sync with everything above even though it subscribes 10 seconds after the subject. That's because
-it's replaying everything up to that point from a cache it maintains.
+Note how this stays in sync with everything above even though it subscribes 10
+seconds after the subject. That's because it's replaying everything up to that
+point from a cache it maintains.
 <br /><br />
 <strong>AsyncSubject</strong>
-This only plays the last item before it completes - nothing before that. It "completes" in the data service once the
-customers array length is greater than 5.
+This only plays the last item before it completes - nothing before that. It
+"completes" in the data service once the customers array length is greater than
+5.
 <br /><br />
