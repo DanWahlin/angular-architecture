@@ -30,6 +30,10 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute) {
+
+  }
+
+  ngOnInit() {
     this.sub = this.customerSelectors.customer$.subscribe(cust => {
       if (cust) {
         this.customer = cust;
@@ -37,11 +41,6 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
       }
     });
     this.loading$ = this.customerSelectors.loading$;
-  }
-
-
-
-  ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.store.dispatch(new CustomerAction.GetCustomer(id));
   }

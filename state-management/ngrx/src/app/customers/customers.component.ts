@@ -18,11 +18,12 @@ export class CustomersComponent implements OnInit {
     constructor(
         private store: Store<EntityState>,
         private customerSelectors: CustomerSelectors) {
-        this.customers$ = this.customerSelectors.customers$;
-        this.loading$ = this.customerSelectors.loading$;
+
     }
 
     ngOnInit() {
+        this.customers$ = this.customerSelectors.customers$;
+        this.loading$ = this.customerSelectors.loading$;
         this.getCustomers();
     }
 

@@ -19,11 +19,12 @@ export class OrdersComponent implements OnInit {
   constructor(private store: Store<EntityState>,
               private orderSelectors: OrderSelectors,
               private route: ActivatedRoute) {
-      this.orders$ = this.orderSelectors.orders$;
-      this.loading$ = this.orderSelectors.loading$;
+
    }
 
   ngOnInit() {
+    this.orders$ = this.orderSelectors.orders$;
+    this.loading$ = this.orderSelectors.loading$;
     const id = +this.route.snapshot.paramMap.get('id');
     this.store.dispatch(new OrderAction.GetOrders(id));
   }
