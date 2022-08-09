@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CustomersService } from '../core/customers.service';
 import { Customer } from '../shared/interfaces';
-import { Subscription, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-customer',
@@ -11,8 +10,8 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class CustomerComponent implements OnInit, OnDestroy {
   sub = new Subscription();
-  customer: Customer;
-  customers: Customer[];
+  customer: Customer = {} as Customer;
+  customers: Customer[] = [];
 
   constructor(private customersService: CustomersService) { }
 

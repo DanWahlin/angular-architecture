@@ -3,7 +3,7 @@ import * as clone from 'clone';
 
 @Injectable({providedIn: 'root'})
 export class ClonerService {
-  deepClone<T>(value): T {
-    return clone<T>(value);
+  deepClone<T>(value: T): T {
+    return clone<T>(value) as T;
   }
 }

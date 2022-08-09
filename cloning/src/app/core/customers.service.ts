@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Customer } from '../shared/interfaces';
-import { List, Map, fromJS } from 'immutable';
-import { Observable, of } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { List, fromJS } from 'immutable';
+import { Observable, of, EMPTY } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ClonerService } from './cloner.service';
 
 @Injectable({
@@ -52,17 +52,20 @@ export class CustomersService {
   getCustomer(id: number) : Observable<Customer> {
     return this.getCustomers()
       .pipe(
-        map(custs => {
+        map((custs: Customer[]) => {
           const filteredCusts = custs.filter(cust => cust.id === id);
           // Enable if using Immutable.js below
           // const filteredCusts = this.immutableCustomers.filter(cust => cust.id === id);
           if (filteredCusts) {
             const cust = filteredCusts[0];
-            // return cust;
-            // return JSON.parse(JSON.stringify(cust)) as Customer;
-            //return this.clonerService.deepClone<Customer>(cust);
-            return fromJS(cust).toJS() as Customer;
+            if (cust) {
+              // return cust;
+              // return JSON.parse(JSON.stringify(cust)) as Customer;
+              // return this.clonerService.deepClone<Customer>(cust);
+              return fromJS(cust).toJS() as any;
+            }
           } 
+          return {} as Customer;
         }),
       );
   }

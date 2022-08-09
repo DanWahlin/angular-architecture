@@ -8,8 +8,8 @@ import { Customer } from 'src/app/shared/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerListComponent implements OnInit, OnChanges {
-  @Input() customers: Customer[];
-  logMessages = [];
+  @Input() customers: Customer[] = [];
+  logMessages: {title: string, value: Customer[]}[] = [];
 
   constructor() { }
 

@@ -9,9 +9,9 @@ import { Customer } from 'src/app/shared/interfaces';
 })
 export class CustomerDetailsComponent implements OnInit, OnChanges {
 
-  @Input() customer: any;
-  @Output() customerChanged = new EventEmitter<any>();
-  logMessages = [];
+  @Input() customer: Customer = {} as Customer;
+  @Output() customerChanged = new EventEmitter();
+  logMessages: { title: string, value: Customer}[] = [];
 
   constructor() { }
 
