@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin, of, from } from 'rxjs';
-import { tap, map, switchMap, catchError, mergeMap, concatMap, toArray } from 'rxjs/operators';
+import { tap, map, switchMap, catchError, mergeMap, toArray } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ export class HttpClientRxJSService {
     if (name) {
       return this.http.get(this.baseUrl + 'people/?search=' + name)
         .pipe(
-          map(res => res['results']),
-          catchError(error => of(null))
+          map((res: any) => res.results),
+          catchError(() => of(null))
         )
     }
     return of(null);
@@ -26,13 +26,13 @@ export class HttpClientRxJSService {
   getCharacters() {
     return this.http.get(this.baseUrl + 'people/')
       .pipe(
-        tap(res => {
+        tap(() => {
           console.log('Before getCharacters map');
         }),
-        map(res => {
-          return res['results'];
+        map((res: any) => {
+          return res.results;
         }),
-        tap(res => {
+        tap(() => {
           console.log('After getCharacters map');
         })
       );
@@ -41,29 +41,29 @@ export class HttpClientRxJSService {
   getPlanets() {
     return this.http.get(this.baseUrl + 'planets/')
       .pipe(
-        tap(res => {
+        tap(() => {
           console.log('Before getPlanets map');
         }),
-        map(res => {
-          return res['results'];
+        map((res: any) => {
+          return res.results;
         }),
-        tap(res => {
+        tap(() => {
           console.log('After getPlanets map');
         })
       );
   }
 
   //Could simplify the above functions with this one
-  getResource(url) {
+  getResource(url: string) {
     return this.http.get(url)
       .pipe(
-        tap(results => {
+        tap(() => {
           console.log('Before map');
         }),
-        map(res => {
-          return res['results'];
+        map((res: any) => {
+          return res.results;
         }),
-        tap(results => {
+        tap(() => {
           console.log('After map');
         })
       );
@@ -75,7 +75,7 @@ export class HttpClientRxJSService {
       this.getPlanets()
     ])
     .pipe(
-      map((res) => {
+      map((res: any) => {
         return { characters: res[0], planets: res[1] };
       }),
       catchError(error => of(error))
@@ -85,16 +85,16 @@ export class HttpClientRxJSService {
   getCharactersAndHomeworlds() {
     return this.http.get(this.baseUrl + 'people/')
       .pipe(
-        switchMap(res => {
+        switchMap((res: any) => {
           // convert array to observable
-          return from(res['results']);
+          return from(res.results);
         }),
         // concatMap((person: any) => {
         mergeMap((person: any) => { 
-            return this.http.get(this.convertHttps(person['homeworld']))
+            return this.http.get(this.convertHttps(person.homeworld))
               .pipe(
                 map(hw => {
-                  person['homeworld'] = hw;
+                  person.homeworld = hw;
                   return person;
                 })
               );
@@ -107,11 +107,11 @@ export class HttpClientRxJSService {
     const url = this.baseUrl + 'people/1/';
     return this.http.get(url)
       .pipe(
-        switchMap(character => {
-          return this.http.get(this.convertHttps(character['homeworld']))
+        switchMap((character: any) => {
+          return this.http.get(this.convertHttps(character.homeworld))
             .pipe(
               map(hw => {
-                character['homeworld'] = hw;
+                character.homeworld = hw;
                 return character;
               })
             )
@@ -119,17 +119,17 @@ export class HttpClientRxJSService {
       );
   }
 
-  getCharacterHomeworld(charUrl) {
+  getCharacterHomeworld(charUrl: string) {
     return this.http.get(charUrl)
       .pipe(
-        switchMap(character => {
-          return this.http.get(this.convertHttps(character['homeworld']));
+        switchMap((character: any) => {
+          return this.http.get(this.convertHttps(character.homeworld));
         })
       );
   }
 
   // API requires https but returns hypermedia links that are http://. Fixing that.
-  convertHttps(url) {
+  convertHttps(url: string) {
     if (url) {
       return url.replace('http://', 'https://');
     }

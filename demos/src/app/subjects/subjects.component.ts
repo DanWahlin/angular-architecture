@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { SubjectService } from '../core/services/subject.service';
+import { ICustomer, SubjectService } from '../core/services/subject.service';
 import { SubSink } from 'subsink';
 
 @Component({
@@ -22,12 +22,12 @@ import { SubSink } from 'subsink';
   ],
 })
 export class SubjectsComponent implements OnInit, OnDestroy {
-  status: string = '';
-  subjectObservableData = [];
-  behaviorSubjectObservableData = [];
-  replaySubjectObservableData = [];
-  asyncSubjectObservableData = [];
-  timeoutIds = [];
+  status = '';
+  subjectObservableData: ICustomer[][] = [];
+  behaviorSubjectObservableData: ICustomer[][] = [];
+  replaySubjectObservableData: ICustomer[][] = [];
+  asyncSubjectObservableData: ICustomer[][] = [];
+  timeoutIds: any[] = [];
   subsink = new SubSink();
 
   constructor(private subjectService: SubjectService) {}
@@ -55,13 +55,13 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     );
   }
 
-  runAction(actionText: string, actionType: ActionType, delay: number) {
+  runAction(actionText: string, actionType: ActionType | null, delay: number | null) {
     let action: () => void;
     switch (actionType) {
       case ActionType.subject:
         action = () => {
           this.subsink.sink = this.subjectService.subjectObservable$.subscribe(
-            (custs) => {
+            custs => {
               this.subjectObservableData.push(custs);
             }
           );
@@ -71,7 +71,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
       case ActionType.behaviorSubject:
         action = () => {
           this.subsink.sink = this.subjectService.behaviorSubjectObservable$.subscribe(
-            (custs) => {
+            custs => {
               this.behaviorSubjectObservableData.push(custs);
             }
           );
@@ -81,7 +81,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
       case ActionType.replaySubject:
         action = () => {
           this.subsink.sink = this.subjectService.replaySubjectObservable$.subscribe(
-            (custs) => {
+            custs => {
               this.replaySubjectObservableData.push(custs);
             }
           );
@@ -91,7 +91,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
       case ActionType.asyncSubject:
         action = () => {
           this.subsink.sink = this.subjectService.asyncSubjectObservable$.subscribe(
-            (custs) => {
+            custs => {
               this.asyncSubjectObservableData.push(custs);
             }
           );
@@ -100,7 +100,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
     }
 
     // update status and perform action
-    let timeoutId = setTimeout(
+    const timeoutId: any = setTimeout(
       () => {
         this.status = this.status + actionText.trim() + '\n';
         if (action) {
@@ -115,7 +115,7 @@ export class SubjectsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subsink.unsubscribe();
-    for (let id of this.timeoutIds) {
+    for (const id of this.timeoutIds) {
       clearInterval(id);
     }
   }

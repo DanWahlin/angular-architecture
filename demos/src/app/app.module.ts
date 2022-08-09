@@ -8,7 +8,7 @@ import { PlanningModule } from './planning/planning.module';
 import { StructuringComponentsModule } from './structuring-components/structuring-components.module';
 import { CoreModule } from './core/core.module';
 import { CommunicationModule } from './communication/communication.module';
-import { ViewModelModule } from './view-model/view-model.module';
+// import { ViewModelModule } from './view-model/view-model.module';
 import { PipesFunctionsModule } from './pipes-functions/pipes-functions.module';
 import { SubjectsModule } from './subjects/subjects.module';
 import { ComponentInheritanceModule } from './component-inheritance/component-inheritance.module';
@@ -24,7 +24,7 @@ import { HttpClientRxJSModule } from './httpClientRxJS/httpClientRxJS.module';
     StructuringComponentsModule,
     PipesFunctionsModule,
     CommunicationModule,
-    ViewModelModule,
+    // ViewModelModule,
     SubjectsModule,
     ComponentInheritanceModule,
     HttpClientRxJSModule

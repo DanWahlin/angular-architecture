@@ -9,7 +9,7 @@ import { EventBusService, EmitEvent, Events } from '../../core/services/event-bu
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomersListComponent {
-  @Input() customers: Customer[];
+  @Input() customers: Customer[] = [];
   @Output() customerSelected = new EventEmitter<Customer>();
   logMessages: string[] = [];
 

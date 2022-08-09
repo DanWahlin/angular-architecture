@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
 
 import { Subject, BehaviorSubject, ReplaySubject, 
-         AsyncSubject, Observable } from 'rxjs';
+         AsyncSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubjectService {
 
-  customers = [];
-  intervalIds = [];
-  private subject$: Subject<ICustomer[]>;
-  subjectObservable$: Observable<ICustomer[]>;
+  customers: ICustomer[] = [];
+  intervalIds: any[] = [];
+  private subject$: Subject<ICustomer[]> = new Subject<ICustomer[]>;
+  subjectObservable$: Observable<ICustomer[]> = of([]);
 
-  private behaviorSubject$;
-  behaviorSubjectObservable$: Observable<ICustomer[]>;
+  private behaviorSubject$: BehaviorSubject<ICustomer[]> = new BehaviorSubject<ICustomer[]>([]);
+  behaviorSubjectObservable$: Observable<ICustomer[]> = of([])
 
-  private replaySubject$: ReplaySubject<ICustomer[]>;
-  replaySubjectObservable$: Observable<ICustomer[]>;
+  private replaySubject$: ReplaySubject<ICustomer[]> = new ReplaySubject<ICustomer[]>;
+  replaySubjectObservable$: Observable<ICustomer[]> = of([])
 
-  private asyncSubject$: AsyncSubject<ICustomer[]>;
-  asyncSubjectObservable$: Observable<ICustomer[]>;
+  private asyncSubject$: AsyncSubject<ICustomer[]> = new AsyncSubject<ICustomer[]>();
+  asyncSubjectObservable$: Observable<ICustomer[]> = of([])
 
   constructor() { }
 

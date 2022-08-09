@@ -8,7 +8,7 @@ import { Customer } from '../../shared/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomersListComponent implements OnInit {
-  @Input() customers: Customer[];
+  @Input() customers: Customer[] = [];
   @Output() customerSelected = new EventEmitter<Customer>();
   logMessages: string[] = [];
 

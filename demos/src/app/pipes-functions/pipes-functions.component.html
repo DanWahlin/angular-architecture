@@ -2,9 +2,9 @@
 This example shows how using pipes (where possible) instead of functions in a template can enhance performance. See the console.
 <br /><br />
 <h4>Add Product</h4>
-Name: <input type="text" (input)="newProduct.name = $event.target.value" [value]="newProduct.name" /> 
+Name: <input type="text" (input)="newProduct.name = $any($event).target.value" [value]="newProduct.name" title="Product Name" /> 
 <br />
-Price: <input type="text" (input)="newProduct.price = $event.target.value" [value]="newProduct.price" /> 
+Price: <input type="text" (input)="newProduct.price = $any($event).target.value" [value]="newProduct.price" title="Product Price" /> 
 <br /><br />
 <button class="btn btn-primary" (click)="addProduct()">Add Product</button>
 <br />

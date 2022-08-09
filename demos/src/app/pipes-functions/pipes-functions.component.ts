@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { DataService } from '../core/services/data.service';
 import { Product } from '../shared/interfaces';
@@ -10,12 +10,12 @@ import { Product } from '../shared/interfaces';
   styles: []
 })
 export class PipesFunctionsComponent implements OnInit {
-  products$: Observable<Product[]>;
+  products$: Observable<Product[]> = of([]);
   tax = .08;
   newProduct: Product = {
     id: null,
     name: '',
-    price: null
+    price: 0
   };
 
   constructor(private dataService: DataService) { }

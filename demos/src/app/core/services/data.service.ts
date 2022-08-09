@@ -109,14 +109,17 @@ export class DataService {
   }
 
   addCustomer() : Observable<Customer[]> {
-    let id = this.customers[this.customers.length - 1].id + 1;
-    this.customers.push({
-      id: id,
-      name: 'New Customer ' + id,
-      city: 'Somewhere',
-      age: id * 5
-    });
-    this.customersSubject$.next(this.customers);
+    if (this.customers) {
+      let id = this.customers[this.customers.length - 1]?.id
+      id = id ? id + 1 : 1;
+      this.customers.push({
+        id: id,
+        name: 'New Customer ' + id,
+        city: 'Somewhere',
+        age: id * 5
+      });
+      this.customersSubject$.next(this.customers);
+    }
     return of(this.customers);
   }
 
@@ -129,7 +132,8 @@ export class DataService {
   }
 
   addCustomerImmutable() : Observable<Customer[]> {
-    let id = this.immutableCustomers[this.immutableCustomers.size - 1].id + 1;
+    let id = this.immutableCustomers.get(this.immutableCustomers.size - 1)?.id;
+    id = id ? id + 1 : 1;
     this.immutableCustomers.push({
       id: id,
       name: 'New Customer ' + id,
@@ -137,7 +141,7 @@ export class DataService {
       age: id * 5
     });
     this.customersSubject$.next(this.customers);
-    return of(this.immutableCustomers.toJS());
+    return of(this.immutableCustomers.toJS() as any);
   }
 
   addProduct(newProduct: Product) {

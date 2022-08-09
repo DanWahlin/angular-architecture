@@ -1,14 +1,14 @@
 import { Theme, SidebarPosition } from "./enums";
 
 export interface Customer {
-    id: number;
+    id: number | null;
     name: string;
     city: string;
     age: number;
 }
 
 export interface Product {
-    id: number;
+    id: number | null;
     name: string;
     price: number;
 }

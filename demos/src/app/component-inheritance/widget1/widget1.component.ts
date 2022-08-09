@@ -12,7 +12,4 @@ export class Widget1Component extends BaseComponent implements OnInit {
     super();
   }
 
-  ngOnInit() {
-  }
-
 }

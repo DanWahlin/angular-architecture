@@ -8,6 +8,6 @@ import { Customer } from '../../shared/interfaces';
 })
 export class CustomerDetailsComponent {
 
-  @Input() customer: Customer;
+  @Input() customer: Customer = {} as Customer;
 
 }

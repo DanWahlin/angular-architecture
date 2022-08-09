@@ -10,7 +10,7 @@ import { DataService } from '../core/services/data.service';
 export class StructuringComponentsComponent implements OnInit {
 
   customers: Customer[] = [];
-  customer: Customer;
+  customer: Customer = {} as Customer;
 
   constructor(private dataService: DataService) { }
 

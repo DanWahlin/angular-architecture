@@ -6,9 +6,9 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BaseComponent implements OnInit, OnChanges {
-  @Input() label: string;
+  @Input() label = '';
   
-  private _value: string;
+  private _value = '';
   @Input() get value() {
       return this._value;
   }

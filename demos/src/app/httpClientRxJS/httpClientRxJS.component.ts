@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { switchMap, debounceTime } from 'rxjs/operators';
 import { HttpClientRxJSService } from '../core/services/httpClientRxJS.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -11,13 +11,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class HttpClientRxJSComponent implements OnInit  {
 
-  formGroup: FormGroup;
-  searchCharacters$: Observable<any[]>;
-  characters$: Observable<any[]>;
-  characterWithHomeworld$: Observable<{}>;
-  charactersWithHomeworld$: Observable<any>;
-  planets$: Observable<any[]>;
-  charactersAndPlanets: { characters: any[], planets: any[]};
+  formGroup: FormGroup = {} as FormGroup;
+  searchCharacters$: Observable<any[]> = of([]);
+  characters$: Observable<any[]>= of([]);
+  characterWithHomeworld$: Observable<{}>= of({});
+  charactersWithHomeworld$: Observable<any>= of();
+  planets$: Observable<any[]>= of([]);
+  charactersAndPlanets: { characters: any[], planets: any[]} = {} as { characters: any[], planets: any[]};
   showCharactersAndPlanetsJSON = false;
   showCharacterAndHomeworldJSON = false;
   
@@ -46,12 +46,16 @@ export class HttpClientRxJSComponent implements OnInit  {
       characterName: new FormControl('', [Validators.required])
     });
 
-    this.searchCharacters$ = this.formGroup.get('characterName').valueChanges
+    const valueChanges = this.formGroup.get('characterName')?.valueChanges;
+    if (valueChanges) {
+      this.searchCharacters$ = valueChanges
       .pipe(
         debounceTime(500), 
         switchMap(name => {
           return this.dataService.getCharacter(name);
         })
       );
+    }
+
   }
 }

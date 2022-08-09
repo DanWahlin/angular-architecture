@@ -13,16 +13,16 @@ import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  customers: Customer[];
-  customer: Customer;
-  eventbusSub: Subscription;
-  customersChangedSub: Subscription;
+  customers: Customer[] = [];
+  customer: Customer | null = null;
+  eventbusSub: Subscription = new Subscription();
+  customersChangedSub: Subscription = new Subscription();
 
   constructor(private eventbus: EventBusService, private dataService: DataService) {}
 
   ngOnInit() {
     //Example of using an event bus to provide loosely coupled communication (mediator pattern)
-    this.eventbusSub = this.eventbus.on(Events.CustomerSelected, cust => (this.customer = cust));
+    this.eventbusSub = this.eventbus.on(Events.CustomerSelected, (cust: Customer) => (this.customer = cust));
 
     //Example of using BehaviorSubject to be notified when a service changes
     this.customersChangedSub = this.dataService.customersChanged$.subscribe(custs => (this.customers = custs));

@@ -6,7 +6,7 @@ import * as clone from 'clone';
 })
 export class ClonerService {
 
-    deepClone<T>(value) {
+    deepClone<T>(value: T) {
         return clone<T>(value);
     }
 
