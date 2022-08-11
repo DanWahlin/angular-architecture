@@ -57,7 +57,7 @@ export class VmPlusContainerComponent {
   save(vm: CustomerVmPlus) {
     this.selectedVm = null;
     const customer = vm.toCustomer();
-    customer.id == null ? this.dataService.addCustomer(customer) : this.dataService.updateCustomer(customer);
+    customer.id == 0 ? this.dataService.addCustomer(customer) : this.dataService.updateCustomer(customer);
   }
 
   selected(vm: CustomerVmPlus) {

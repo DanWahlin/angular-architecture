@@ -8,7 +8,7 @@ import { Customer } from '../../shared/interfaces';
 })
 export class CustomerDetailsComponent implements OnInit {
 
-  @Input() customer: Customer = {} as Customer;
+  @Input() customer!: Customer;
 
   constructor() { }
 

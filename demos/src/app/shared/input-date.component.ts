@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
   [min]="min" [max]="max">`
 })
 export class InputDateComponent {
-  @Input() model: { [key: string]: any } = {} as { [key: string]: any };
+  @Input() model!: { [key: string]: any };
   @Input() property = '';
   @Input() min = '';
   @Input() max = '';

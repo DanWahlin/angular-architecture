@@ -11,13 +11,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class HttpClientRxJSComponent implements OnInit  {
 
-  formGroup: FormGroup = {} as FormGroup;
-  searchCharacters$: Observable<any[]> = of([]);
-  characters$: Observable<any[]>= of([]);
-  characterWithHomeworld$: Observable<{}>= of({});
-  charactersWithHomeworld$: Observable<any>= of();
-  planets$: Observable<any[]>= of([]);
-  charactersAndPlanets: { characters: any[], planets: any[]} = {} as { characters: any[], planets: any[]};
+  formGroup!: FormGroup;
+  searchCharacters$!: Observable<any[]>;
+  characters$!: Observable<any[]>;
+  characterWithHomeworld$!: Observable<{}>;
+  charactersWithHomeworld$!: Observable<any>;
+  planets$!: Observable<any[]>;
+  charactersAndPlanets!: { characters: any[], planets: any[]};
   showCharactersAndPlanetsJSON = false;
   showCharacterAndHomeworldJSON = false;
   

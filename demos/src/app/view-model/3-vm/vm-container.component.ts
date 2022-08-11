@@ -30,7 +30,7 @@ import { CustomerVm } from './customer-vm';
   `
 })
 export class VmContainerComponent {
-  vms$: Observable<CustomerVm[]> = of([]);
+  vms$!: Observable<CustomerVm[]>;
   selectedVm: CustomerVm | null = null;
 
   constructor(private dataService: CustomerOrdersDataService) {
@@ -55,7 +55,7 @@ export class VmContainerComponent {
   save(vm: CustomerVm) {
     this.selectedVm = null;
     const customer = vm.toCustomer();
-    customer.id == null ? this.dataService.addCustomer(customer) : this.dataService.updateCustomer(customer);
+    customer.id == 0 ? this.dataService.addCustomer(customer) : this.dataService.updateCustomer(customer);
   }
 
   selected(vm: CustomerVm) {

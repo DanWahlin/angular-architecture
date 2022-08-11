@@ -11,7 +11,7 @@ import { SubSink } from 'subsink';
 export class CommunicationComponent implements OnInit, OnDestroy {
 
   customers: Customer[] = [];
-  customer: Customer = {} as Customer;
+  customer!: Customer;
   private subs = new SubSink();
 
   constructor(private dataService: DataService) { }
