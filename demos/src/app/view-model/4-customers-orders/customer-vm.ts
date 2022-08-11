@@ -15,7 +15,7 @@ export interface OrderSummaryVm {
  */
 export class CustomerVm {
   // Only include properties that the views need
-  id: number | null = null;
+  id = 0;
   first = '';
   last = '';
   city = '';
@@ -52,7 +52,7 @@ export class CustomerVm {
 
   /** Return a Customer-like object with just the properties that can be saved. */
   toCustomer(): Partial<Customer> {
-    return toCustomer(this);
+    return toCustomer(this as Partial<Customer>);
   }
 }
 
@@ -61,6 +61,6 @@ export class CustomerVm {
  * Missing properties get default values.
  */
 function toCustomer(customer: Partial<Customer>): Partial<Customer> {
-  const { id = null, first = '', last = '', city = '', birthDate = null, photo = Customer.missingPerson } = customer;
+  const { id = 0, first = '', last = '', city = '', birthDate = '', photo = Customer.missingPerson } = customer;
   return { id, first, last, city, birthDate, photo };
 }

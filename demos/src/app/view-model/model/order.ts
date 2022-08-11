@@ -1,10 +1,10 @@
 import { Customer } from './customer';
 
 export class Order {
-  id: number;
-  customerId: number;
-  memo: string;
-  orderDate: Date;
+  id = 0;
+  customerId = 0;
+  memo = '';
+  orderDate: Date = new Date();
 
   static create(id: number, order: Partial<Order> = {}, customer?: Partial<Customer>) {
     // Defaults

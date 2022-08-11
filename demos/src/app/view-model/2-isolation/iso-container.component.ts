@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { Customer } from '../model';
 import { CustomerOrdersDataService } from '../services';
@@ -36,8 +36,8 @@ import { CustomerOrdersDataService } from '../services';
   `
 })
 export class IsoContainerComponent {
-  customers$: Observable<Customer[]>;
-  selectedCustomer: Partial<Customer>;
+  customers$: Observable<Customer[]> = of([]);
+  selectedCustomer: Partial<Customer> | null = null;
 
   constructor(private dataService: CustomerOrdersDataService) {
     this.customers$ = dataService.customers$;

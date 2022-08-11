@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CustomerOrdersDataService } from '../services';
@@ -30,8 +30,8 @@ import { CustomerVm } from './customer-vm';
   `
 })
 export class VmContainerComponent {
-  vms$: Observable<CustomerVm[]>;
-  selectedVm: CustomerVm;
+  vms$: Observable<CustomerVm[]> = of([]);
+  selectedVm: CustomerVm | null = null;
 
   constructor(private dataService: CustomerOrdersDataService) {
     this.createVm$();

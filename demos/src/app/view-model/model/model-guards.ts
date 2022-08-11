@@ -24,7 +24,7 @@ import { EntityCache } from './entity-cache';
 type EntityGuardFn = (entity: {}, isAdd?: boolean, cache?: EntityCache) => {};
 
 /** An object with guard functions for each entity collection in the model. */
-export const modelGuards: { [key: string]: EntityGuardFn } = {
+export const modelGuards: any = {
   customers: customerGuard,
   lineItems: lineItemGuard,
   orders: orderGuard,

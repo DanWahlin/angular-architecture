@@ -43,11 +43,11 @@ import { ngIfAnim } from '../../animations';
   `
 })
 export class IsoCustomerDetailsComponent {
-  @Input() viewModel: Customer = {} as Customer;
+  @Input() viewModel: Partial<Customer> | null = null;
   @Output() cancel = new EventEmitter();
   @Output() save = new EventEmitter();
 
   get saveDisabled() {
-    return !(this.viewModel.first || '').trim() || !(this.viewModel.last || '').trim();
+    return !(this.viewModel?.first || '').trim() || !(this.viewModel?.last || '').trim();
   }
 }

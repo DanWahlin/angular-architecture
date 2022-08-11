@@ -2,10 +2,10 @@ import { Order } from './order';
 import { Product } from './product';
 
 export class LineItem {
-  id: number;
-  orderId: number;
-  productId: number;
-  quantity: number;
+  id = 0;
+  orderId = 0;
+  productId = 0;
+  quantity = 0;
 
   /** True if "soft deleted" */
   isDeleted?: boolean;

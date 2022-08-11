@@ -15,7 +15,7 @@ import { Customer } from '../model';
   `
 })
 export class SimpleCustomerListComponent {
-  @Input() customers: Customer[];
+  @Input() customers: Customer[] = [];
   @Output() customerSelected = new EventEmitter<Customer>();
 
   selectCustomer(customer: Customer) {

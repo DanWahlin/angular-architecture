@@ -14,7 +14,7 @@ import { OrderGraph, ProductMap } from './order-graph';
  */
 @Injectable({ providedIn: 'root' })
 export class CustomerOrdersDataService {
-  private nextId: number;
+  private nextId = 0;
 
   private cacheStore = new ReplaySubject<EntityCache>(1);
   cache$ = this.cacheStore.asObservable();
@@ -68,7 +68,7 @@ export class CustomerOrdersDataService {
       first(),
       // Get the order for this orderId
       map(orders => orders.find(o => o.id === orderId)),
-      concatMap(order => this.getOrderGraphForOrder(order))
+      concatMap(order => this.getOrderGraphForOrder(order!))
     );
   }
 

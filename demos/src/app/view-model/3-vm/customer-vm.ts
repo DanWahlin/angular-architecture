@@ -8,12 +8,12 @@ import { calcAge, calcFullName } from '../../shared';
  */
 export class CustomerVm {
   // Only include properties that the views need
-  id: number;
-  first: string;
-  last: string;
-  city: string;
-  birthDate?: Date;
-  photo: string;
+  id = 0;
+  first = '';
+  last = '';
+  city = '';
+  birthDate?: Date | string = '';
+  photo = '';
 
   /** Create CustomerVm from a Customer */
   static create(customer: Partial<Customer> = {}): CustomerVm {
@@ -27,7 +27,7 @@ export class CustomerVm {
 
   // Add methods and properties to keep code and pipes out of the HTML. They replace pipes which can be inefficient (see FullNamePipe).
   get age() {
-    return calcAge(this.birthDate);
+    return calcAge(this.birthDate as string);
   }
   get name() {
     return calcFullName(this);
@@ -47,6 +47,6 @@ export class CustomerVm {
  * Missing properties get default values.
  */
 function toCustomer(customer: Partial<Customer>): Partial<Customer> {
-  const { id = null, first = '', last = '', city = '', birthDate = null, photo = Customer.missingPerson } = customer;
+  const { id = 0, first = '', last = '', city = '', birthDate = '', photo = Customer.missingPerson } = customer;
   return { id, first, last, city, birthDate, photo };
 }

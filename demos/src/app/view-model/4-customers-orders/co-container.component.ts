@@ -35,7 +35,7 @@ import { OrderVm } from './order-vm';
       </div>
 
       <!-- Order Details -->
-      <div class="col-md-5">
+      <div class="col-md-5" *ngIf="(selectedOrderVm$ | async)?.orderId">
         <app-co-order-details [vm]="selectedOrderVm$ | async" (cancel)="cancelOrder()" (save)="saveOrder($event)">
         </app-co-order-details>
       </div>
@@ -43,9 +43,9 @@ import { OrderVm } from './order-vm';
   `
 })
 export class CustomersOrdersContainerComponent {
-  customerVms$: Observable<CustomerVm[]>;
-  selectedCustomerVm: CustomerVm = {} as CustomerVm;
-  selectedOrderVm$: Observable<OrderVm> = of({} as OrderVm);
+  customerVms$!: Observable<CustomerVm[]> | null;
+  selectedCustomerVm!: CustomerVm | null;
+  selectedOrderVm$!: Observable<OrderVm> | null;
 
   constructor(private viewService: CustomersOrdersViewService) {
     this.customerVms$ = viewService.customerVms$;
@@ -56,22 +56,22 @@ export class CustomersOrdersContainerComponent {
   }
 
   cancelCustomer() {
-    this.selectedCustomerVm = {} as CustomerVm;
+    this.selectedCustomerVm = null;
     this.cancelOrder();
   }
 
   cancelOrder() {
-    this.selectedOrderVm$ = of({} as OrderVm);
+    this.selectedOrderVm$ = null;
   }
 
   saveCustomer(customerVm: CustomerVm) {
-    this.selectedCustomerVm = {} as CustomerVm;
-    this.selectedOrderVm$ = of({} as OrderVm);
+    this.selectedCustomerVm = null;
+    this.selectedOrderVm$ = null;
     this.viewService.saveCustomer(customerVm);
   }
 
   saveOrder(orderVm: OrderVm) {
-    this.selectedOrderVm$ = of({} as OrderVm);
+    this.selectedOrderVm$ = null;
     this.viewService.saveOrder(orderVm);
   }
 

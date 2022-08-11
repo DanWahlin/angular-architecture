@@ -2,7 +2,7 @@ export class Customer {
   /** Default image when a customer has no photo link. */
   static missingPerson = 'assets/missing-person.png';
 
-  id: number | null = null;
+  id = 0;
   first = '';
   last = '';
   city = '';

@@ -24,7 +24,7 @@ export type CacheStore = Subject<EntityCache>;
 
 /** Get the current value (a "snapshot") of the entire Entity Cache */
 export function cacheSnapShot(cache$: Observable<EntityCache>) {
-  let cache: EntityCache;
+  let cache: EntityCache = {} as EntityCache;
   cache$.pipe(first()).subscribe(c => (cache = c));
   return cache;
 }

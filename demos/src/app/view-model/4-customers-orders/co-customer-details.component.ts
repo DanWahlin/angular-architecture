@@ -58,7 +58,7 @@ import { ngIfAnim } from '../../animations';
   styleUrls: ['../view-model.css']
 })
 export class CustomerDetailsComponent {
-  @Input() vm: CustomerVm = {} as CustomerVm;
+  @Input() vm!: CustomerVm | null;
   @Output() cancel = new EventEmitter();
   @Output() save = new EventEmitter();
   @Output() selectOrder = new EventEmitter();

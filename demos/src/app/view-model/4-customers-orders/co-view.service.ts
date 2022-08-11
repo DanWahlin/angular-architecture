@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CustomerOrdersDataService } from '../services';
@@ -31,15 +31,21 @@ export class CustomersOrdersViewService {
     );
   }
 
-  selectedOrderVm(orderId: number, customerVm: CustomerVm): Observable<OrderVm> {
+  selectedOrderVm(orderId: number, customerVm: CustomerVm | null): Observable<OrderVm> {
+    if (customerVm) {
     return this.dataService
       .getOrderGraphByOrderId(orderId)
       .pipe(map(orderGraph => createOrderVm(customerVm, orderGraph)));
+    } else {
+      return of();
+    } 
   }
 
-  saveCustomer(customerVm: CustomerVm) {
-    const customer = customerVm.toCustomer();
-    customer.id == null ? this.dataService.addCustomer(customer) : this.dataService.updateCustomer(customer);
+  saveCustomer(customerVm: CustomerVm | null) {
+    if (customerVm) {
+      const customer = customerVm.toCustomer();
+      customer.id == 0 ? this.dataService.addCustomer(customer) : this.dataService.updateCustomer(customer);
+    }
   }
 
   /** Limited save. Can only update certain aspects of an existing order .*/

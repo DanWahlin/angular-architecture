@@ -31,12 +31,15 @@ import { ngIfAnim } from '../../animations';
         </tr>
         <tr>
           <td>Age:</td>
-          <td>{{ customer.birthDate | age }}</td>
+          <td>
+            <span *ngIf="customer.birthDate">{{ customer.birthDate | age }}</span>
+            <span *ngIf="!customer.birthDate">n/a</span>
+          </td>
         </tr>
       </table>
     </div>
   `
 })
 export class SimpleCustomerDetailsComponent {
-  @Input() customer: Customer = {} as Customer;
+  @Input() customer: Customer | null = null;
 }
