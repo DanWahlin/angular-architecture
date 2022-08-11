@@ -32,7 +32,7 @@ import { CustomerVmPlus } from './customer-vm-plus';
   `
 })
 export class VmPlusContainerComponent {
-  vms$: Observable<CustomerVmPlus[]> = of({} as CustomerVmPlus[]);
+  vms$!: Observable<CustomerVmPlus[]>;
   selectedVm: CustomerVmPlus | null = null;
 
   constructor(private dataService: CustomerOrdersDataService) {
