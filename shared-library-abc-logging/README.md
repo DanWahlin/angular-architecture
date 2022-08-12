@@ -3,6 +3,7 @@
 abc company has a series of packages that form a library of services and components. This package is for `abc-logging`
 
 1. `npm install`
+1. Go into `projects/browser-logger` and run `npm install`
 1. `ng build browser-logger`
 1. `ng build`
 
