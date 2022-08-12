@@ -14,12 +14,12 @@ import { CustomersService } from '../customers.service';
 export class CustomersEditComponent implements OnInit, OnDestroy {
 
   customerForm = this.formBuilder.group({
-    id: [],
+    id: [0],
     name: [ '', Validators.required ],
     city: [ '', Validators.required ]
   });
 
-  customer: Customer;
+  customer!: Customer;
   subsink = new SubSink();
 
   constructor(
@@ -29,7 +29,7 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
       private route: ActivatedRoute) { }
 
   ngOnInit() {
-      const id = +this.route.snapshot.paramMap.get('id');
+      const id = Number(this.route.snapshot.paramMap.get('id'));
       this.subsink.sink = this.customersService.get(id).subscribe(customer => {
         if (customer) {
           this.customer = customer;

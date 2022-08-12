@@ -10,7 +10,7 @@ import { CustomersService } from './customers.service';
 })
 export class CustomersComponent implements OnInit {
     title = 'Customers';
-    customers$: Observable<Customer[]>;
+    customers$!: Observable<Customer[]>;
 
     constructor(private customersService: CustomersService) {}
 

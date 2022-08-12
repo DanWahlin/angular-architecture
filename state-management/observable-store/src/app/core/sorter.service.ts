@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SorterService {
 
-    property: string = null;
+    property: string | null = null;
     direction = 1;
 
     sort(collection: any[], prop: any) {

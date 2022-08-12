@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { of, Observable } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { ObservableStore } from '@codewithdan/observable-store';
 
@@ -45,13 +45,15 @@ export class CustomersService extends ObservableStore<StoreState> {
         }
     }
 
-    get(id) {
+    get(id: number) {
         return this.getAll()
             .pipe(
                 map(custs => {
                     let filteredCusts = custs.filter(cust => cust.id === id);
-                    const customer = (filteredCusts && filteredCusts.length) ? filteredCusts[0] : null;                
-                    this.setState({ customer }, CustomersStoreActions.GetCustomer);
+                    const customer = (filteredCusts && filteredCusts.length) ? filteredCusts[0] : null;     
+                    if (customer) {           
+                        this.setState({ customer }, CustomersStoreActions.GetCustomer);
+                    }
                     return customer;
                 }),
                 catchError(this.handleError)
@@ -101,9 +103,9 @@ export class CustomersService extends ObservableStore<StoreState> {
         console.error('server error:', error);
         if (error.error instanceof Error) {
             const errMessage = error.error.message;
-            return Observable.throw(errMessage);
+            return throwError(() => new Error(errMessage));
         }
-        return Observable.throw(error || 'Server error');
+        return throwError(() => error || new Error('Server error'));
       }
 }
 

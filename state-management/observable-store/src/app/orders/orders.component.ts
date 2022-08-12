@@ -11,7 +11,7 @@ import { OrdersService } from './orders.service';
 })
 export class OrdersComponent implements OnInit {
 
-  orders$: Observable<Order[]>;
+  orders$!: Observable<Order[]>;
 
   constructor(private ordersService: OrdersService,
               private route: ActivatedRoute) {
@@ -19,7 +19,7 @@ export class OrdersComponent implements OnInit {
    }
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     this.orders$ = this.ordersService.get(id);
   }
 
