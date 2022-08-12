@@ -12,7 +12,7 @@ export interface LoggerService {
 
 @Injectable({ providedIn: 'root' })
 export class BrowserLoggerService implements LoggerService {
-  constructor(@Inject('env') private env) {}
+  constructor(@Inject('env') private env: any) {}
 
   info(...args: any[]): void {
     if (!this.env.production) {
