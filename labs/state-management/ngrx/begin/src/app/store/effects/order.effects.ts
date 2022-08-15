@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -12,8 +12,8 @@ type GetOrdersAction = OrderActions.GetOrders;
 @Injectable()
 export class OrderEffects {
 
-  @Effect()
-  getOrders$: Observable<Action> = this.actions$
+  
+  getOrders$: Observable<Action> = createEffect(() => this.actions$
     .pipe(
       ofType(OrderActions.GET_ORDERS),
       switchMap((action: GetOrdersAction) =>
@@ -23,7 +23,7 @@ export class OrderEffects {
           OrderActions.GetOrdersError
         )
       )
-    );
+    ));
 
   constructor(
     private actions$: Actions,
