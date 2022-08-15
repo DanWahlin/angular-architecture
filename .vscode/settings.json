@@ -20,5 +20,6 @@
     "titleBar.activeForeground": "#e7e7e7",
     "titleBar.inactiveBackground": "#1975d299",
     "titleBar.inactiveForeground": "#e7e7e799"
-  }
+  },
+  "angular.enable-strict-mode-prompt": false
 }
