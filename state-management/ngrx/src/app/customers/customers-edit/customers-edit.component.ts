@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Customer } from '../../core/model/customer';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerSelectors, EntityState } from '../../store';
@@ -28,7 +28,7 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
     private store: Store<EntityState>,
     private customerSelectors: CustomerSelectors,
     private router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute) {
 
   }
