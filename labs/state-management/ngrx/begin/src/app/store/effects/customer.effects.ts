@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { concatMap, switchMap } from 'rxjs/operators';
@@ -13,8 +13,8 @@ type GetCustomerAction = CustomerActions.GetCustomer;
 @Injectable()
 export class CustomerEffects {
 
-  @Effect()
-  getCustomers$: Observable<Action> = this.actions$
+  
+  getCustomers$: Observable<Action> = createEffect(() => this.actions$
     .pipe(
       ofType(CustomerActions.GET_CUSTOMERS),
       switchMap(() =>
@@ -24,10 +24,10 @@ export class CustomerEffects {
           CustomerActions.GetCustomersError
         )
       )
-    );
+    ));
 
-    @Effect()
-    getCustomer$: Observable<Action> = this.actions$
+    
+    getCustomer$: Observable<Action> = createEffect(() => this.actions$
       .pipe(
         ofType(CustomerActions.GET_CUSTOMER),
         switchMap((action: GetCustomerAction) =>
@@ -37,10 +37,10 @@ export class CustomerEffects {
             CustomerActions.GetCustomerError
           )
         )
-      );
+      ));
 
-  @Effect()
-  addCustomer$: Observable<Action> = this.actions$
+  
+  addCustomer$: Observable<Action> = createEffect(() => this.actions$
     .pipe(
       ofType(CustomerActions.ADD_CUSTOMER),
       concatMap((action: CustomerAction) =>
@@ -50,10 +50,10 @@ export class CustomerEffects {
           CustomerActions.AddCustomerError
         )
       )
-    );
+    ));
 
-  @Effect()
-  deleteCustomer$: Observable<Action> = this.actions$
+  
+  deleteCustomer$: Observable<Action> = createEffect(() => this.actions$
     .pipe(
       ofType(CustomerActions.DELETE_CUSTOMER),
       concatMap((action: CustomerAction) =>
@@ -63,10 +63,10 @@ export class CustomerEffects {
           CustomerActions.DeleteCustomerError
         )
       )
-    );
+    ));
 
-  @Effect()
-  updateCustomer$: Observable<Action> = this.actions$
+  
+  updateCustomer$: Observable<Action> = createEffect(() => this.actions$
     .pipe(
       ofType<CustomerActions.UpdateCustomer>(CustomerActions.UPDATE_CUSTOMER),
       concatMap((action: CustomerAction) =>
@@ -76,7 +76,7 @@ export class CustomerEffects {
           CustomerActions.UpdateCustomerError
         )
       )
-    );
+    ));
 
   constructor(
     private actions$: Actions,
