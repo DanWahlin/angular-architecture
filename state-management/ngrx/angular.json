@@ -103,7 +103,6 @@
       }
     }
   },
-  "defaultProject": "ngrx-demo",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
