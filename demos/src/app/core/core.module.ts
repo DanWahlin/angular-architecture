@@ -6,20 +6,20 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 // import { EventBusService } from './services/event-bus.service';
 // import { HttpClientRxJSService } from './services/httpClientRxJS.service';
 
-
 @NgModule({
-  imports: [ HttpClientModule ],
+  imports: [HttpClientModule],
   declarations: [],
-  providers: [ /* DataService, ClonerService, EventBusService, HttpClientRxJSService, */
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true  }
-  ]
+  providers: [
+    /* DataService, ClonerService, EventBusService, HttpClientRxJSService, */
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
 })
-export class CoreModule { 
-  constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
+export class CoreModule {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
       throw new Error(
-        'Core is already loaded. Import it in the AppModule only');
+        'Core is already loaded. Import it in the AppModule only'
+      );
     }
   }
-
 }
