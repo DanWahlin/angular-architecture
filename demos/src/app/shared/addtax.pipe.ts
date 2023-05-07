@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'addtax'
+    name: 'addtax',
+    standalone: true
 })
 export class AddTaxPipe implements PipeTransform {
   transform(price: number): number {

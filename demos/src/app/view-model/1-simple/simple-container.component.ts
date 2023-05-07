@@ -3,6 +3,9 @@ import { Observable, of } from 'rxjs';
 
 import { Customer } from '../model';
 import { CustomerOrdersDataService } from '../services';
+import { SimpleCustomerDetailsComponent } from './simple-customer-details.component';
+import { SimpleCustomerListComponent } from './simple-customer-list.component';
+import { NgIf, AsyncPipe } from '@angular/common';
 
 /**
  * Master/Detail following the Container/Presenter pattern
@@ -10,9 +13,9 @@ import { CustomerOrdersDataService } from '../services';
  * Detail: detail about the selected customer
  */
 @Component({
-  selector: 'app-simple-container',
-  styleUrls: ['../view-model.css'],
-  template: `
+    selector: 'app-simple-container',
+    styleUrls: ['../view-model.css'],
+    template: `
     <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
 
     <div *ngIf="customers$ | async as customers" class="row">
@@ -29,7 +32,9 @@ import { CustomerOrdersDataService } from '../services';
         <app-simple-customer-details [customer]="selectedCustomer"></app-simple-customer-details>
       </div>
     </div>
-  `
+  `,
+    standalone: true,
+    imports: [NgIf, SimpleCustomerListComponent, SimpleCustomerDetailsComponent, AsyncPipe]
 })
 export class SimpleContainerComponent {
   customers$: Observable<Customer[]> = of([]);

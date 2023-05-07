@@ -10,10 +10,10 @@ import { InputDateComponent } from './input-date.component';
 const declarables = [ AddTaxPipe, AddTaxMemoPipe, AgePipe, FullNamePipe, InputDateComponent ];
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  exports: declarables,
-  declarations: declarables
+    imports: [
+        CommonModule,
+        ...declarables
+    ],
+    exports: declarables
 })
 export class SharedModule { }

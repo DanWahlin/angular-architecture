@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { CustomersOrdersContainerComponent } from './co-container.component';
 
 /** Describes the ViewModel Class Demo */
 @Component({
-  selector: 'app-co-shell',
-  styleUrls: ['../view-model.css'],
-  template: `
+    selector: 'app-co-shell',
+    styleUrls: ['../view-model.css'],
+    template: `
     <h2>Customers and Orders</h2>
 
     <p>ViewModels for entity graphs such as Customers and their orders.</p>
@@ -22,6 +23,8 @@ import { Component } from '@angular/core';
         <li>Container component sticks to coordinating presenters, delegating to the <i>ViewService</i>.</li>
       </ul>
     </section>
-  `
+  `,
+    standalone: true,
+    imports: [CustomersOrdersContainerComponent]
 })
 export class CustomersOrdersShellComponent {}

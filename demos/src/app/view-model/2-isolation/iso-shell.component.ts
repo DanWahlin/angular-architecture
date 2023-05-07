@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { IsoContainerComponent } from './iso-container.component';
 
 /** Describes the Isolation VM Demo */
 @Component({
-  selector: 'app-iso-shell',
-  styleUrls: ['../view-model.css'],
-  template: `
+    selector: 'app-iso-shell',
+    styleUrls: ['../view-model.css'],
+    template: `
     <h2>Isolation</h2>
 
     <p>ViewModel object isolates presenter data from the model data.</p>
@@ -22,6 +23,8 @@ import { Component } from '@angular/core';
         <li>Cancel discards added or changed customer.</li>
       </ul>
     </section>
-  `
+  `,
+    standalone: true,
+    imports: [IsoContainerComponent]
 })
 export class IsoShellComponent {}

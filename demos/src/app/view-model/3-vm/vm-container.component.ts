@@ -4,6 +4,9 @@ import { map } from 'rxjs/operators';
 
 import { CustomerOrdersDataService } from '../services';
 import { CustomerVm } from './customer-vm';
+import { VmCustomerDetailsComponent } from './vm-customer-details.component';
+import { VmCustomerListComponent } from './vm-customer-list.component';
+import { NgIf, AsyncPipe } from '@angular/common';
 
 /**
  * Master/Detail following the Container/Presenter pattern.
@@ -11,9 +14,9 @@ import { CustomerVm } from './customer-vm';
  * Detail: detail about a selected Customer ViewModel
  */
 @Component({
-  selector: 'app-vm-container',
-  styleUrls: ['../view-model.css'],
-  template: `
+    selector: 'app-vm-container',
+    styleUrls: ['../view-model.css'],
+    template: `
     <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
 
     <div *ngIf="vms$ | async as vms" class="row">
@@ -27,7 +30,9 @@ import { CustomerVm } from './customer-vm';
         <app-vm-customer-details [vm]="selectedVm" (cancel)="cancel()" (save)="save($event)"></app-vm-customer-details>
       </div>
     </div>
-  `
+  `,
+    standalone: true,
+    imports: [NgIf, VmCustomerListComponent, VmCustomerDetailsComponent, AsyncPipe]
 })
 export class VmContainerComponent {
   vms$!: Observable<CustomerVm[]>;

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { VmContainerComponent } from './vm-container.component';
 
 /** Describes the ViewModel Class Demo */
 @Component({
-  selector: 'app-vm-shell',
-  styleUrls: ['../view-model.css'],
-  template: `
+    selector: 'app-vm-shell',
+    styleUrls: ['../view-model.css'],
+    template: `
     <h2>ViewModel Class</h2>
 
     <p>Formalize the view model in its own class.</p>
@@ -19,6 +20,8 @@ import { Component } from '@angular/core';
         <li>ViewModel class is super easy to unit test.</li>
       </ul>
     </section>
-  `
+  `,
+    standalone: true,
+    imports: [VmContainerComponent]
 })
 export class VmShellComponent {}

@@ -1,12 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { Customer } from '../model';
 import { ngIfAnim } from '../../animations';
+import { AgePipe } from '../../shared/age.pipe';
+import { InputDateComponent } from '../../shared/input-date.component';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-simple-customer-details',
-  styleUrls: ['../view-model.css'],
-  animations: [ngIfAnim],
-  template: `
+    selector: 'app-simple-customer-details',
+    styleUrls: ['../view-model.css'],
+    animations: [ngIfAnim],
+    template: `
     <div *ngIf="customer" [@ngIfAnim]>
       <h4>Details</h4>
       <table class="table">
@@ -38,7 +42,9 @@ import { ngIfAnim } from '../../animations';
         </tr>
       </table>
     </div>
-  `
+  `,
+    standalone: true,
+    imports: [NgIf, FormsModule, InputDateComponent, AgePipe]
 })
 export class SimpleCustomerDetailsComponent {
   @Input() customer: Customer | null = null;

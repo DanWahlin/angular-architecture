@@ -1,12 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
 import { Customer } from '../../shared/interfaces';
 import { EventBusService, EmitEvent, Events } from '../../core/services/event-bus.service';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-customers-list',
-  templateUrl: './customers-list.component.html',
-  styleUrls: [ './customers-list.component.css' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-customers-list',
+    templateUrl: './customers-list.component.html',
+    styleUrls: ['./customers-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgFor]
 })
 export class CustomersListComponent {
   @Input() customers: Customer[] = [];

@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CustomerVm } from './customer-vm';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-vm-customer-list',
-  styleUrls: ['../view-model.css'],
-  template: `
+    selector: 'app-vm-customer-list',
+    styleUrls: ['../view-model.css'],
+    template: `
     <h4>Customers</h4>
 
     <table class="table table-striped nav">
@@ -13,7 +14,9 @@ import { CustomerVm } from './customer-vm';
         <!-- Look Ma! No pipe! -->
       </tr>
     </table>
-  `
+  `,
+    standalone: true,
+    imports: [NgFor]
 })
 export class VmCustomerListComponent {
   @Input() vms: CustomerVm[] = [];

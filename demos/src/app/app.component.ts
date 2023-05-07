@@ -5,12 +5,16 @@ import { Customer } from './shared/interfaces';
 import { Subscription } from 'rxjs';
 import { DataService } from './core/services/data.service';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { NgIf } from '@angular/common';
+import { RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
 
 @AutoUnsubscribe()
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    standalone: true,
+    imports: [RouterLinkActive, RouterLink, NgIf, RouterOutlet]
 })
 export class AppComponent implements OnInit {
   customers: Customer[] = [];

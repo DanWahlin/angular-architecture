@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { VmPlusContainerComponent } from './vm-plus-container.component';
 
 /** Describes the ViewModel Class PLUS Demo */
 @Component({
-  selector: 'app-vm-plus-shell',
-  styleUrls: ['../view-model.css'],
-  template: `
+    selector: 'app-vm-plus-shell',
+    styleUrls: ['../view-model.css'],
+    template: `
     <h2>ViewModel Wonder Class</h2>
 
     <p>The ViewModel that <i>does it all</i> ... perhaps too much.</p>
@@ -20,6 +21,8 @@ import { Component } from '@angular/core';
         <li><i>Concern: presenter coordination is hidden within the view model</i>.</li>
       </ul>
     </section>
-  `
+  `,
+    standalone: true,
+    imports: [VmPlusContainerComponent]
 })
 export class VmPlusShellComponent {}

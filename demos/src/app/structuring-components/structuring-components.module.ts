@@ -7,10 +7,10 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    StructuringComponentsRoutingModule  
-  ],
-  declarations: [ StructuringComponentsRoutingModule.components, CustomersListComponent, CustomerDetailsComponent ]
+    imports: [
+        CommonModule,
+        StructuringComponentsRoutingModule,
+        StructuringComponentsRoutingModule.components, CustomersListComponent, CustomerDetailsComponent
+    ]
 })
 export class StructuringComponentsModule { }

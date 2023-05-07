@@ -4,11 +4,11 @@ import { CommonModule } from '@angular/common';
 import { ComponentInheritanceRoutingModule } from './component-inheritance-routing.module';
 
 @NgModule({
-  declarations: [ComponentInheritanceRoutingModule.components],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ComponentInheritanceRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ComponentInheritanceRoutingModule,
+        ComponentInheritanceRoutingModule.components
+    ]
 })
 export class ComponentInheritanceModule { }

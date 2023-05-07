@@ -2,7 +2,8 @@ import { Pipe, PipeTransform, OnDestroy } from '@angular/core';
 import memo from 'memo-decorator';
 
 @Pipe({
-  name: 'addtaxmemo'
+    name: 'addtaxmemo',
+    standalone: true
 })
 export class AddTaxMemoPipe implements PipeTransform, OnDestroy {
 

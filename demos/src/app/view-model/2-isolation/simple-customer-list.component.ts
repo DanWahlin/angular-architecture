@@ -1,10 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Customer } from '../model';
+import { FullNamePipe } from '../../shared/fullname.pipe';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-simple-customer-list',
-  styleUrls: ['../view-model.css'],
-  template: `
+    selector: 'app-simple-customer-list',
+    styleUrls: ['../view-model.css'],
+    template: `
     <h4>Customers</h4>
 
     <table class="table table-striped nav">
@@ -12,7 +14,9 @@ import { Customer } from '../model';
         <td>{{ customer | fullname }}</td>
       </tr>
     </table>
-  `
+  `,
+    standalone: true,
+    imports: [NgFor, FullNamePipe]
 })
 export class SimpleCustomerListComponent {
   @Input() customers: Customer[] = [];
