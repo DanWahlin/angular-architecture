@@ -22,7 +22,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [CommonModule, RouterModule.forRoot(routes, {})],
   declarations: [CustomersOrdersShellComponent]
 })
 export class ViewModelModule {}
