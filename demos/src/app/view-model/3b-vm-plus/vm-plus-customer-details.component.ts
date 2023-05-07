@@ -1,15 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CustomerVmPlus } from './customer-vm-plus';
 import { ngIfAnim } from '../../animations';
-import { InputDateComponent } from '../../shared/input-date.component';
-import { FormsModule } from '@angular/forms';
-import { NgIf } from '@angular/common';
 
 @Component({
-    selector: 'app-vm-plus-customer-details',
-    styleUrls: ['../view-model.css'],
-    animations: [ngIfAnim],
-    template: `
+  selector: 'app-vm-plus-customer-details',
+  styleUrls: ['../view-model.css'],
+  animations: [ngIfAnim],
+  template: `
     <div *ngIf="vm" [@ngIfAnim]>
       <h4>Details</h4>
       <table class="table">
@@ -44,9 +41,7 @@ import { NgIf } from '@angular/common';
         <button (click)="vm.cancel()" class="btn btn-light">Cancel</button>
       </div>
     </div>
-  `,
-    standalone: true,
-    imports: [NgIf, FormsModule, InputDateComponent]
+  `
 })
 export class VmPlusCustomerDetailsComponent {
   @Input() vm: CustomerVmPlus | null = null;

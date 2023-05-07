@@ -3,16 +3,11 @@ import { Observable, of } from 'rxjs';
 
 import { DataService } from '../core/services/data.service';
 import { Product } from '../shared/interfaces';
-import { AddTaxMemoPipe } from '../shared/addtax-memo.pipe';
-import { AddTaxPipe } from '../shared/addtax.pipe';
-import { NgFor, AsyncPipe, CurrencyPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-pipes-functions',
-    templateUrl: './pipes-functions.component.html',
-    styles: [],
-    standalone: true,
-    imports: [NgFor, AsyncPipe, CurrencyPipe, AddTaxPipe, AddTaxMemoPipe]
+  selector: 'app-pipes-functions',
+  templateUrl: './pipes-functions.component.html',
+  styles: []
 })
 export class PipesFunctionsComponent implements OnInit {
   products$: Observable<Product[]> = of([]);

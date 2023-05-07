@@ -1,13 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CustomerVm } from './customer-vm';
 import { ngIfAnim } from '../../animations';
-import { InputDateComponent } from '../../shared/input-date.component';
-import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-co-customer-details',
-    template: `
+  selector: 'app-co-customer-details',
+  template: `
     <div *ngIf="vm" [@ngIfAnim]>
       <h4>Details</h4>
       <table class="table">
@@ -57,10 +54,8 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
       </div>
     </div>
   `,
-    animations: [ngIfAnim],
-    styleUrls: ['../view-model.css'],
-    standalone: true,
-    imports: [NgIf, FormsModule, InputDateComponent, NgFor, AsyncPipe]
+  animations: [ngIfAnim],
+  styleUrls: ['../view-model.css']
 })
 export class CustomerDetailsComponent {
   @Input() vm!: CustomerVm | null;

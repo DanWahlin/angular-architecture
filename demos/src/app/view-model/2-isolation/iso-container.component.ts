@@ -3,9 +3,6 @@ import { Observable, of } from 'rxjs';
 
 import { Customer } from '../model';
 import { CustomerOrdersDataService } from '../services';
-import { IsoCustomerDetailsComponent } from './iso-customer-details.component';
-import { SimpleCustomerListComponent } from './simple-customer-list.component';
-import { NgIf, AsyncPipe } from '@angular/common';
 
 /**
  * Master/Detail following the Container/Presenter pattern.
@@ -13,9 +10,9 @@ import { NgIf, AsyncPipe } from '@angular/common';
  * Detail: detail about the selected customer ... as a ViewModel
  */
 @Component({
-    selector: 'app-iso-container',
-    styleUrls: ['../view-model.css'],
-    template: `
+  selector: 'app-iso-container',
+  styleUrls: ['../view-model.css'],
+  template: `
     <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
 
     <div *ngIf="customers$ | async as customers" class="row">
@@ -36,9 +33,7 @@ import { NgIf, AsyncPipe } from '@angular/common';
         ></app-iso-customer-details>
       </div>
     </div>
-  `,
-    standalone: true,
-    imports: [NgIf, SimpleCustomerListComponent, IsoCustomerDetailsComponent, AsyncPipe]
+  `
 })
 export class IsoContainerComponent {
   customers$: Observable<Customer[]> = of([]);

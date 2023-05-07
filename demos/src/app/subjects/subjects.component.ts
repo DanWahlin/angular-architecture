@@ -2,13 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ICustomer, SubjectService } from '../core/services/subject.service';
 import { SubSink } from 'subsink';
-import { NgFor } from '@angular/common';
 
 @Component({
-    selector: 'app-subjects',
-    templateUrl: './subjects.component.html',
-    styles: [
-        `
+  selector: 'app-subjects',
+  templateUrl: './subjects.component.html',
+  styles: [
+    `
       .status-area {
         color: red;
         width: 100%;
@@ -20,9 +19,7 @@ import { NgFor } from '@angular/common';
         color: red;
       }
     `,
-    ],
-    standalone: true,
-    imports: [NgFor],
+  ],
 })
 export class SubjectsComponent implements OnInit, OnDestroy {
   status = '';

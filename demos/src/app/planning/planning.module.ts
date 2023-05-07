@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { PlanningRoutingModule } from './planning-routing.module';
 
 @NgModule({
-    imports: [PlanningRoutingModule, PlanningRoutingModule.components],
+    imports: [ PlanningRoutingModule ],
+    declarations: [ PlanningRoutingModule.components ],
 })
 export class PlanningModule { }

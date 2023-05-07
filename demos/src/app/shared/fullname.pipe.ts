@@ -5,10 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  * Notice that it must be an "impure" pipe because the properties can change even when the object doesn't.
  * Remove the "pure: false" and see what happens!
  */
-@Pipe({
-    name: 'fullname', pure: false,
-    standalone: true
-})
+@Pipe({ name: 'fullname', pure: false })
 export class FullNamePipe implements PipeTransform {
   transform(person: { first?: string, last?: string }): string {
     return calcFullName(person);

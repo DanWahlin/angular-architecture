@@ -1,15 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { OrderVm } from './order-vm';
 import { ngIfAnim } from '../../animations';
-import { InputDateComponent } from '../../shared/input-date.component';
-import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
 
 const YearInMs = 365 * 24 * 60 * 60 * 1000;
 
 @Component({
-    selector: 'app-co-order-details',
-    template: `
+  selector: 'app-co-order-details',
+  template: `
     <div *ngIf="vm" [@ngIfAnim]>
       <h4>Order #{{ vm.orderId }}</h4>
       <table class="table">
@@ -58,10 +55,8 @@ const YearInMs = 365 * 24 * 60 * 60 * 1000;
       </div>
     </div>
   `,
-    styleUrls: ['../view-model.css'],
-    animations: [ngIfAnim],
-    standalone: true,
-    imports: [NgIf, FormsModule, InputDateComponent, NgFor, CurrencyPipe]
+  styleUrls: ['../view-model.css'],
+  animations: [ngIfAnim]
 })
 export class OrderDetailsComponent {
   @Input() vm: OrderVm | null = null;

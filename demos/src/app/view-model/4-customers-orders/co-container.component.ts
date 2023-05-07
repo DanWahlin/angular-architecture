@@ -4,10 +4,6 @@ import { Observable, of } from 'rxjs';
 import { CustomersOrdersViewService } from './co-view.service';
 import { CustomerVm, OrderSummaryVm } from './customer-vm';
 import { OrderVm } from './order-vm';
-import { OrderDetailsComponent } from './co-order-details.component';
-import { CustomerDetailsComponent } from './co-customer-details.component';
-import { CustomerListComponent } from './co-customer-list.component';
-import { NgIf, AsyncPipe } from '@angular/common';
 
 /**
  * Master/Detail following the Container/Presenter pattern.
@@ -16,9 +12,9 @@ import { NgIf, AsyncPipe } from '@angular/common';
  * Order Detail: detail about a selected Order for the selected Customer
  */
 @Component({
-    selector: 'app-co-container',
-    styleUrls: ['../view-model.css'],
-    template: `
+  selector: 'app-co-container',
+  styleUrls: ['../view-model.css'],
+  template: `
     <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
 
     <div *ngIf="customerVms$ | async as vms" class="row">
@@ -44,9 +40,7 @@ import { NgIf, AsyncPipe } from '@angular/common';
         </app-co-order-details>
       </div>
     </div>
-  `,
-    standalone: true,
-    imports: [NgIf, CustomerListComponent, CustomerDetailsComponent, OrderDetailsComponent, AsyncPipe]
+  `
 })
 export class CustomersOrdersContainerComponent {
   customerVms$!: Observable<CustomerVm[]> | null;

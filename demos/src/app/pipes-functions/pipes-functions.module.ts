@@ -4,11 +4,11 @@ import { PipesFunctionsRoutingModule } from './pipes-functions-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        SharedModule,
-        PipesFunctionsRoutingModule,
-        PipesFunctionsRoutingModule.components
-    ]
+  imports: [
+    CommonModule,
+    SharedModule,
+    PipesFunctionsRoutingModule
+  ],
+  declarations: [ PipesFunctionsRoutingModule.components ]
 })
 export class PipesFunctionsModule { }

@@ -14,6 +14,7 @@ const routes: Routes = [{ path: '', component: IsoShellComponent }];
 
 /** Isolation VM Demo - NgModule */
 @NgModule({
-    imports: [CommonModule, FormsModule, SharedModule, RouterModule.forChild(routes), IsoCustomerDetailsComponent, SimpleCustomerListComponent, IsoContainerComponent, IsoShellComponent]
+  imports: [CommonModule, FormsModule, SharedModule, RouterModule.forChild(routes)],
+  declarations: [IsoCustomerDetailsComponent, SimpleCustomerListComponent, IsoContainerComponent, IsoShellComponent]
 })
 export class IsoModule {}

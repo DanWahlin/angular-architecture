@@ -14,9 +14,12 @@ const routes: Routes = [{ path: '', component: SimpleShellComponent }];
 
 /** Simple VM Demo - NgModule */
 @NgModule({
-    imports: [CommonModule, FormsModule, SharedModule, RouterModule.forChild(routes), SimpleCustomerListComponent,
-        SimpleCustomerDetailsComponent,
-        SimpleContainerComponent,
-        SimpleShellComponent]
+  imports: [CommonModule, FormsModule, SharedModule, RouterModule.forChild(routes)],
+  declarations: [
+    SimpleCustomerListComponent,
+    SimpleCustomerDetailsComponent,
+    SimpleContainerComponent,
+    SimpleShellComponent
+  ]
 })
 export class SimpleModule {}

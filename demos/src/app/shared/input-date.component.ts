@@ -1,13 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { DatePipe } from '@angular/common';
 
 @Component({
-    // tslint:disable-next-line: component-selector
-    selector: 'input-date',
-    template: `<input type="date" [value]="date | date:'yyyy-MM-dd'" (change)="date = $any($event).target.value"
-  [min]="min" [max]="max">`,
-    standalone: true,
-    imports: [DatePipe]
+  // tslint:disable-next-line: component-selector
+  selector: 'input-date',
+  template: `<input type="date" [value]="date | date:'yyyy-MM-dd'" (change)="date = $any($event).target.value"
+  [min]="min" [max]="max">`
 })
 export class InputDateComponent {
   @Input() model!: { [key: string]: any };

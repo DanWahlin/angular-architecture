@@ -2,15 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { switchMap, debounceTime } from 'rxjs/operators';
 import { HttpClientRxJSService } from '../core/services/httpClientRxJS.service';
-import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgIf, NgFor, AsyncPipe, JsonPipe } from '@angular/common';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-    selector: 'app-httpclientrxjs',
-    templateUrl: './httpClientRxJS.component.html',
-    styleUrls: ['./httpClientRxJS.component.css'],
-    standalone: true,
-    imports: [FormsModule, ReactiveFormsModule, NgIf, NgFor, AsyncPipe, JsonPipe]
+  selector: 'app-httpclientrxjs',
+  templateUrl: './httpClientRxJS.component.html',
+  styleUrls: [ './httpClientRxJS.component.css' ]
 })
 export class HttpClientRxJSComponent implements OnInit  {
 

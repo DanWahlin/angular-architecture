@@ -22,6 +22,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-    imports: [CommonModule, RouterModule.forRoot(routes, {}), CustomersOrdersShellComponent]
+  imports: [CommonModule, RouterModule.forRoot(routes, {})],
+  declarations: [CustomersOrdersShellComponent]
 })
 export class ViewModelModule {}

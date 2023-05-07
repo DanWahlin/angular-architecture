@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { CustomerOrdersDataService } from './services';
 import { expandCollapse } from '../animations';
-import { NgIf, AsyncPipe, JsonPipe } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
-    selector: 'app-co-shell',
-    styleUrls: ['./view-model.css'],
-    animations: [expandCollapse],
-    template: `
+  selector: 'app-co-shell',
+  styleUrls: ['./view-model.css'],
+  animations: [expandCollapse],
+  template: `
     <h1>ViewModel</h1>
     <div class="nav-links">
       <div><a routerLink="simple">1. Simply the beginning</a></div>
@@ -31,9 +29,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
       <pre id="customer-json">{{ dataservice.customers$ | async | json }}</pre>
     </div>
     <p></p>
-  `,
-    standalone: true,
-    imports: [RouterLink, RouterOutlet, NgIf, AsyncPipe, JsonPipe]
+  `
 })
 export class CustomersOrdersShellComponent {
   constructor(public dataservice: CustomerOrdersDataService) {
