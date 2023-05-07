@@ -19,7 +19,7 @@
     "@angular/platform-browser-dynamic": "^15.2.9",
     "@angular/router": "^15.2.9",
     "@codewithdan/observable-store": "^2.2.14",
-    "angular-in-memory-web-api": "^0.14.0",
+    "angular-in-memory-web-api": "^0.15.0",
     "rxjs": "~7.5.0",
     "subsink": "^1.0.2",
     "tslib": "^2.3.0",
