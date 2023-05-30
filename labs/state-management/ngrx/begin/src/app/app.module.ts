@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { routes } from './routes';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AppStoreModule } from './store/app-store.module';
@@ -11,6 +11,7 @@ import { MetaReducer, StoreModule } from '@ngrx/store';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { RouterModule } from '@angular/router';
 
 export const metaReducers: MetaReducer<any>[] = environment.production ? [] : [];
 
@@ -20,13 +21,13 @@ export const metaReducers: MetaReducer<any>[] = environment.production ? [] : []
     BrowserAnimationsModule,
     CoreModule,
     HttpClientModule,
-    AppRoutingModule,
+    RouterModule.forRoot(routes,
     AppStoreModule,
     StoreModule.forRoot({}, { metaReducers }),
     EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
