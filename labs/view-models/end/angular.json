@@ -110,6 +110,6 @@
           }
         }
       }
-    }},
-  "defaultProject": "view-models"
+    }
+  }
 }
