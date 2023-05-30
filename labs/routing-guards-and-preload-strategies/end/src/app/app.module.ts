@@ -16,8 +16,8 @@ import { routes } from './routes';
     HttpClientModule,
     // Solution - PreloadAllModules or PreloadSelectedModulesList or NetworkAwarePreloadStrategy
     RouterModule.forRoot(routes, {
-    preloadingStrategy: NetworkAwarePreloadStrategy
-}),
+      preloadingStrategy: NetworkAwarePreloadStrategy,
+    }),
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
