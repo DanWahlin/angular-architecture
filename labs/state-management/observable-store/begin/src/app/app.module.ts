@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { routes } from './routes';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { environment } from '../environments/environment';
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -15,9 +15,9 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     CoreModule,
     HttpClientModule,
-    AppRoutingModule
+    RouterModule.forRoot(routes),
   ],
   declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

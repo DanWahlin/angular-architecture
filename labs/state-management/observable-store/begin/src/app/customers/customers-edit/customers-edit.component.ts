@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { SubSink } from 'subsink';
 
 import { Customer } from '../../core/model/customer';
@@ -25,7 +25,7 @@ export class CustomersEditComponent implements OnInit, OnDestroy {
   constructor(
       private customersService: CustomersService,
       private router: Router,
-      private formBuilder: FormBuilder,
+      private formBuilder: UntypedFormBuilder,
       private route: ActivatedRoute) { }
 
   ngOnInit() {

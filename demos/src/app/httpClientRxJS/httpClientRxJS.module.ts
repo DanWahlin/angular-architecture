@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientRxJSRoutingModule } from './httpClientRxJS-routing.module';
+import { components, routes } from './routes';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-    imports: [ CommonModule, HttpClientRxJSRoutingModule, ReactiveFormsModule ],
-    declarations: [ HttpClientRxJSRoutingModule.components ],
+  imports: [CommonModule, RouterModule.forChild(routes), ReactiveFormsModule],
+  declarations: [components],
 })
-export class HttpClientRxJSModule { }
+export class HttpClientRxJSModule {}

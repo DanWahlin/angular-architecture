@@ -5,14 +5,9 @@ import { AppComponent } from './app.component';
 import { SharedLibModule } from 'shared-lib';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    SharedLibModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, SharedLibModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

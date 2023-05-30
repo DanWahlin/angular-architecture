@@ -91,7 +91,6 @@ packages:
       '@angular/service-worker': ^14.0.0
       karma: ^6.3.0
       ng-packagr: ^14.0.0
-      protractor: ^7.0.0
       tailwindcss: ^2.0.0 || ^3.0.0
       typescript: '>=4.6.2 <4.8'
     peerDependenciesMeta:
@@ -102,8 +101,6 @@ packages:
       karma:
         optional: true
       ng-packagr:
-        optional: true
-      protractor:
         optional: true
       tailwindcss:
         optional: true
