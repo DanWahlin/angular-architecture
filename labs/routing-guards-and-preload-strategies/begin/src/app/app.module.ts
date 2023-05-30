@@ -20,7 +20,6 @@ import { routes } from './routes';
       // preloadingStrategy: PreloadSelectedModulesList,
       // preloadingStrategy: NetworkAwarePreloadStrategy,
       // preloadingStrategy: PreloadAllModules,
-      relativeLinkResolution: 'legacy',
     }),
   ],
   declarations: [AppComponent],
