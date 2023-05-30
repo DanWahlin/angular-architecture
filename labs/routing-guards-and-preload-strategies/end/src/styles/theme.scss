@@ -1,7 +1,7 @@
 // https://material.angular.io/guide/theming
-@use '~@angular/material' as mat;
-// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-// @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@use '@angular/material' as mat;
+// @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+// @import '@angular/material/prebuilt-themes/indigo-pink.css';
 @include mat.core();
 
 $primary:       mat.define-palette(mat.$blue-palette, 800);
