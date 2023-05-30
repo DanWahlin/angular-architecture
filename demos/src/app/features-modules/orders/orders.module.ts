@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { OrdersRoutingModule } from './orders-routing.module';
+import { components, routes } from './routes';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-    imports: [ CommonModule, OrdersRoutingModule ],
-    declarations: [ OrdersRoutingModule.components ]
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  declarations: [components],
 })
-export class OrdersModule { }
+export class OrdersModule {}

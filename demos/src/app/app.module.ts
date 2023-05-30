@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { routes } from './routes';
 import { PlanningModule } from './planning/planning.module';
 import { StructuringComponentsModule } from './structuring-components/structuring-components.module';
 import { CoreModule } from './core/core.module';
@@ -13,13 +13,14 @@ import { PipesFunctionsModule } from './pipes-functions/pipes-functions.module';
 import { SubjectsModule } from './subjects/subjects.module';
 import { ComponentInheritanceModule } from './component-inheritance/component-inheritance.module';
 import { HttpClientRxJSModule } from './httpClientRxJS/httpClientRxJS.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
-    AppRoutingModule,
+    RouterModule.forRoot(routes),
     PlanningModule,
     StructuringComponentsModule,
     PipesFunctionsModule,
@@ -27,9 +28,9 @@ import { HttpClientRxJSModule } from './httpClientRxJS/httpClientRxJS.module';
     ViewModelModule,
     SubjectsModule,
     ComponentInheritanceModule,
-    HttpClientRxJSModule
+    HttpClientRxJSModule,
   ],
   declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
