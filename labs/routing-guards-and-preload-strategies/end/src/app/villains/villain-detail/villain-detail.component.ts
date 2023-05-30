@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 
 import { Villain } from '../../core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-villain-detail',
@@ -33,7 +33,7 @@ export class VillainDetailComponent implements OnChanges {
     saying: ['']
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
   ngOnChanges(changes: SimpleChanges) {
     this.setFocus();
@@ -46,7 +46,7 @@ export class VillainDetailComponent implements OnChanges {
     }
   }
 
-  addVillain(form: FormGroup) {
+  addVillain(form: UntypedFormGroup) {
     const { value, valid, touched } = form;
     if (touched && valid) {
       this.add.emit({ ...this.villain, ...value });
@@ -58,7 +58,7 @@ export class VillainDetailComponent implements OnChanges {
     this.unselect.emit();
   }
 
-  saveVillain(form: FormGroup) {
+  saveVillain(form: UntypedFormGroup) {
     if (this.addMode) {
       this.addVillain(form);
     } else {
@@ -70,7 +70,7 @@ export class VillainDetailComponent implements OnChanges {
     this.nameElement.nativeElement.focus();
   }
 
-  updateVillain(form: FormGroup) {
+  updateVillain(form: UntypedFormGroup) {
     const { value, valid, touched } = form;
     if (touched && valid) {
       this.update.emit({ ...this.villain, ...value });

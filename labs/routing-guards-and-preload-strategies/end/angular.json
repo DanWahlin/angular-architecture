@@ -108,6 +108,5 @@
         }
       }
     }
-  },
-  "defaultProject": "routing-guards-and-preload-strategies"
+  }
 }
