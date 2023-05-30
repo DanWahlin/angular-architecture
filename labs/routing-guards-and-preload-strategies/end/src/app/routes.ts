@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 // Solution - Import the AuthGuard
-import { AuthGuard } from './core/auth.guard';
+import { authGuard } from './core/auth.guard';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'heroes' },
@@ -19,6 +19,6 @@ export const routes: Routes = [
 
     // Solution - Apply the AuthGuard
     data: { preload: true },
-    canActivate: [AuthGuard],
+    canActivate: [authGuard],
   },
 ];
