@@ -140,6 +140,6 @@
           }
         }
       }
-    }},
-  "defaultProject": "interceptors"
+    }
+  }
 }
