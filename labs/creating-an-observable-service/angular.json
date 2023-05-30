@@ -111,6 +111,5 @@
         }
       }
     }
-  },
-  "defaultProject": "observable-service"
+  }
 }
