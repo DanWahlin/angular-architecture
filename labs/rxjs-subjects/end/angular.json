@@ -117,6 +117,5 @@
         }
       }
     }
-  },
-  "defaultProject": "rxjs-subjects"
+  }
 }
