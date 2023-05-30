@@ -11,14 +11,14 @@
     "e2e": "ng e2e"
   },
   "dependencies": {
-    "@angular/animations": "^14.3.0",
-    "@angular/common": "^14.3.0",
-    "@angular/compiler": "^14.3.0",
-    "@angular/core": "^14.3.0",
-    "@angular/forms": "^14.3.0",
-    "@angular/platform-browser": "^14.3.0",
-    "@angular/platform-browser-dynamic": "^14.3.0",
-    "@angular/router": "^14.3.0",
+    "@angular/animations": "^15.2.9",
+    "@angular/common": "^15.2.9",
+    "@angular/compiler": "^15.2.9",
+    "@angular/core": "^15.2.9",
+    "@angular/forms": "^15.2.9",
+    "@angular/platform-browser": "^15.2.9",
+    "@angular/platform-browser-dynamic": "^15.2.9",
+    "@angular/router": "^15.2.9",
     "@codewithdan/observable-store": "^2.2.11",
     "angular-in-memory-web-api": "^0.16.0",
     "core-js": "^2.5.4",
@@ -28,10 +28,10 @@
     "subsink": "^1.0.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^14.2.11",
-    "@angular/cli": "^14.2.11",
-    "@angular/compiler-cli": "14.3.0",
-    "@angular/language-service": "14.3.0",
+    "@angular-devkit/build-angular": "^15.2.8",
+    "@angular/cli": "^15.2.8",
+    "@angular/compiler-cli": "15.2.9",
+    "@angular/language-service": "15.2.9",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.6",
     "@types/node": "^12.11.1",
@@ -46,6 +46,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~4.1.0",
     "tslint": "~6.1.0",
-    "typescript": "4.6.4"
+    "typescript": "4.9.5"
   }
 }
