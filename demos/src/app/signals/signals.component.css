@@ -2,11 +2,8 @@ div {
     margin-top: 20px;
 }
 
-.highlight {
-    background-color: yellow;
-}
-
 button {
     background-color: #e5e5e5;
     border: 0;
+    margin-left: 10px;
 }
