@@ -1,0 +1,12 @@
+<div *ngIf="isLoading()">
+    Loading...
+</div>
+<div *ngIf="!isLoading()">
+    <input type="text" (input)="searchQuerySignal.set($any($event.target).value)" title="Search Query">
+    <div *ngFor="let customer of filteredCustomers()">
+        <div [class.highlight]="isEditingCustomer(customer)">
+            <button (click)="editCustomer(customer)">Edit</button>
+            {{customer.name}}
+        </div>
+    </div>
+</div>
