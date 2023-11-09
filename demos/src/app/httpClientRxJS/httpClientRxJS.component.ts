@@ -51,7 +51,7 @@ export class HttpClientRxJSComponent implements OnInit  {
       this.searchCharacters$ = valueChanges
       .pipe(
         debounceTime(500), 
-        switchMap(name => {
+        switchMap((name: string) => {
           return this.dataService.getCharacter(name);
         })
       );

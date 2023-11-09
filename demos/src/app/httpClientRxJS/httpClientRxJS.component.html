@@ -18,6 +18,9 @@ Enter a Star Wars character name (partial names are fine):
 </div>
 
 <h2>Characters</h2>
+<div *ngIf="!charactersAndPlanets">
+  Loading...
+</div>
 <ul>
   <li *ngFor="let char of charactersAndPlanets?.characters">
     {{ char.name }}
@@ -25,6 +28,9 @@ Enter a Star Wars character name (partial names are fine):
 </ul>
 
 <h2>Planets</h2>
+<div *ngIf="!charactersAndPlanets">
+  Loading...
+</div>
 <ul>
   <li *ngFor="let planet of charactersAndPlanets?.planets">
     {{ planet.name }}
@@ -32,6 +38,9 @@ Enter a Star Wars character name (partial names are fine):
 </ul>
 
 <h2>People and Homeworlds</h2>
+<div *ngIf="!(charactersWithHomeworld$ | async)">
+  Loading...
+</div>
 <ul>
   <li *ngFor="let char of charactersWithHomeworld$ | async">
     <span *ngIf="char && char.homeworld">{{ char.name  }} ({{ char.homeworld.name }})</span>
@@ -40,9 +49,9 @@ Enter a Star Wars character name (partial names are fine):
 
 <br />
 
-<button (click)="showCharactersAndPlanetsJSON = !showCharactersAndPlanetsJSON">Show Characters and Planets</button>
+<button [disabled]="!charactersAndPlanets" (click)="showCharactersAndPlanetsJSON = !showCharactersAndPlanetsJSON">Show Characters and Planets</button>
 &nbsp;&nbsp;
-<button (click)="showCharacterAndHomeworldJSON = !showCharacterAndHomeworldJSON">Show Character and Homeworld</button>
+<button [disabled]="!(charactersWithHomeworld$ | async)" (click)="showCharacterAndHomeworldJSON = !showCharacterAndHomeworldJSON">Show Character and Homeworld</button>
 
 <pre *ngIf="showCharactersAndPlanetsJSON">
 {{ charactersAndPlanets | json }}

@@ -70,15 +70,15 @@ export class HttpClientRxJSService {
   }
 
   getCharactersAndPlanets() {
-    return forkJoin([
-      this.getCharacters(),
-      this.getPlanets()
-    ])
+    return forkJoin({
+      characters: this.getCharacters(),
+      planets: this.getPlanets()
+    })
     .pipe(
       map((res: any) => {
-        return { characters: res[0], planets: res[1] };
+        return { characters: res.characters, planets: res.planets };
       }),
-      catchError(error => of(error))
+      catchError((error: any) => of(error))
     );
   }
 
@@ -91,7 +91,7 @@ export class HttpClientRxJSService {
         }),
         // concatMap((person: any) => {
         mergeMap((person: any) => { 
-            return this.http.get(this.convertHttps(person.homeworld))
+            return this.http.get(person.homeworld)
               .pipe(
                 map(hw => {
                   person.homeworld = hw;
@@ -108,7 +108,7 @@ export class HttpClientRxJSService {
     return this.http.get(url)
       .pipe(
         switchMap((character: any) => {
-          return this.http.get(this.convertHttps(character.homeworld))
+          return this.http.get(character.homeworld)
             .pipe(
               map(hw => {
                 character.homeworld = hw;
@@ -123,7 +123,7 @@ export class HttpClientRxJSService {
     return this.http.get(charUrl)
       .pipe(
         switchMap((character: any) => {
-          return this.http.get(this.convertHttps(character.homeworld));
+          return this.http.get(character.homeworld);
         })
       );
   }
