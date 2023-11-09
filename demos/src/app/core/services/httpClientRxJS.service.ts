@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin, of, from } from 'rxjs';
-import { tap, map, switchMap, catchError, mergeMap, toArray } from 'rxjs/operators';
+import { tap, map, switchMap, concatMap, catchError, mergeMap, toArray } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
