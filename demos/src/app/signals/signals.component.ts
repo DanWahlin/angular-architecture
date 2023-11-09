@@ -63,7 +63,11 @@ export class SignalsComponent {
   save() {
     const customer = this.selectedCustomer();
     const index = this.customers().findIndex(c => c.id === customer.id);
-    this.customers()[index] = customer;
+    this.customers.update(value => {
+      const index = value.findIndex(c => c.id === this.selectedCustomer().id);
+      value[index] = this.selectedCustomer();
+      return value;
+    });
     this.resetEditing();
   }
 
