@@ -47,7 +47,9 @@ export class SignalsComponent {
   }
 
   onCustomerNameChange(event: Event) {
-    this.selectedCustomer.mutate(value => value.name = (event.target as HTMLInputElement).value);
+    const customer = this.selectedCustomer();
+    customer.name = (event.target as HTMLInputElement).value;
+    this.selectedCustomer.set(customer);
   }
 
   editCustomer(customer: Customer) {
@@ -59,11 +61,9 @@ export class SignalsComponent {
   }
 
   save() {
-    // mutate this.customers with the value of this.editingCustomer()
-    this.customers.mutate(value => {
-      const index = value.findIndex(c => c.id === this.selectedCustomer().id);
-      value[index] = this.selectedCustomer();
-    });
+    const customer = this.selectedCustomer();
+    const index = this.customers().findIndex(c => c.id === customer.id);
+    this.customers()[index] = customer;
     this.resetEditing();
   }
 
