@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "input-output-demo:build:production"
+              "buildTarget": "input-output-demo:build:production"
             },
             "development": {
-              "browserTarget": "input-output-demo:build:development"
+              "buildTarget": "input-output-demo:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "input-output-demo:build"
+            "buildTarget": "input-output-demo:build"
           }
         },
         "test": {
