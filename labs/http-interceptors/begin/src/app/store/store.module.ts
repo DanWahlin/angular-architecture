@@ -11,7 +11,7 @@ import { entityConfig } from './entity-metadata';
   imports: [
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    environment.production ? [] : StoreDevtoolsModule.instrument(),
+    environment.production ? [] : StoreDevtoolsModule.instrument({connectInZone: true}),
     EntityDataModule.forRoot(entityConfig)
   ],
   providers: [{ provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }]

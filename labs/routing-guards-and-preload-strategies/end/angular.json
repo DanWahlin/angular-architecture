@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "routing-guards-and-preload-strategies:build"
+            "buildTarget": "routing-guards-and-preload-strategies:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "routing-guards-and-preload-strategies:build:production"
+              "buildTarget": "routing-guards-and-preload-strategies:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "routing-guards-and-preload-strategies:build"
+            "buildTarget": "routing-guards-and-preload-strategies:build"
           }
         },
         "test": {

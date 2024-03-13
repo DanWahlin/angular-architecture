@@ -60,18 +60,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "observable-service:build"
+            "buildTarget": "observable-service:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "observable-service:build:production"
+              "buildTarget": "observable-service:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "observable-service:build"
+            "buildTarget": "observable-service:build"
           }
         },
         "test": {

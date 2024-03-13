@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "cloning:build:production"
+              "buildTarget": "cloning:build:production"
             },
             "development": {
-              "browserTarget": "cloning:build:development"
+              "buildTarget": "cloning:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cloning:build"
+            "buildTarget": "cloning:build"
           }
         },
         "test": {

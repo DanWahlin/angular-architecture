@@ -34,7 +34,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     EntityDataModule.forRoot(entityConfig),
-    environment.production ? [] : StoreDevtoolsModule.instrument(),
+    environment.production ? [] : StoreDevtoolsModule.instrument({connectInZone: true}),
   ],
   providers: [
     { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig },
