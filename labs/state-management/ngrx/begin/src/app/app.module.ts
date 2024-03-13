@@ -25,7 +25,7 @@ export const metaReducers: MetaReducer<any>[] = environment.production ? [] : []
     AppStoreModule,
     StoreModule.forRoot({}, { metaReducers }),
     EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    !environment.production ? StoreDevtoolsModule.instrument({connectInZone: true}) : [],
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
