@@ -1,25 +1,23 @@
 /**
- * 
+ *
  * "Reducers" for entity operations like add and update.
  * Dragons!  No need to enter.
- * 
+ *
  */
-import { Observable } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { first, Observable } from 'rxjs';
 
 import { CacheStore, cacheSnapShot, collectionSnapshot, EntityCache, EntityType } from './entity-cache';
 import { modelGuards } from './model-guards';
 
-/**
- * Add a new entity to a cached collection.
+/** Add a new entity to a cached collection.
  * Maintains immutability by cloning both the entity and the collection.
  * @param entity The entity to add. Must have its unique id.
- * @returns The added entity, potentially enriched by the addEntityGuard. 
+ * @returns The added entity, potentially enriched by the addEntityGuard.
  */
 export function addEntity<T extends EntityType>(entity: T, collectionName: keyof EntityCache, cacheStore: CacheStore): T {
   const newEntity = addEntityGuard(entity, collectionName, cacheStore);
   cacheStore.pipe(first()).subscribe(cache => {
-    const coll = cache[collectionName] as any as T[];
+    const coll = cache[collectionName] as any as T[] || [];
 
     // Add-one-to-cache reducer
     cache = {
@@ -29,11 +27,11 @@ export function addEntity<T extends EntityType>(entity: T, collectionName: keyof
 
     cacheStore.next(cache);
   });
+  // TODO: save to server?
   return entity;
 }
 
-/**
- * Update an entity in a cached collection by merging its properties with the cached entity. 
+/** Update an entity in a cached collection by merging its properties with the cached entity.
  * Maintains immutability by cloning both the entity and the collection.
  * @param entity The entity to update. Must have its unique id and already exist in the collection.
  * @returns The updated entity, after cleaning by the updateEntityGuard and merging with existing entity.
@@ -42,7 +40,7 @@ export function updateEntity<T extends EntityType>(entity: T, collectionName: ke
   const id = entity.id;
   const update = updateEntityGuard(entity, collectionName, cacheStore);
   cacheStore.pipe(first()).subscribe(cache => {
-    const coll = cache[collectionName] as any as T[];
+    const coll = cache[collectionName] as any as T[] || [];
 
     // Update-one-in-cache reducer
     cache = {
@@ -51,12 +49,12 @@ export function updateEntity<T extends EntityType>(entity: T, collectionName: ke
     };
 
     cacheStore.next(cache);
+    // TODO: save to server?
   });
   return entity;
 }
 
-/**
- * Ensure the entity you're about to add has an id, is not already in the collection,
+/** Ensure the entity you're about to add has an id, is not already in the collection,
  * has all and only the properties required, and its FKs (if any) are valid.
  */
  function addEntityGuard<T extends { id: number }>(entity: T, collectionName: keyof EntityCache, cache$: Observable<EntityCache>): T {
@@ -73,8 +71,7 @@ export function updateEntity<T extends EntityType>(entity: T, collectionName: ke
   return modelGuards[collectionName](entity, true, cache) as T;
 }
 
-/** 
- * Ensure the entity you're about to update has an id, is already in the collection,
+/** Ensure the entity you're about to update has an id, is already in the collection,
  * has all and only the properties required, and its FKs (if any) are valid.
  */
  function updateEntityGuard<T extends { id: number }>(

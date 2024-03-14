@@ -1,49 +1,45 @@
-import { Customer } from '../model';
-import { calcAge, calcFullName } from '../shared';
+/*
+This Customer ViewModel class is NOT needed at all in this "begin" version.
+The "begin" version borrows the (most of) the shape of the Customer class for its view model.
 
-/** 
- * Customer ViewModel represents the Model to suit the Presenters.
- * Also encapsulates or delegates presenter logic.
+This is a skeleton of the class for your implementation of the "end" version.
+*/
+
+import { Customer } from '../model';
+
+/** Customer ViewModel represents the Model to suit presentation components.
+ * Also encapsulates or delegates per-entity presenter logic that was
  * formerly handled by pipes and Presenter emitters.
  */
 export class CustomerVm {
 
   // Only include properties that the views need
   id: number;
-  first: string;
-  last: string;
-  city: string;
-  birthDate?: Date;
-  photo?: string;
+  // 1. Add just the other properties that the views need
 
-  // Add "pet" and "isDeleted" properties
+  // 2. Implement methods and synthetic properties pipes out of the HTML
+  // Hint: steal the pipe methods
+  get age()  { throw new Error('Not implemented'); }
+  get name() { throw new Error('Not implemented'); }
+  // 3. Implement this getter property.
+  // Hint: the implementation is in CustomerDetailsComponent
+  get canSave() { throw new Error('Not implemented'); }
 
   /** Create CustomerVm from a Customer */
-  static create(customer: Partial<Customer> = {}): CustomerVm {
-    return Object.assign(new CustomerVm(), toCustomer(customer));
+  static create(customer?: Customer): CustomerVm {
+    throw new Error('Not implemented');
   }
 
-  /** Clone ViewModel-self with properties and methods */
-  clone() {
-    return Object.assign(new CustomerVm(), this);
-  }
+  /** Clone itself, preserving methods and getter/setter properties. */
+  clone() { return Object.assign(new CustomerVm(), this); }
 
-  // Add methods and properties to keep code and pipes out of the HTML
-  get age() { return calcAge(this.birthDate); }
-  get name() { return calcFullName(this); }
-  get saveDisabled() { return !(this.first || '').trim() || !(this.last || '').trim(); }
-
-  /** Return a Customer-like object with just the properties that can be saved. */
-  toCustomer(): Partial<Customer> { return toCustomer(this); }
+  // 4. Add a toCustomer() method that delegates to the toCustomer() function
 }
 
-/**
- * Reduce the customer argument to a Customer-like object with just the properties that can be saved.
- * Missing properties get default values. 
+/** Reduce the customer argument to a Customer-like object with just the properties that can be saved.
+ * Missing properties get default values.
  */
-function toCustomer(customer: Partial<Customer>): Partial<Customer> {
-
-  // Include "pet" and "isDeleted" among the managed properties here as well, both in and out.
-  const { id = null, first = '', last = '', city = '', birthDate = null, photo = Customer.missingPerson } = customer;
-  return { id, first, last, city, birthDate, photo };
+export function toCustomer(customer: Partial<Customer> = {}): Partial<Customer> {
+  const { id = null, first = '', last = '', city = '', birthDate = null, photo = Customer.missingPerson, isDeleted, pet } = customer || {};
+  return { id, first, last, city, birthDate, photo, isDeleted, pet };
 }

@@ -112,11 +112,10 @@ You'll be prompted to choose routing (or not) and your preferred way to work wit
 
 In this lab you'll learn about how View Models can be used in your Angular applications to work with observables.
 
-### Exercise 1: Working with View Models
+### Exercise 1: Working with View Model Classes
 
-In this exercise you'll extend a Customer ViewModel example by displaying two properties that are in the Customer data but not in the ViewModel: **pet** and **isDeleted**
-
-The **isDeleted** flag is a reversible Customer "soft delete". You'll add a **showDeleted** flag to the container and use it to filter Customer ViewModels for display.
+In this exercise you'll create a Customer ViewModel **Class**
+that has getter/setter properties and methods.
 
 <course-item
   type="Note"
@@ -137,11 +136,12 @@ npm install
 
 #### Step 2
 
-Open `src/app/customers/customer-vm.ts`. Locate the `Add "pet" and "isDeleted" properties` comment. Immediately below it add **pet** (as a string) and **isDeleted** (as a boolean) properties.
+Open `src/app/customers/customer-vm.ts`.  
 
-#### Step 3
-
-Locate the `toCustomer()` function in the `customer-vm.ts` file. Include **pet** and **isDeleted** among the `const` values as well as in the returned object.
+1. Add the Customer properties that are used by the view. Hint: there is one property that is never displayed or changed.
+2. Add getter properties for **age** and **name** so we can replace pipes with vm properties
+3. Add a getter property to indicate if this ViewModel is in a saveable state. Hint: the implementation is in the CustomerDetailsComponent.
+4. Add a `toCustomer()` method that delegates to the `toCustomer()` function.
 
 <course-item
   type="Note"
@@ -150,33 +150,21 @@ If you're new to the syntax, the `const` line of code uses [destructuring](https
 
 </course-item>
 
+#### Step 3
+
+Open the **CustomerContainerComponent** class:
+
+1. Replace the `addCustomer` implementations with a call to Customer ViewModel `create` method.
+2. Replace the `selected` implementations with a call to Customer ViewModel `create` method, passing in the customer.
+
 #### Step 4
 
-Perform the following tasks within the **VmContainerComponent** class:
+Open the **CustomerDetailsComponent** class:
 
-- Add a **showDeleted** boolean property.
-- Locate the **createVm$** function and modify it to filter customers based on the **showDeleted** or **customer.isDeleted** status as shown below:
-
-```typescript
-customers.filter((customer) => this.showDeleted || !customer.isDeleted).map((customer) => CustomerVm.create(customer));
-```
-
-<course-item
-  type="Note"
-  title="">
-The **createVm$** function is responsible for assigning an observable to the **vms$** property that you looked at earlier. This property is bound to the template using the async pipe.
-
-</course-item>
-
-<course-item
-  type="Richtext">
-Now locate the **toggleShowDeleted()** function at the bottom of the class. Add the following code into the function to toggle **showDeleted** and call **createVm$**:
-</course-item>
-
-```typescript
-this.showDeleted = !this.showDeleted;
-this.createVm$();
-```
+1. Replace the `fullname` pipe with the vm's `name` property.
+2. Replace the `age` pipe with the vm's `age` property.
+3. Replace the `canSave(vm)` call with the vm's `canSave` property. You can delete the `canSave` method.
+4. Set the `vm` input property type to the Customer ViewModel class.
 
 #### Step 5
 
@@ -195,10 +183,7 @@ Perform the following tasks:
 - Delete a customer (while editing) using the checkbox and save the change.
 - Select the **Show Deleted** checkbox and notice that the deleted customer displays.
 
-Because this lab uses a ViewModel ...
-
-1.  Notice how the changes you made to the customer in the details component do not affect the customer list component or the container, until they are saved.
-2.  Notice how the pet and isDeleted properties now exist on the customer?
+Because this lab uses a ViewModel (both before and after the ViewModel class), changes you made to the customer in the details component do not affect the customer list component or the container until they are saved.
 
 ## Lab 3: Working with RxJS Subjects
 
