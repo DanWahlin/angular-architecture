@@ -1,7 +1,7 @@
-<h1>HttpClient and RxJS Operators</h1>
+<h1>HttpClient and RxJS Observable Combiners</h1>
 
-This example shows how to use key RxJS operators such as 
-map, tap, forkJoin, switchMap, and mergeMap.
+This example shows how to use key RxJS operators and methods
+to combine observables into useful results.
 
 <h2>Character Search</h2>
 Enter a Star Wars character name (partial names are fine):
@@ -10,55 +10,128 @@ Enter a Star Wars character name (partial names are fine):
   <input type="text" formControlName="characterName">
 </form>
 
-<div *ngIf="(searchCharacters$ | async) as characters">
-  <h3>Character</h3>
+@if(charactersBySearch$) {
   <ul>
-    <li *ngFor="let char of characters">{{ char.name }}</li>
+    @for(char of charactersBySearch$ | async; track char.name) {
+      <li>{{ char.name }}</li>
+    }
   </ul>
-</div>
+}
 
 <h2>Characters</h2>
-<div *ngIf="!charactersAndPlanets">
+@if(charactersAndPlanets) {
+  <ul>
+    @for(char of charactersAndPlanets.characters; track char.name) {
+     <li>{{ char.name }}</li>
+    }
+  </ul>
+}
+@else {
   Loading...
-</div>
-<ul>
-  <li *ngFor="let char of charactersAndPlanets?.characters">
-    {{ char.name }}
-  </li>
-</ul>
+}
 
 <h2>Planets</h2>
-<div *ngIf="!charactersAndPlanets">
+@if(charactersAndPlanets) {
+  <ul>
+    @for(planet of charactersAndPlanets.planets; track planet.name) {
+     <li>{{ planet.name }}</li>
+    }
+  </ul>
+}
+@else {
   Loading...
-</div>
-<ul>
-  <li *ngFor="let planet of charactersAndPlanets?.planets">
-    {{ planet.name }}
-  </li>
-</ul>
+}
 
-<h2>People and Homeworlds</h2>
-<div *ngIf="!(charactersWithHomeworld$ | async)">
+
+<h2>People and Homeworlds (concatMap - slowest)</h2>
+@if(charactersWithHomePlanets_concatMap$ | async; as chars) {
+  <ul>
+    @for(char of chars; track char.name) {
+      <li>
+        {{ char.name }}
+        @if(char.homePlanet) {
+          ({{ char.homePlanet.name }})
+        }
+        @else {
+          (unknown)
+        }
+      </li>
+    }
+  </ul>
+} @else {
   Loading...
-</div>
-<ul>
-  <li *ngFor="let char of charactersWithHomeworld$ | async">
-    <span *ngIf="char && char.homeworld">{{ char.name  }} ({{ char.homeworld.name }})</span>
-  </li>
-</ul>
+}
 
-<br />
+<h2>People and Homeworlds (mergeMap - slow)</h2>
+@if(charactersWithHomePlanets_mergeMap$ | async; as chars) {
+  <ul>
+    @for(char of chars; track char.name) {
+      <li>
+        {{ char.name }}
+        @if(char.homePlanet) {
+          ({{ char.homePlanet.name }})
+        }
+        @else {
+          (unknown)
+        }
+      </li>
+    }
+  </ul>
+} @else {
+  Loading...
+}
+
+<h2>People and Homeworlds (forkJoin - fastest)</h2>
+@if(charactersWithHomePlanets_forkJoin$ | async; as chars) {
+  <ul>
+    @for(char of chars; track char.name) {
+      <li>
+        {{ char.name }}
+        @if(char.homePlanet) {
+          ({{ char.homePlanet.name }})
+        }
+        @else {
+          (unknown)
+        }
+      </li>
+    }
+  </ul>
+} @else {
+  Loading...
+}
+
+<h2>People and Homeworlds (switchMap - FAIL!)</h2>
+<i>Only emits the last Character.</i>
+@if(charactersWithHomePlanets_switchMap_FAIL$ | async; as chars) {
+  <ul>
+    @for(char of chars; track char.name) {
+      <li>
+        {{ char.name }}
+        @if(char.homePlanet) {
+          ({{ char.homePlanet.name }})
+        }
+        @else {
+          (unknown)
+        }
+      </li>
+    }
+  </ul>
+} @else {
+  Loading...
+}
+
+<br/><br/>
 
 <button [disabled]="!charactersAndPlanets" (click)="showCharactersAndPlanetsJSON = !showCharactersAndPlanetsJSON">Show Characters and Planets</button>
 &nbsp;&nbsp;
-<button [disabled]="!(charactersWithHomeworld$ | async)" (click)="showCharacterAndHomeworldJSON = !showCharacterAndHomeworldJSON">Show Character and Homeworld</button>
+<button [disabled]="!(lukeWithHomePlanet$ | async)" (click)="showLukeWithHomePlanetJSON = !showLukeWithHomePlanetJSON">Show Luke with his Home Planet</button>
 
 <pre *ngIf="showCharactersAndPlanetsJSON">
 {{ charactersAndPlanets | json }}
 </pre>
 
-<pre *ngIf="showCharacterAndHomeworldJSON">
-{{ characterWithHomeworld$ | async | json }}
+<pre *ngIf="showLukeWithHomePlanetJSON">
+{{ lukeWithHomePlanet$ | async | json }}
 </pre>
 
-<br /><br />
+<br/><br/>
