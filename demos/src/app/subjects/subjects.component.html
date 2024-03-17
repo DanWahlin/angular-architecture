@@ -12,32 +12,36 @@ subjects folder. Click Start to begin.
   <div class="col-md-3">
     <h4>Subject</h4>
     <ul>
-      <li *ngFor="let data of subjectObservableData">{{ data.length }}</li>
+      @for(data of subjectObservableData; track data.length){
+      <li>{{ data.length }}</li>
+      }
     </ul>
   </div>
   <div class="col-md-3">
     <h4>BehaviorSubject</h4>
     <br />
     <ul>
-      <li *ngFor="let data of behaviorSubjectObservableData">
-        {{ data.length }}
-      </li>
+      @for(data of behaviorSubjectObservableData; track data.length){
+      <li>{{ data.length }}</li>
+      }
     </ul>
   </div>
   <div class="col-md-3">
     <h4>ReplaySubject</h4>
     <br />
     <ul>
-      <li *ngFor="let data of replaySubjectObservableData">
-        {{ data.length }}
-      </li>
+      @for(data of replaySubjectObservableData; track data.length){
+      <li>{{ data.length }}</li>
+      }
     </ul>
   </div>
   <div class="col-md-3">
     <h4>AsyncSubject</h4>
     <br />
     <ul>
-      <li *ngFor="let data of asyncSubjectObservableData">{{ data.length }}</li>
+      @for(data of asyncSubjectObservableData; track data.length){
+      <li>{{ data.length }}</li>
+      }
     </ul>
   </div>
 </div>

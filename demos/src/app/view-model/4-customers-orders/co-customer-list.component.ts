@@ -8,12 +8,14 @@ import { CustomerVm } from './customer-vm';
     <h4>Customers</h4>
 
     <table class="table table-striped nav">
-      <tr *ngFor="let vm of vms" (click)="select(vm)">
+      @for(vm of vms; track vm.id) {
+      <tr (click)="select(vm)">
         <td>{{ vm.name }}</td>
         <!-- Look Ma! No pipe! -->
       </tr>
+      }
     </table>
-  `
+  `,
 })
 export class CustomerListComponent {
   @Input() vms: CustomerVm[] = [];

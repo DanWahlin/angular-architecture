@@ -29,9 +29,9 @@
   <button (click)="change()">Update Customer</button>
   <br /><br />
   <ul>
-    <li *ngFor="let msg of logMessages">
-      {{ msg.title }} {{ msg.value | json }}
-    </li>
+    @for(msg of logMessages; track msg.title){
+    <li>{{ msg.title }} {{ msg.value | json }}</li>
+    }
   </ul>
 </div>
 }

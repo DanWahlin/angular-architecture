@@ -3,9 +3,14 @@
   <tr>
     <th>Name</th>
   </tr>
-  <tr *ngFor="let cust of customers" (click)="selectCustomer(cust)">
+  @for(cust of customers;track cust.id){
+  <tr (click)="selectCustomer(cust)">
     <td>{{ cust.name }}</td>
   </tr>
+  }
 </table>
 <br />
-<div *ngFor="let msg of logMessages">{{ msg }}</div>
+
+@for(msg of logMessages; track msg){
+{{ msg }}
+}

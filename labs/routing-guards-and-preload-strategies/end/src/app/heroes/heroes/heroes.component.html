@@ -9,44 +9,45 @@
     >
       Refresh
     </button>
+    @if(!selectedHero){
     <button
       mat-raised-button
       color="primary"
       type="button"
       (click)="enableAddMode()"
-      *ngIf="!selectedHero"
       matTooltip="Add a new hero"
     >
       Add
     </button>
+    }
   </div>
 </div>
 <div class="content-container">
   <div class="list-container">
-    <div *ngIf="heroes">
-      <mat-spinner
-        *ngIf="loading; else heroList"
-        mode="indeterminate"
-        color="accent"
-      ></mat-spinner>
-      <ng-template #heroList>
-        <app-hero-list
-          [heroes]="heroes"
-          [selectedHero]="selectedHero"
-          (deleted)="deleteHero($event)"
-          (selected)="onSelect($event)"
-        ></app-hero-list>
-      </ng-template>
+    @if(heroes){
+    <div>
+      @if(loading) {
+      <mat-spinner mode="indeterminate" color="accent"></mat-spinner>
+      } @else {
+      <app-hero-list
+        [heroes]="heroes"
+        [selectedHero]="selectedHero"
+        (deleted)="deleteHero($event)"
+        (selected)="onSelect($event)"
+      ></app-hero-list>
+      }
     </div>
+    }
   </div>
   <div class="detail-container">
+    @if(selectedHero) {
     <app-hero-detail
-      *ngIf="selectedHero"
       [hero]="selectedHero"
       (unselect)="unselect()"
       (add)="add($event)"
       (update)="update($event)"
     >
     </app-hero-detail>
+    }
   </div>
 </div>

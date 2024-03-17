@@ -15,12 +15,18 @@ import { OrderVm } from './order-vm';
   selector: 'app-co-container',
   styleUrls: ['../view-model.css'],
   template: `
-    <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
+    <button (click)="addCustomer()" class="btn btn-primary button-row">
+      Add Customer
+    </button>
 
-    <div *ngIf="customerVms$ | async as vms" class="row">
+    @if(customerVms$ | async; as vms) {
+    <div class="row">
       <!-- Customer List -->
       <div class="col-md-2">
-        <app-co-customer-list [vms]="vms" (selected)="selectCustomer($event)"></app-co-customer-list>
+        <app-co-customer-list
+          [vms]="vms"
+          (selected)="selectCustomer($event)"
+        ></app-co-customer-list>
       </div>
 
       <!-- Customer Details -->
@@ -35,12 +41,19 @@ import { OrderVm } from './order-vm';
       </div>
 
       <!-- Order Details -->
-      <div class="col-md-5" *ngIf="(selectedOrderVm$ | async)?.orderId">
-        <app-co-order-details [vm]="selectedOrderVm$ | async" (cancel)="cancelOrder()" (save)="saveOrder($event)">
+      @if((selectedOrderVm$ | async)?.orderId; as orderVm) {
+      <div class="col-md-5">
+        <app-co-order-details
+          [vm]="selectedOrderVm$ | async"
+          (cancel)="cancelOrder()"
+          (save)="saveOrder($event)"
+        >
         </app-co-order-details>
       </div>
+      }
     </div>
-  `
+    }
+  `,
 })
 export class CustomersOrdersContainerComponent {
   customerVms$!: Observable<CustomerVm[]> | null;
@@ -81,6 +94,9 @@ export class CustomersOrdersContainerComponent {
   }
 
   selectOrder(orderSummary: OrderSummaryVm) {
-    this.selectedOrderVm$ = this.viewService.selectedOrderVm(orderSummary.id, this.selectedCustomerVm);
+    this.selectedOrderVm$ = this.viewService.selectedOrderVm(
+      orderSummary.id,
+      this.selectedCustomerVm
+    );
   }
 }

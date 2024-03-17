@@ -26,9 +26,11 @@ import { expandCollapse } from '../animations';
       <router-outlet></router-outlet>
     </section>
 
-    <div *ngIf="showJson" [@expandCollapse]>
+    @if(showJson){
+    <div [@expandCollapse]>
       <pre id="customer-json">{{ dataservice.customers$ | async | json }}</pre>
     </div>
+    }
     <p></p>
   `,
 })

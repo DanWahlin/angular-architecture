@@ -7,7 +7,8 @@ import { ngIfAnim } from '../../animations';
   styleUrls: ['../view-model.css'],
   animations: [ngIfAnim],
   template: `
-    <div *ngIf="vm" [@ngIfAnim]>
+    @if(vm) {
+    <div [@ngIfAnim]>
       <h4>Details</h4>
       <table class="table">
         <tr>
@@ -32,7 +33,12 @@ import { ngIfAnim } from '../../animations';
         <tr>
           <td>Birth Date:</td>
           <td>
-            <input-date [model]="vm" property="birthDate" min="1920-01-01" max="2020-01-01"></input-date>
+            <input-date
+              [model]="vm"
+              property="birthDate"
+              min="1920-01-01"
+              max="2020-01-01"
+            ></input-date>
           </td>
         </tr>
         <tr>
@@ -43,11 +49,18 @@ import { ngIfAnim } from '../../animations';
 
       <div class="button-row">
         <!-- Now a-->
-        <button (click)="save.emit(vm)" class="btn btn-success" [disabled]="vm.saveDisabled">Save</button>
+        <button
+          (click)="save.emit(vm)"
+          class="btn btn-success"
+          [disabled]="vm.saveDisabled"
+        >
+          Save
+        </button>
         <button (click)="cancel.emit()" class="btn btn-light">Cancel</button>
       </div>
     </div>
-  `
+    }
+  `,
 })
 export class VmCustomerDetailsComponent {
   @Input() vm: CustomerVm | null = null;
