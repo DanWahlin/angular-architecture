@@ -9,4 +9,11 @@ export const routes: Routes = [
         (m) => m.FeaturesModulesModule
       ),
   },
+  {
+    path: 'signals',
+    loadComponent: () =>
+      import('./signals/signals.component').then(
+        m => m.SignalsComponent
+      )
+  },
 ];

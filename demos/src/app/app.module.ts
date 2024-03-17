@@ -14,7 +14,6 @@ import { SubjectsModule } from './subjects/subjects.module';
 import { ComponentInheritanceModule } from './component-inheritance/component-inheritance.module';
 import { HttpClientRxJSModule } from './httpClientRxJS/httpClientRxJS.module';
 import { RouterModule } from '@angular/router';
-import { SignalsModule } from './signals/signals.module';
 
 @NgModule({
   imports: [
@@ -30,7 +29,6 @@ import { SignalsModule } from './signals/signals.module';
     SubjectsModule,
     ComponentInheritanceModule,
     HttpClientRxJSModule,
-    SignalsModule
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

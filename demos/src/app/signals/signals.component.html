@@ -1,34 +1,34 @@
-@if(isLoading()){
-<div>Loading...</div>
+@if (isLoading()) {
+  Loading...
+
 } @else {
-<div>
-  <input
-    type="text"
+  <input type="text"
     (input)="onSearchQuery($event)"
     title="Search Query"
     placeholder="Search query"
-  />
-  @for(customer of filteredCustomers(); track customer.id){
-  <div>
-    @if(isEditingCustomer(customer)){
-    <div>
-      <input
-        type="text"
-        [value]="selectedCustomer().name"
-        (input)="onCustomerNameChange($event)"
-        title="customer name"
-      />
-      <button (click)="save()">Save</button>
-      <button (click)="cancel()">Cancel</button>
-    </div>
-    } @else {
+    [disabled]="!!selectedCustomer()">
+
+  @for(customer of filteredCustomers(); track customer.id) {
+
     <div [class.highlight]="isEditingCustomer(customer)">
-      {{ customer.name }}
-      <button (click)="editCustomer(customer)">Edit</button>
+
+      @if(isEditingCustomer(customer)) {
+
+        <!-- Customer editing dialog -->
+        <input type="text"
+            [value]="selectedCustomer()!.name"
+            (input)="onCustomerNameChange($event)"
+            title="customer name">
+        <button (click)="save()">Save</button>
+        <button (click)="cancel()">Cancel</button>
+
+      } @else {
+
+        {{customer.name}}
+        <button (click)="editCustomer(customer)">Edit</button>
+      }
+
     </div>
 
-    }
-  </div>
   }
-</div>
 }

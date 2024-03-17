@@ -1,85 +1,109 @@
-import { Component, Injector, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { Customer } from '../shared/interfaces';
 import { DataService } from '../core/services/data.service';
 import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-signals',
+  standalone: true,
   templateUrl: './signals.component.html',
   styleUrls: ['./signals.component.css']
 })
 export class SignalsComponent {
   customers = signal<Customer[]>([]);
-  selectedCustomer = signal<Customer>({} as Customer);
-  loading = signal(true);
+  isLoading = signal(true);
   searchQuery = signal('');
-  dataService = inject(DataService);
-  // This is a bit "meta"
-  injector = inject(Injector);
+  selectedCustomer = signal<Customer | null>(null);
 
-  // Define a computed value for the filtered customers
-  filteredCustomers = computed(() => {
-    return this.customers().filter((customer) =>
+  /** Computed value for the filtered customers.
+   * Updates when customer list or search query change. */
+  filteredCustomers = computed(() =>
+    this.customers().filter(customer =>
       customer.name.toLowerCase().includes(this.searchQuery().toLowerCase())
-    );
-  });
+    )
+  );
 
-  ngOnInit() {
-    this.initializeLogging();
-    this.dataService.getCustomers().pipe(
-        delay(1000) // simulate delay for our loading signal
-      ).subscribe(custs => {
-      this.loading.set(false);
-      this.customers.set(custs);
+  constructor(private dataService: DataService) {
+    // Note: an effect tracks its dependencies and re-runs when they change.
+
+    effect(() => {
+      // The selectedCustomer is the dependency here so only changes to it trigger the effect.
+      const name = this.selectedCustomer()?.name ?? 'none';
+      console.log(`Selected customer name: ${name}`);
+    });
+
+    effect(() => {
+      const query = this.searchQuery()
+      console.log(`Search query: ${query}`);
     });
   }
 
-  initializeLogging(): void {
-    // Called as signals change
-    // Effects used for very specific use cases: https://angular.io/guide/signals#effects
-    effect(() => {
-      console.log(`Selected customer name: ${this.selectedCustomer().name}`);
-    }, {injector: this.injector});
-  }
-
-  onSearchQuery(event: Event) {
-    this.searchQuery.set((event.target as HTMLInputElement).value);
-  }
-
-  onCustomerNameChange(event: Event) {
-    const customer = this.selectedCustomer();
-    customer.name = (event.target as HTMLInputElement).value;
-    this.selectedCustomer.set(customer);
+  ngOnInit() {
+    this.dataService.getCustomers().pipe(
+        delay(1000) // simulate delay for our loading signal
+      ).subscribe(customers => {
+        this.customers.set(customers);
+        this.isLoading.set(false);
+      });
   }
 
   editCustomer(customer: Customer) {
     this.selectedCustomer.set(customer);
   }
 
+  /** Is editing if the given customer is the "selected" customer. */
   isEditingCustomer(customer: Customer) {
-    return this.selectedCustomer() === customer;
+    return this.selectedCustomer()?.id === customer.id;
+  }
+
+  onCustomerNameChange(event: Event) {
+    const name = (event.target as HTMLInputElement).value;
+    const customer = this.selectedCustomer();
+    customer!.name = name;
+    this.selectedCustomer.set(customer);
+  }
+
+  onSearchQuery(event: Event) {
+    const newQuery = (event.target as HTMLInputElement).value;
+    this.searchQuery.set(newQuery);
   }
 
   save() {
     const customer = this.selectedCustomer();
-    const index = this.customers().findIndex(c => c.id === customer.id);
-    this.customers.update(value => {
-      const index = value.findIndex(c => c.id === this.selectedCustomer().id);
-      value[index] = this.selectedCustomer();
-      return value;
-    });
-    this.resetEditing();
+    if (customer) {
+      this.customers.update(customers => {
+        const index = customers.findIndex(c => c.id === customer.id);
+        customers[index] = customer;
+        return customers;
+      });
+      this.resetEditing();
+    }
   }
 
   cancel() {
     this.resetEditing();
   }
 
-  isLoading() {
-    return this.loading();
+  private resetEditing() {
+    this.selectedCustomer.set(null);
   }
 
-  resetEditing() {
-    this.selectedCustomer.set({} as Customer);
+  // #region Immutable update alternatives
+
+  onCustomerNameChange_immutable(event: Event) {
+    const name = (event.target as HTMLInputElement).value;
+
+    // Immutable update of the selected customer
+    this.selectedCustomer.update(customer => ({ ...customer!, name }));
   }
+
+  save_immutable() {
+    const customer = this.selectedCustomer();
+    if (customer) {
+      // Immutable update of the customers array
+      this.customers.update(customers => customers.map(c => c.id === customer.id ? customer : c));
+      this.resetEditing();
+    }
+  }
+  // #endregion Immutable alternatives
 }
