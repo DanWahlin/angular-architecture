@@ -36,14 +36,18 @@
       <a routerLink="/signals">Signals</a>
     </li>
   </ul>
-  <strong *ngIf="customers" class="pull-right circle">
+  @if(customers){
+  <strong class="pull-right circle">
     {{ customers.length }}
   </strong>
+  }
 </nav>
 
-<strong *ngIf="customer" class="pull-right" style="padding-right: 10px;">
+@if(customer){
+<strong class="pull-right" style="padding-right: 10px">
   Current Customer: {{ customer.name }}
 </strong>
+}
 
 <main>
   <router-outlet></router-outlet>

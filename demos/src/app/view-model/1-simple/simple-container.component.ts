@@ -13,9 +13,12 @@ import { CustomerOrdersDataService } from '../services';
   selector: 'app-simple-container',
   styleUrls: ['../view-model.css'],
   template: `
-    <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
+    <button (click)="addCustomer()" class="btn btn-primary button-row">
+      Add Customer
+    </button>
 
-    <div *ngIf="customers$ | async as customers" class="row">
+    @if(customers$ | async; as customers){
+    <div class="row">
       <!-- Customer List -->
       <div class="col-md-2">
         <app-simple-customer-list
@@ -26,10 +29,13 @@ import { CustomerOrdersDataService } from '../services';
 
       <!-- Customer Details -->
       <div class="col-md-5">
-        <app-simple-customer-details [customer]="selectedCustomer"></app-simple-customer-details>
+        <app-simple-customer-details
+          [customer]="selectedCustomer"
+        ></app-simple-customer-details>
       </div>
     </div>
-  `
+    }
+  `,
 })
 export class SimpleContainerComponent {
   customers$: Observable<Customer[]> = of([]);

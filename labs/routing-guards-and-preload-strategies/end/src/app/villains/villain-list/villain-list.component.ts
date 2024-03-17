@@ -13,10 +13,6 @@ export class VillainListComponent {
   @Output() deleted = new EventEmitter<Villain>();
   @Output() selected = new EventEmitter<Villain>();
 
-  byId(villain: Villain) {
-    return villain.id;
-  }
-
   onSelect(villain: Villain) {
     this.selected.emit(villain);
   }

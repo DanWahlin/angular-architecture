@@ -5,7 +5,8 @@ import { ngIfAnim } from '../../animations';
 @Component({
   selector: 'app-co-customer-details',
   template: `
-    <div *ngIf="vm" [@ngIfAnim]>
+    @if(vm){
+    <div [@ngIfAnim]>
       <h4>Details</h4>
       <table class="table">
         <tr>
@@ -24,7 +25,12 @@ import { ngIfAnim } from '../../animations';
         <tr>
           <td>Birth Date:</td>
           <td>
-            <input-date [model]="vm" property="birthDate" min="1920-01-01" max="2020-01-01"></input-date>
+            <input-date
+              [model]="vm"
+              property="birthDate"
+              min="1920-01-01"
+              max="2020-01-01"
+            ></input-date>
           </td>
         </tr>
         <tr>
@@ -33,29 +39,39 @@ import { ngIfAnim } from '../../animations';
         </tr>
       </table>
 
-      <ng-container *ngIf="vm.orderSummaries$ | async as summaries; else noOrders">
+      @if(vm.orderSummaries$ | async; as summaries){
+      <ng-container>
         <p><b>Orders</b></p>
-        <table *ngIf="summaries?.length; else noOrders" class="table table-striped nav">
-          <tr *ngFor="let summary of summaries" (click)="selectOrder.next(summary)">
+        @if(summaries?.length){
+        <table class="table table-striped nav">
+          @for(summary of summaries; track summary.id){
+          <tr (click)="selectOrder.next(summary)">
             <td>{{ summary.id }}</td>
             <td>{{ summary.memo }}</td>
           </tr>
-
+          }
           <tr></tr>
         </table>
+        } @else { {{ vm.name }} has no orders. }
       </ng-container>
-
-      <ng-template #noOrders> {{ vm.name }} has no orders. </ng-template>
+      } @else { {{ vm.name }} has no orders. }
 
       <div class="button-row">
         <!-- Now a-->
-        <button (click)="save.emit(vm)" class="btn btn-success" [disabled]="vm.saveDisabled">Save</button>
+        <button
+          (click)="save.emit(vm)"
+          class="btn btn-success"
+          [disabled]="vm.saveDisabled"
+        >
+          Save
+        </button>
         <button (click)="cancel.emit()" class="btn btn-light">Cancel</button>
       </div>
     </div>
+    }
   `,
   animations: [ngIfAnim],
-  styleUrls: ['../view-model.css']
+  styleUrls: ['../view-model.css'],
 })
 export class CustomerDetailsComponent {
   @Input() vm!: CustomerVm | null;

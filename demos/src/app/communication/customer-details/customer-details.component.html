@@ -1,15 +1,17 @@
 <h4>Details</h4>
-<table *ngIf="customer" class="table">
+@if(customer){
+<table class="table">
   <tr>
-    <td>Name: </td>
+    <td>Name:</td>
     <td>{{ customer.name }}</td>
   </tr>
   <tr>
-    <td>City: </td>
+    <td>City:</td>
     <td>{{ customer.city }}</td>
   </tr>
   <tr>
-    <td>Age: </td>
+    <td>Age:</td>
     <td>{{ customer.age }}</td>
   </tr>
 </table>
+}

@@ -8,11 +8,13 @@ import { Customer } from '../model';
     <h4>Customers</h4>
 
     <table class="table table-striped nav">
-      <tr *ngFor="let customer of customers" (click)="selectCustomer(customer)">
+      @for(customer of customers; track customer.id){
+      <tr (click)="selectCustomer(customer)">
         <td>{{ customer | fullname }}</td>
       </tr>
+      }
     </table>
-  `
+  `,
 })
 export class SimpleCustomerListComponent {
   @Input() customers: Customer[] = [];

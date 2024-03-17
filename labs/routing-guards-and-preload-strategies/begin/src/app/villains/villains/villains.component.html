@@ -9,44 +9,46 @@
     >
       Refresh
     </button>
+    @if(!selectedVillain) {
     <button
       mat-raised-button
       color="primary"
       type="button"
       (click)="enableAddMode()"
-      *ngIf="!selectedVillain"
       matTooltip="Add a new villain"
     >
       Add
     </button>
+    }
   </div>
 </div>
 <div class="content-container">
   <div class="list-container">
-    <div *ngIf="villains">
-      <mat-spinner
-        *ngIf="loading; else villainList"
-        mode="indeterminate"
-        color="accent"
-      ></mat-spinner>
-      <ng-template #villainList>
-        <app-villain-list
-          [villains]="villains"
-          [selectedVillain]="selectedVillain"
-          (deleted)="deleteVillain($event)"
-          (selected)="onSelect($event)"
-        ></app-villain-list>
-      </ng-template>
+    @if(villains) {
+    <div>
+      @if(loading) {
+      <mat-spinner mode="indeterminate" color="accent"></mat-spinner>
+
+      } @else {
+      <app-villain-list
+        [villains]="villains"
+        [selectedVillain]="selectedVillain"
+        (deleted)="deleteVillain($event)"
+        (selected)="onSelect($event)"
+      ></app-villain-list>
+      }
     </div>
+    }
   </div>
   <div class="detail-container">
+    @if(selectedVillain) {
     <app-villain-detail
-      *ngIf="selectedVillain"
       [villain]="selectedVillain"
       (unselect)="unselect()"
       (add)="add($event)"
       (update)="update($event)"
     >
     </app-villain-detail>
+    }
   </div>
 </div>

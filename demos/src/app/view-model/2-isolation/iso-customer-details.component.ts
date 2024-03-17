@@ -7,11 +7,14 @@ import { ngIfAnim } from '../../animations';
   styleUrls: ['../view-model.css'],
   animations: [ngIfAnim],
   template: `
-    <div *ngIf="viewModel" [@ngIfAnim]>
+    @if(viewModel){
+    <div [@ngIfAnim]>
       <h4>Details</h4>
       <table class="table">
         <tr>
-          <td rowspan="5"><img class="details" src="{{ viewModel.photo }}" /></td>
+          <td rowspan="5">
+            <img class="details" src="{{ viewModel.photo }}" />
+          </td>
           <td><b>First Name</b>:</td>
           <td><input [(ngModel)]="viewModel.first" placeholder="First" /></td>
         </tr>
@@ -26,7 +29,12 @@ import { ngIfAnim } from '../../animations';
         <tr>
           <td>Birth Date:</td>
           <td>
-            <input-date [model]="viewModel" property="birthDate" min="1920-01-01" max="2020-01-01"></input-date>
+            <input-date
+              [model]="viewModel"
+              property="birthDate"
+              min="1920-01-01"
+              max="2020-01-01"
+            ></input-date>
           </td>
         </tr>
         <tr>
@@ -36,11 +44,18 @@ import { ngIfAnim } from '../../animations';
       </table>
 
       <div class="button-row">
-        <button (click)="save.emit(viewModel)" class="btn btn-success" [disabled]="saveDisabled">Save</button>
+        <button
+          (click)="save.emit(viewModel)"
+          class="btn btn-success"
+          [disabled]="saveDisabled"
+        >
+          Save
+        </button>
         <button (click)="cancel.emit()" class="btn btn-light">Cancel</button>
       </div>
     </div>
-  `
+    }
+  `,
 })
 export class IsoCustomerDetailsComponent {
   @Input() viewModel: Partial<Customer> | null = null;
@@ -48,6 +63,9 @@ export class IsoCustomerDetailsComponent {
   @Output() save = new EventEmitter();
 
   get saveDisabled() {
-    return !(this.viewModel?.first || '').trim() || !(this.viewModel?.last || '').trim();
+    return (
+      !(this.viewModel?.first || '').trim() ||
+      !(this.viewModel?.last || '').trim()
+    );
   }
 }
