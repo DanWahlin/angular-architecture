@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Hero Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <div class="editfields">
+        <div [hidden]="addMode">
+          <mat-form-field>
+            <input matInput [(ngModel)]="editingHero.id" placeholder="id" #id readonly>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput [(ngModel)]="editingHero.name" placeholder="name" #name>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <textarea matInput [(ngModel)]="editingHero.saying" placeholder="saying" #saying (keyup.enter)="saveHero()"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <button mat-raised-button color="accent" type="button" (click)="clear()" matTooltip="Cancel all changes">Cancel</button>
+      <button mat-raised-button color="primary" type="button" (click)="saveHero()" matTooltip="Save all changes">Save</button>
+    </div>
+  </mat-card-content>
+</mat-card>
