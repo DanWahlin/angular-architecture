@@ -8,11 +8,9 @@ export class Customer {
   last: string;
   city = '';
   birthDate?: Date;
-  photo?: string;
-
-  // These properties are in the customer data but are not displayed.
-  isDeleted?: boolean;  // true if customer is “soft deleted”
   pet?: string;         // name of pet
+  photo?: string;
+  isDeleted?: boolean;  // true if customer is “soft deleted”
 
   // The  secretSauce  property cannot be changed and should remain hidden.
   secretSauce?: string;

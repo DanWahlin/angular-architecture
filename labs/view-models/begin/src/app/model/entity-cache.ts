@@ -1,5 +1,4 @@
-import { Observable, Subject } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { first, Observable, Subject } from 'rxjs';
 
 import { Customer } from './customer';
 import { LineItem } from './line-item';
@@ -8,9 +7,7 @@ import { Product } from './product';
 
 export type EntityType = Customer | LineItem | Order | Product;
 
-/** 
- * A cache of collections for each "entity type" in your model
- */
+/** A cache of collections for each "entity type" in your model */
 export interface EntityCache {
   [key: string]: EntityType[];
   customers: Customer[];
@@ -20,7 +17,7 @@ export interface EntityCache {
 }
 
 /** Observable store of the EntityCache. Actually an RxJS subject. An impoverished ngrx store. */
-export type CacheStore = Subject<EntityCache>;
+export interface CacheStore extends Subject<EntityCache> { }
 
 /** Get the current value (a "snapshot") of the entire Entity Cache */
 export function cacheSnapShot(cache$: Observable<EntityCache>) {

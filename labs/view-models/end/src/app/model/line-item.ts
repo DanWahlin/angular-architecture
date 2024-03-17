@@ -17,6 +17,7 @@ import { Product } from './product';
       quantity: 1,
       isDeleted: false,
       ...lineItem,
+      id
     });
     return newLineItem;
   }

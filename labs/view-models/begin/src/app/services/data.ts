@@ -51,6 +51,7 @@
       photo: 'assets/klum.jpg',
       pet: 'Tigger',
       secretSauce: 'Pete\'s Kick Butt BBQ',
+      isDeleted: true,
     },
   ];
 
@@ -223,6 +224,11 @@
 
   /** Return entity cache with clones of the source raw data */
   export function getNewCache(): EntityCache {
+    return structuredClone({ customers, lineItems, orders, products });
+  }
+
+  /** Return entity cache with clones of the source raw data (before `structuredClone()`) */
+  export function getNewCache_old(): EntityCache {
     const cloneCollection = <T extends { id: number }>(collection: T[]) => collection.map(item => {
       return { ...item };
     });

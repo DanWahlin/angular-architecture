@@ -12,13 +12,14 @@ import { expandCollapse } from '../animations';
       <div><a routerLink="simple">1. Simply the beginning</a></div>
       <div><a routerLink="isolation">2. Isolation</a></div>
       <div><a routerLink="vm-class">3. ViewModel Class</a></div>
-      <div><a routerLink="vm-class-plus">3(b). ViewModel Wonder Class (digression)</a></div>
       <div><a routerLink="customers-orders">4. Customers & Orders</a></div>
     </div>
     <p></p>
     <div><a (click)="resetData()">Reset data</a></div>
     <div>
-      <a (click)="showJson = !showJson">{{ showJson ? 'Hide customers' : 'Show customers' }}</a>
+      <a (click)="showJson = !showJson">{{
+        showJson ? 'Hide customers' : 'Show customers'
+      }}</a>
     </div>
 
     <section id="content">
@@ -29,7 +30,7 @@ import { expandCollapse } from '../animations';
       <pre id="customer-json">{{ dataservice.customers$ | async | json }}</pre>
     </div>
     <p></p>
-  `
+  `,
 })
 export class CustomersOrdersShellComponent {
   constructor(public dataservice: CustomerOrdersDataService) {
