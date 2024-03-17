@@ -29,16 +29,9 @@ export function createOrderVm(
 
   // Join line items and their products into LineItem ViewModels
   const lineItemVms = lineItems.map((item) => {
-    const { productName, price } = products[item.productId];
-    const lineItemVm: LineItemVm = {
-      id: item.id,
-      productId: item.productId,
-      productName,
-      price,
-      quantity: item.quantity,
-    };
-
-    return lineItemVm;
+    const { id, productId, quantity } = item;
+    const { productName, price } = products[productId];
+    return { id, productId, productName, price, quantity } as LineItemVm;
   });
 
   // Merge data from customer, order, and line-item view models
@@ -47,7 +40,7 @@ export function createOrderVm(
     customerName: calcFullName(customer),
     memo: order.memo,
     orderDate: order.orderDate,
-    lineItems: lineItemVms
+    lineItems: lineItemVms,
   };
 
   return orderVm;
