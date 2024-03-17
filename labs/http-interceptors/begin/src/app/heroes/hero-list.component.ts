@@ -21,8 +21,4 @@ import { Hero } from '../core';
 })
 export class HeroListComponent {
   @Input() heroes: Hero[];
-
-  byId(hero: Hero) {
-    return hero.id;
-  }
 }
