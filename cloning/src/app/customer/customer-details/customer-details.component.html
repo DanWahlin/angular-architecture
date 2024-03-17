@@ -1,20 +1,37 @@
-<div *ngIf="customer">
-    Name: <input type="text" [value]="customer.name" title="Customer Name"
-        (input)="customer.name=$any($event).target.value">
-    <br />
-    City: <input type="text" [value]="customer.address.city" title="Customer City"
-        (input)="customer.address.city=$any($event).target.value">
-    <br />
-    Order Total: <input type="text" [value]="customer.orderTotal" title="Customer Total"
-        (input)="customer.orderTotal=$any($event).target.value">
-    <br />
-    Order Total (with tax): {{ customer.orderTotalWithTax | currency }}
-    <br /><br />
-    <button (click)="change()">Update Customer</button>
-    <br /><br />
-    <ul>
-        <li *ngFor="let msg of logMessages">
-            {{ msg.title }} {{ msg.value | json }}
-        </li>
-    </ul>
+@if(customer){
+<div>
+  Name:
+  <input
+    type="text"
+    [value]="customer.name"
+    title="Customer Name"
+    (input)="customer.name = $any($event).target.value"
+  />
+  <br />
+  City:
+  <input
+    type="text"
+    [value]="customer.address.city"
+    title="Customer City"
+    (input)="customer.address.city = $any($event).target.value"
+  />
+  <br />
+  Order Total:
+  <input
+    type="text"
+    [value]="customer.orderTotal"
+    title="Customer Total"
+    (input)="customer.orderTotal = $any($event).target.value"
+  />
+  <br />
+  Order Total (with tax): {{ customer.orderTotalWithTax | currency }}
+  <br /><br />
+  <button (click)="change()">Update Customer</button>
+  <br /><br />
+  <ul>
+    <li *ngFor="let msg of logMessages">
+      {{ msg.title }} {{ msg.value | json }}
+    </li>
+  </ul>
 </div>
+}
