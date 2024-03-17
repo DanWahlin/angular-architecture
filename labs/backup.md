@@ -114,8 +114,7 @@ In this lab you'll learn about how View Models can be used in your Angular appli
 
 ### Exercise 1: Working with View Model Classes
 
-In this exercise you'll create a Customer ViewModel **Class**
-that has getter/setter properties and methods.
+In this exercise you'll create a Customer ViewModel **Class** that has getter/setter properties and methods.
 
 <course-item
   type="Note"
@@ -136,7 +135,7 @@ npm install
 
 #### Step 2
 
-Open `src/app/customers/customer-vm.ts`.  
+Open `src/app/customers/customer-vm.ts`.
 
 1. Add the Customer properties that are used by the view. Hint: there is one property that is never displayed or changed.
 2. Add getter properties for **age** and **name** so we can replace pipes with vm properties
