@@ -21,14 +21,24 @@ export interface LineItemVm {
 }
 
 /** Creates an Order ViewModel from customer and order graph */
-export function createOrderVm(customer: { first: string; last: string }, orderGraph: OrderGraph): OrderVm {
+export function createOrderVm(
+  customer: { first: string; last: string },
+  orderGraph: OrderGraph
+): OrderVm {
   const { order, lineItems, products } = orderGraph;
 
   // Join line items and their products into LineItem ViewModels
-  const lineItemVms = lineItems.map(item => {
-    const { id, productId, quantity } = item;
-    const { productName, price } = products[productId];
-    return { id, productId, productName, price, quantity } as LineItemVm;
+  const lineItemVms = lineItems.map((item) => {
+    const { productName, price } = products[item.productId];
+    const lineItemVm: LineItemVm = {
+      id: item.id,
+      productId: item.productId,
+      productName,
+      price,
+      quantity: item.quantity,
+    };
+
+    return lineItemVm;
   });
 
   // Merge data from customer, order, and line-item view models
