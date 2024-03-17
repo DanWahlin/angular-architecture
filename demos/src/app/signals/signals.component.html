@@ -1,22 +1,34 @@
-<div *ngIf="isLoading()">
-    Loading...
-</div>
-
-<div *ngIf="!isLoading()">
-    <input type="text" (input)="onSearchQuery($event)" title="Search Query" placeholder="Search query">
-    <div *ngFor="let customer of filteredCustomers()">
-        <div [class.highlight]="isEditingCustomer(customer)" 
-             *ngIf="!isEditingCustomer(customer)">
-            {{customer.name}}
-            <button (click)="editCustomer(customer)">Edit</button>
-        </div>
-        <div *ngIf="isEditingCustomer(customer)">
-            <input type="text" 
-                [value]="selectedCustomer().name"
-                (input)="onCustomerNameChange($event)"
-                title="customer name">
-            <button (click)="save()">Save</button>
-            <button (click)="cancel()">Cancel</button>
-        </div>
+@if(isLoading()){
+<div>Loading...</div>
+} @else {
+<div>
+  <input
+    type="text"
+    (input)="onSearchQuery($event)"
+    title="Search Query"
+    placeholder="Search query"
+  />
+  @for(customer of filteredCustomers(); track customer.id){
+  <div>
+    @if(isEditingCustomer(customer)){
+    <div>
+      <input
+        type="text"
+        [value]="selectedCustomer().name"
+        (input)="onCustomerNameChange($event)"
+        title="customer name"
+      />
+      <button (click)="save()">Save</button>
+      <button (click)="cancel()">Cancel</button>
     </div>
+    } @else {
+    <div [class.highlight]="isEditingCustomer(customer)">
+      {{ customer.name }}
+      <button (click)="editCustomer(customer)">Edit</button>
+    </div>
+
+    }
+  </div>
+  }
 </div>
+}
