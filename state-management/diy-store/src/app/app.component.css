@@ -1,0 +1,18 @@
+.wrapper {
+    margin: 20px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+ul li {
+    display: inline;
+    margin-right: 15px;
+    font-weight: bold;
+}
