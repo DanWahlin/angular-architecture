@@ -1,3 +1,6 @@
 tr {
     cursor: pointer;
 }
+td {
+  color: #337ab7;
+}

@@ -1,61 +1,64 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { switchMap, debounceTime } from 'rxjs/operators';
-import { HttpClientRxJSService } from '../core/services/httpClientRxJS.service';
+import { Observable, switchMap, debounceTime } from 'rxjs';
+import { HttpClientRxJSService, Character, Planet } from '../core/services/httpClientRxJS.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-httpclientrxjs',
   templateUrl: './httpClientRxJS.component.html',
-  styleUrls: [ './httpClientRxJS.component.css' ]
+  styleUrls: ['./httpClientRxJS.component.css']
 })
-export class HttpClientRxJSComponent implements OnInit  {
+export class HttpClientRxJSComponent implements OnInit {
 
   formGroup!: FormGroup;
-  searchCharacters$!: Observable<any[]>;
-  characters$!: Observable<any[]>;
-  characterWithHomeworld$!: Observable<{}>;
-  charactersWithHomeworld$!: Observable<any>;
-  planets$!: Observable<any[]>;
-  charactersAndPlanets!: { characters: any[], planets: any[]};
+  charactersBySearch$!: Observable<Character[] | null>;
+  characters$!: Observable<Character[]>;
+  charactersWithHomePlanets_forkJoin$!: Observable<Character[]>;
+  charactersWithHomePlanets_concatMap$!: Observable<Character[]>;
+  charactersWithHomePlanets_mergeMap$!: Observable<Character[]>;
+  charactersWithHomePlanets_switchMap_FAIL$!: Observable<Character[]>;
+  charactersAndPlanets!: { characters: Character[], planets: Planet[] };
+  lukeWithHomePlanet$!: Observable<Character>;
+  planets$!: Observable<Planet[]>;
   showCharactersAndPlanetsJSON = false;
-  showCharacterAndHomeworldJSON = false;
-  
+  showLukeWithHomePlanetJSON = false;
+
 
   constructor(private dataService: HttpClientRxJSService) { }
 
   ngOnInit() {
-    // Get both characters and planets at same time
-    // Uses forkJoin
     this.dataService.getCharactersAndPlanets()
       .subscribe(data => this.charactersAndPlanets = data);
 
-    // Get character and its homeworld
-    // Uses switchMap
-    this.characterWithHomeworld$ = 
-      this.dataService.getCharacterAndHomeworld();
+    this.lukeWithHomePlanet$ = this.dataService.getLukeWithHomePlanet();
 
-    this.charactersWithHomeworld$ = this.dataService.getCharactersAndHomeworlds();
+    this.charactersWithHomePlanets_forkJoin$ = this.dataService.getCharactersWithHomePlanets_forkJoin();
+    this.charactersWithHomePlanets_concatMap$ = this.dataService.getCharactersWithHomePlanets_concatMap();
+    this.charactersWithHomePlanets_mergeMap$ = this.dataService.getCharactersWithHomePlanets_mergeMap();
+    this.charactersWithHomePlanets_switchMap_FAIL$ = this.dataService.getCharactersWithHomePlanets_switchMap_FAIL();
 
-    this.searchCharacters();
+    this.setCharactersBySearch$();
   }
 
 
-  searchCharacters() {
+  /** Initialize the charactersBySearch$ observable
+   * that listens for changes to the characterName form control
+   * and retrieves the characters with matching name.
+   * Debounces input and uses switchMap to present results for latest search name.
+   */
+  private setCharactersBySearch$() {
     this.formGroup = new FormGroup({
       characterName: new FormControl('', [Validators.required])
     });
 
-    const valueChanges = this.formGroup.get('characterName')?.valueChanges;
-    if (valueChanges) {
-      this.searchCharacters$ = valueChanges
-      .pipe(
-        debounceTime(500), 
-        switchMap((name: string) => {
-          return this.dataService.getCharacter(name);
-        })
+    // Updates when user types character name textbox
+    const searchName$: Observable<string> | undefined = this.formGroup.get('characterName')?.valueChanges;
+
+    if (searchName$) {
+      this.charactersBySearch$ = searchName$.pipe(
+        debounceTime(500),
+        switchMap(name => this.dataService.getCharacterByName(name))
       );
     }
-
   }
 }

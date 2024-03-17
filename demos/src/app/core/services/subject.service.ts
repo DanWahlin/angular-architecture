@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Subject, BehaviorSubject, ReplaySubject, 
+import { Subject, BehaviorSubject, ReplaySubject,
          AsyncSubject, Observable, of } from 'rxjs';
 
 @Injectable({
@@ -34,7 +34,7 @@ export class SubjectService {
         name: 'Customers ' + len,
         city: 'City ' + len
       });
-      let clone: ICustomer[] = JSON.parse(JSON.stringify(this.customers));
+      let clone: ICustomer[] = structuredClone(this.customers);
       this.subject$.next(clone);
       this.behaviorSubject$.next(clone);
       this.replaySubject$.next(clone);
