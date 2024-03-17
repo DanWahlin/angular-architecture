@@ -15,6 +15,7 @@ export class HttpClientRxJSComponent implements OnInit {
   characters$!: Observable<Character[]>;
   charactersWithHomePlanets_forkJoin$!: Observable<Character[]>;
   charactersWithHomePlanets_concatMap$!: Observable<Character[]>;
+  charactersWithHomePlanets_combineLatest$!: Observable<Character[]>;
   charactersWithHomePlanets_mergeMap$!: Observable<Character[]>;
   charactersWithHomePlanets_switchMap_FAIL$!: Observable<Character[]>;
   charactersAndPlanets!: { characters: Character[], planets: Planet[] };
@@ -33,6 +34,7 @@ export class HttpClientRxJSComponent implements OnInit {
     this.lukeWithHomePlanet$ = this.dataService.getLukeWithHomePlanet();
 
     this.charactersWithHomePlanets_forkJoin$ = this.dataService.getCharactersWithHomePlanets_forkJoin();
+    this.charactersWithHomePlanets_combineLatest$ = this.dataService.getCharactersWithHomePlanets_combineLatest();
     this.charactersWithHomePlanets_concatMap$ = this.dataService.getCharactersWithHomePlanets_concatMap();
     this.charactersWithHomePlanets_mergeMap$ = this.dataService.getCharactersWithHomePlanets_mergeMap();
     this.charactersWithHomePlanets_switchMap_FAIL$ = this.dataService.getCharactersWithHomePlanets_switchMap_FAIL();

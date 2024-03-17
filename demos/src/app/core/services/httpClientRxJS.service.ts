@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
-  from, forkJoin, Observable, of,
+  from, forkJoin, Observable, of, combineLatest,
   concatMap, catchError, map, mergeMap, switchMap, toArray
 } from 'rxjs';
 
@@ -129,6 +129,26 @@ export class HttpClientRxJSService {
     // forkJoin, like `Promise.all()`, can take an array of observables;
     //  emits array of last values when all are complete
     return forkJoin([
+      this.getCharacters(),
+      this.getPlanets()
+    ]).pipe(
+      map(([characters, planets]) => {
+        // Add homePlanet to each character
+        return characters.map(character => {
+          character.homePlanet = planets.find(p => p.url === character.homeworld);
+          return character;
+        });
+      })
+    );
+  }
+
+  /** Get Observable of Characters with their home planets using combineLatest().
+   * Alternative to the forkJoin version.
+   * Does the same thing in the same way.
+   * Included to conform to the slides.
+   */
+  getCharactersWithHomePlanets_combineLatest(): Observable<Character[]> {
+    return combineLatest([
       this.getCharacters(),
       this.getPlanets()
     ]).pipe(

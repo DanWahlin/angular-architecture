@@ -72,6 +72,25 @@ Enter a Star Wars character name (partial names are fine):
 </ul>
 } @else { Loading... }
 
+<h2>People and Homeworlds (combineLatest - fastest)</h2>
+@if(charactersWithHomePlanets_combineLatest$ | async; as chars) {
+  <ul>
+    @for(char of chars; track char.name) {
+      <li>
+        {{ char.name }}
+        @if(char.homePlanet) {
+          ({{ char.homePlanet.name }})
+        }
+        @else {
+          (unknown)
+        }
+      </li>
+    }
+  </ul>
+} @else {
+  Loading...
+}
+
 <h2>People and Homeworlds (switchMap - FAIL!)</h2>
 <i>Only emits the last Character.</i>
 @if(charactersWithHomePlanets_switchMap_FAIL$ | async; as chars) {
