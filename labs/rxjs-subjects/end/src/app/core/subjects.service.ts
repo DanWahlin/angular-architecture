@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable, BehaviorSubject, ReplaySubject, AsyncSubject } from 'rxjs';
+import {
+  Subject,
+  Observable,
+  BehaviorSubject,
+  ReplaySubject,
+  AsyncSubject,
+} from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SubjectsService {
   private subject$: Subject<string>;
@@ -25,7 +31,7 @@ export class SubjectsService {
   }
 
   init() {
-    // Create Subject and Observable Here 
+    // Create Subject and Observable Here
     // this.subject$ = new Subject<string>();
     // this.observable$ = this.subject$.asObservable();
 
@@ -42,8 +48,6 @@ export class SubjectsService {
       const date = new Date();
       const time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
       this.subject$.next(time);
-    }, 3000)
-
+    }, 3000);
   }
-
 }
