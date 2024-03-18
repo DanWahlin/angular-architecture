@@ -19,7 +19,7 @@
     "@angular/platform-browser": "^17.2.4",
     "@angular/platform-browser-dynamic": "^17.2.4",
     "@angular/router": "^17.2.4",
-    "angular-in-memory-web-api": "^0.16.0",
+    "angular-in-memory-web-api": "^0.17.0",
     "core-js": "^2.5.4",
     "rxjs": "^6.6.3",
     "tslib": "^2.0.0",
