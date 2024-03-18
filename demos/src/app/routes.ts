@@ -40,4 +40,10 @@ export const routes: Routes = [
         (m) => m.StructuringComponentsComponent
       ),
   },
+  // add subjects route just like the signals route
+  {
+    path: 'subjects',
+    loadComponent: () =>
+      import('./subjects/subjects.component').then((m) => m.SubjectsComponent),
+  },
 ];
