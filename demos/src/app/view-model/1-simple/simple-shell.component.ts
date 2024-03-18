@@ -17,9 +17,12 @@ import { Component } from '@angular/core';
         <li>Mutates the Customer model directly in the Details view.</li>
         <li>Adding a customer updates the customer list immediately.</li>
         <li>Changes to customer detail update customer list immediately.</li>
-        <li>Difficult to enforce validation of customer changes (ex: name required).</li>
+        <li>
+          Difficult to enforce validation of customer changes (ex: name
+          required).
+        </li>
       </ul>
     </section>
-  `
+  `,
 })
 export class SimpleShellComponent {}

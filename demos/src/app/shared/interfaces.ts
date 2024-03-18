@@ -1,16 +1,16 @@
-import { Theme, SidebarPosition } from "./enums";
+import { Theme, SidebarPosition } from './enums';
 
 export interface Customer {
-    id: number | null;
-    name: string;
-    city: string;
-    age: number;
+  id: number | null;
+  name: string;
+  city: string;
+  age: number;
 }
 
 export interface Product {
-    id: number | null;
-    name: string;
-    price: number;
+  id: number | null;
+  name: string;
+  price: number;
 }
 
 // Created using https://www.jsontots.com
@@ -64,7 +64,7 @@ export interface Planet {
 }
 
 export interface Settings {
-  theme: Theme,
+  theme: Theme;
   sidebarVisible: boolean;
   sidebarPosition: SidebarPosition;
 }

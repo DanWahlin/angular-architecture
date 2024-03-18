@@ -1,28 +1,39 @@
 import { Injectable } from '@angular/core';
 
-import { Subject, BehaviorSubject, ReplaySubject,
-         AsyncSubject, Observable, of } from 'rxjs';
+import {
+  Subject,
+  BehaviorSubject,
+  ReplaySubject,
+  AsyncSubject,
+  Observable,
+  of,
+} from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SubjectService {
-
   customers: ICustomer[] = [];
   intervalIds: any[] = [];
-  private subject$: Subject<ICustomer[]> = new Subject<ICustomer[]>;
+  private subject$: Subject<ICustomer[]> = new Subject<ICustomer[]>();
   subjectObservable$: Observable<ICustomer[]> = of([]);
 
-  private behaviorSubject$: BehaviorSubject<ICustomer[]> = new BehaviorSubject<ICustomer[]>([]);
-  behaviorSubjectObservable$: Observable<ICustomer[]> = of([])
+  private behaviorSubject$: BehaviorSubject<ICustomer[]> = new BehaviorSubject<
+    ICustomer[]
+  >([]);
+  behaviorSubjectObservable$: Observable<ICustomer[]> = of([]);
 
-  private replaySubject$: ReplaySubject<ICustomer[]> = new ReplaySubject<ICustomer[]>;
-  replaySubjectObservable$: Observable<ICustomer[]> = of([])
+  private replaySubject$: ReplaySubject<ICustomer[]> = new ReplaySubject<
+    ICustomer[]
+  >();
+  replaySubjectObservable$: Observable<ICustomer[]> = of([]);
 
-  private asyncSubject$: AsyncSubject<ICustomer[]> = new AsyncSubject<ICustomer[]>();
-  asyncSubjectObservable$: Observable<ICustomer[]> = of([])
+  private asyncSubject$: AsyncSubject<ICustomer[]> = new AsyncSubject<
+    ICustomer[]
+  >();
+  asyncSubjectObservable$: Observable<ICustomer[]> = of([]);
 
-  constructor() { }
+  constructor() {}
 
   start() {
     this.initSubjects();
@@ -32,7 +43,7 @@ export class SubjectService {
       let len = this.customers.length;
       this.customers.push({
         name: 'Customers ' + len,
-        city: 'City ' + len
+        city: 'City ' + len,
       });
       let clone: ICustomer[] = structuredClone(this.customers);
       this.subject$.next(clone);
@@ -61,7 +72,6 @@ export class SubjectService {
     this.asyncSubject$ = new AsyncSubject();
     this.asyncSubjectObservable$ = this.asyncSubject$.asObservable();
   }
-
 }
 
 export interface ICustomer {

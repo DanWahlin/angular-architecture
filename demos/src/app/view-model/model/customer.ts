@@ -24,7 +24,7 @@ export class Customer {
       last: 'Customer ' + id,
       photo: Customer.missingPerson,
       ...customer,
-      id
+      id,
     });
     return newCustomer;
   }

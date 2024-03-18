@@ -28,7 +28,7 @@ export const modelGuards: any = {
   customers: customerGuard,
   lineItems: lineItemGuard,
   orders: orderGuard,
-  products: productGuard
+  products: productGuard,
 };
 
 // #region private guard fns for each entity type in the model
@@ -43,14 +43,21 @@ function customerGuard(customer: Partial<Customer>): Partial<Customer> {
 }
 
 /** Ensure LineItem has only allowed props and the orderId and productId link to an Order and Product in cache. */
-function lineItemGuard(lineItem: Partial<LineItem>, isAdd: boolean, cache: EntityCache): Partial<LineItem> {
+function lineItemGuard(
+  lineItem: Partial<LineItem>,
+  isAdd: boolean,
+  cache: EntityCache
+): Partial<LineItem> {
   // Allow only the properties the client may save
   const { id, orderId, productId, quantity, isDeleted: isRemoved } = lineItem;
   if (isAdd) {
     const bad =
-      null == cache.orders.find(o => o.id === orderId) || null == cache.products.find(p => p.id === productId);
+      null == cache.orders.find((o) => o.id === orderId) ||
+      null == cache.products.find((p) => p.id === productId);
     if (bad) {
-      throw new Error('LineItem foreign keys not found in cached orders or products');
+      throw new Error(
+        'LineItem foreign keys not found in cached orders or products'
+      );
     }
     return { id, orderId, productId, quantity, isDeleted: isRemoved };
   } else {
@@ -59,13 +66,20 @@ function lineItemGuard(lineItem: Partial<LineItem>, isAdd: boolean, cache: Entit
 }
 
 /** Ensure Order has only allowed props and the customerId inks to a Customer in cache. */
-function orderGuard(order: Partial<Order>, isAdd: boolean, cache: EntityCache): Partial<Order> {
+function orderGuard(
+  order: Partial<Order>,
+  isAdd: boolean,
+  cache: EntityCache
+): Partial<Order> {
   // Allow only the properties the client may save
   const { id, customerId, memo, orderDate } = order;
   if (isAdd) {
-    const bad = isAdd && null == cache.customers.find(c => c.id === customerId);
+    const bad =
+      isAdd && null == cache.customers.find((c) => c.id === customerId);
     if (bad) {
-      throw new Error(`Order.customerId (${customerId}) not found in cached customers`);
+      throw new Error(
+        `Order.customerId (${customerId}) not found in cached customers`
+      );
     }
     return { id, customerId, memo, orderDate };
   } else {

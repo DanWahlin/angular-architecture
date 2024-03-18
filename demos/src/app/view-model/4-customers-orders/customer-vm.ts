@@ -25,7 +25,10 @@ export class CustomerVm {
   /** Continually updating observable of this customer's order summaries */
   orderSummaries$?: Observable<OrderSummaryVm[]>;
 
-  static create(customer: Partial<Customer> = {}, orderSummaries$?: Observable<OrderSummaryVm[]>): CustomerVm {
+  static create(
+    customer: Partial<Customer> = {},
+    orderSummaries$?: Observable<OrderSummaryVm[]>
+  ): CustomerVm {
     const vm = Object.assign(new CustomerVm(), toCustomer(customer));
     vm.orderSummaries$ = orderSummaries$;
     return vm;
@@ -61,6 +64,13 @@ export class CustomerVm {
  * Missing properties get default values.
  */
 function toCustomer(customer: Partial<Customer>): Partial<Customer> {
-  const { id = 0, first = '', last = '', city = '', birthDate = '', photo = Customer.missingPerson } = customer;
+  const {
+    id = 0,
+    first = '',
+    last = '',
+    city = '',
+    birthDate = '',
+    photo = Customer.missingPerson,
+  } = customer;
   return { id, first, last, city, birthDate, photo };
 }

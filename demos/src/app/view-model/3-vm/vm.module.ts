@@ -14,10 +14,17 @@ const routes: Routes = [{ path: '', component: VmShellComponent }];
 
 /** ViewModel Class Demo - NgModule */
 @NgModule({
-  imports: [CommonModule, FormsModule, SharedModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SharedModule,
+    RouterModule.forChild(routes),
+  ],
   declarations: [
-    VmCustomerDetailsComponent, VmCustomerListComponent,
-    VmContainerComponent, VmShellComponent
-  ]
+    VmCustomerDetailsComponent,
+    VmCustomerListComponent,
+    VmContainerComponent,
+    VmShellComponent,
+  ],
 })
-export class VmModule { }
+export class VmModule {}

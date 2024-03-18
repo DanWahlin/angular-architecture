@@ -47,6 +47,13 @@ export class CustomerVm {
  * Missing properties get default values.
  */
 function toCustomer(customer: Partial<Customer>): Partial<Customer> {
-  const { id = 0, first = '', last = '', city = '', birthDate = '', photo = Customer.missingPerson } = customer;
+  const {
+    id = 0,
+    first = '',
+    last = '',
+    city = '',
+    birthDate = '',
+    photo = Customer.missingPerson,
+  } = customer;
   return { id, first, last, city, birthDate, photo };
 }

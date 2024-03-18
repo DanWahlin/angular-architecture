@@ -9,7 +9,7 @@ export class Product {
       productName: 'New Product ' + id,
       price: 0,
       ...product,
-      id
+      id,
     });
     return newProduct;
   }

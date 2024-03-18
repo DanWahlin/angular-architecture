@@ -645,13 +645,6 @@ Create a new component named **header** (using **ng g c header**) and perform th
 - Write the value of **cartItemsCount** out in the component’s template using the **{{ }}** interpolation binding.
 
 <course-item
-  type="Note"
-  title="">
-If you prefer you can use SubSink to handle unsubscribing. Details about SubSink can be found at [https://github.com/wardbell/subsink#readme](https://github.com/wardbell/subsink#readme).
-
-</course-item>
-
-<course-item
   type="Hint"
   title="HeaderComponent Code">
 Here's the final code for the HeaderComponent.

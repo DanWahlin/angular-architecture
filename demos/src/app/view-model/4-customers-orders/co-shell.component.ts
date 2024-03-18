@@ -19,9 +19,12 @@ import { Component } from '@angular/core';
           <code>customers -> orders -> line-items -> products</code>.
         </li>
         <li><b>ViewService</b> creates and manages ViewModels.</li>
-        <li>Container component sticks to coordinating presenters, delegating to the <i>ViewService</i>.</li>
+        <li>
+          Container component sticks to coordinating presenters, delegating to
+          the <i>ViewService</i>.
+        </li>
       </ul>
     </section>
-  `
+  `,
 })
 export class CustomersOrdersShellComponent {}
