@@ -1,6 +1,6 @@
 # Angular Architecture
 
-This code sample demonstrates different Angular Architecture concepts. It's used in the Angular Architecture and Best Practices video course on Pluralsight (https://www.pluralsight.com/courses/angular-architecture-best-practices) and in the Angular Architecture and Best Practices instructor-led training course (https://codewithdan.com/products/angular-architecture). 
+This code sample demonstrates different Angular Architecture concepts. It's used in the Angular Architecture and Best Practices video course on Pluralsight (https://www.pluralsight.com/courses/angular-architecture-best-practices) and in the Angular Architecture and Best Practices instructor-led training course (https://codewithdan.com/products/angular-architecture).
 
 ## Running the Application
 
@@ -15,7 +15,11 @@ This code sample demonstrates different Angular Architecture concepts. It's used
 1. Cloning - Run the project in the `cloning` folder
 1. Input/Output Properties - Run the project in the `input-output-demo` project
 1. Shared Library - Run the project in the `shared-library-example` project
-1. State Management - Open the `state-management` folder and run the NgRx, ngrx-data, or Observable Store projects
+1. State Management - Open the `state-management` folder and run any of he demos:
+   - DIY Store - Start here with a simple "do it yourself" store with subjects and observables
+   - NgRx
+   - ngrx-data
+   - Observable Store
 
 ## The Angular JumpStart Application
 
