@@ -7,7 +7,6 @@ import { routes } from './routes';
 import { CoreModule } from './core/core.module';
 import { CommunicationModule } from './communication/communication.module';
 import { ViewModelModule } from './view-model/view-model.module';
-import { ComponentInheritanceModule } from './component-inheritance/component-inheritance.module';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot(routes),
     CommunicationModule,
     ViewModelModule,
-    ComponentInheritanceModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

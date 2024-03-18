@@ -3,6 +3,14 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/planning' },
   {
+    path: 'component-inheritance',
+    loadComponent: () =>
+      import('./component-inheritance/component-inheritance.component').then(
+        (m) => m.ComponentInheritanceComponent
+      ),
+  },
+
+  {
     path: 'features-modules',
     loadChildren: () =>
       import('./features-modules/features-modules.module').then(
