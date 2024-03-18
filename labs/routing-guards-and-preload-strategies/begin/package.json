@@ -24,7 +24,6 @@
     "@angular/router": "17.2.4",
     "angular-in-memory-web-api": "^0.16.0",
     "rxjs": "^6.6.3",
-    "subsink": "^0.1.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.14.4"
   },

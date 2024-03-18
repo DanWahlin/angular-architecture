@@ -2,23 +2,24 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Customer } from '../shared/interfaces';
 import { DataService } from '../core/services/data.service';
-import { SubSink } from 'subsink';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-communication',
-  templateUrl: './communication.component.html'
+  templateUrl: './communication.component.html',
 })
 export class CommunicationComponent implements OnInit, OnDestroy {
-
   customers: Customer[] = [];
   customer!: Customer;
-  private subs = new SubSink();
-
-  constructor(private dataService: DataService) { }
+  subs = new Subscription();
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.subs.sink = this.dataService.getCustomers()
-        .subscribe((custs: Customer[]) => this.customers = custs);
+    this.subs.add(
+      this.dataService
+        .getCustomers()
+        .subscribe((custs: Customer[]) => (this.customers = custs))
+    );
   }
 
   selected(cust: Customer) {
@@ -26,17 +27,18 @@ export class CommunicationComponent implements OnInit, OnDestroy {
   }
 
   addCustomerPush() {
-    this.dataService.addCustomer()
-        .subscribe((custs: Customer[]) => this.customers = custs);
+    this.dataService
+      .addCustomer()
+      .subscribe((custs: Customer[]) => (this.customers = custs));
   }
 
   addCustomerClone() {
-    this.dataService.addCustomerClone()
-        .subscribe((custs: Customer[]) => this.customers = custs);
+    this.dataService
+      .addCustomerClone()
+      .subscribe((custs: Customer[]) => (this.customers = custs));
   }
 
   ngOnDestroy() {
     this.subs.unsubscribe();
   }
-
 }
