@@ -1,24 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
-  from, forkJoin, Observable, of, combineLatest,
-  concatMap, catchError, map, mergeMap, switchMap, toArray
+  from,
+  forkJoin,
+  Observable,
+  of,
+  combineLatest,
+  concatMap,
+  catchError,
+  map,
+  mergeMap,
+  switchMap,
+  toArray,
 } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class HttpClientRxJSService {
-
   baseUrl = 'https://swapi.dev/api/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   /** Get Observable of characters with matching name */
   getCharacterByName(name: string): Observable<Character[]> {
     return name
       ? this.http.get(this.baseUrl + 'people/?search=' + name).pipe(
-        map((res: any) => res.results),
-        catchError(() => of([]))
-      )
+          map((res: any) => res.results),
+          catchError(() => of([]))
+        )
       : of([]);
   }
 
@@ -27,26 +35,29 @@ export class HttpClientRxJSService {
    */
   private getCharacters(): Observable<Character[]> {
     const url = this.baseUrl + 'people/';
-    return this.http.get<{ results: Character[] }>(url).pipe(
-      map(res => res.results.sort(byName)),
-    );
+    return this.http
+      .get<{ results: Character[] }>(url)
+      .pipe(map((res) => res.results.sort(byName)));
   }
 
   /** Get Observable of all Star Wars planets */
   private getPlanets(): Observable<Planet[]> {
     const url = this.baseUrl + 'planets/';
-    return this.http.get<{ results: Planet[] }>(url).pipe(
-      map(res => res.results.sort(byName)),
-    );
+    return this.http
+      .get<{ results: Planet[] }>(url)
+      .pipe(map((res) => res.results.sort(byName)));
   }
 
   /** Get Observable of Characters and Planets at the same time, using forkJoin */
-  getCharactersAndPlanets(): Observable<{ characters: Character[], planets: Planet[] }> {
+  getCharactersAndPlanets(): Observable<{
+    characters: Character[];
+    planets: Planet[];
+  }> {
     // forkJoin can take an object of observables;
     // emits object of last values when all are complete
     return forkJoin({
       characters: this.getCharacters(),
-      planets: this.getPlanets()
+      planets: this.getPlanets(),
     });
   }
 
@@ -66,9 +77,9 @@ export class HttpClientRxJSService {
     return this.getCharacters().pipe(
       // from() converts Character array to observable of each Character in that array
       // [bob, joe, sally] becomes observable that emits bob, then joe, then sally
-      concatMap(characters => from(characters)),
+      concatMap((characters) => from(characters)),
 
-      concatMap(character => this.updateCharacterWithPlanet(character)),
+      concatMap((character) => this.updateCharacterWithPlanet(character)),
 
       toArray() // collects all mapped observable emissions into an array, then completes
     );
@@ -89,9 +100,9 @@ export class HttpClientRxJSService {
     return this.getCharacters().pipe(
       // from() converts Character array to observable of each Character in that array
       // [bob, joe, sally] becomes observable that emits bob, then joe, then sally
-      concatMap(characters => from(characters)),
+      concatMap((characters) => from(characters)),
 
-      mergeMap(character => this.updateCharacterWithPlanet(character)),
+      mergeMap((character) => this.updateCharacterWithPlanet(character)),
 
       toArray() // collects all mapped observable emissions into an array, then completes
     );
@@ -105,14 +116,13 @@ export class HttpClientRxJSService {
    */
   getCharactersWithHomePlanets_switchMap_FAIL(): Observable<Character[]> {
     return this.getCharacters().pipe(
-
       // CONFUSING! SwitchMap implies that source emits multiple times; never true here.
-      switchMap(characters => from(characters)),
+      switchMap((characters) => from(characters)),
 
       // DISASTER! Source observable emits synchronously,
       // discarding the inner observables before they can fetch planets
       // See all the canceled requests in the Network tab.
-      switchMap(character => this.updateCharacterWithPlanet(character)),
+      switchMap((character) => this.updateCharacterWithPlanet(character)),
 
       toArray() // collects all mapped observable emissions into an array, then completes
     );
@@ -128,14 +138,13 @@ export class HttpClientRxJSService {
   getCharactersWithHomePlanets_forkJoin(): Observable<Character[]> {
     // forkJoin, like `Promise.all()`, can take an array of observables;
     //  emits array of last values when all are complete
-    return forkJoin([
-      this.getCharacters(),
-      this.getPlanets()
-    ]).pipe(
+    return forkJoin([this.getCharacters(), this.getPlanets()]).pipe(
       map(([characters, planets]) => {
         // Add homePlanet to each character
-        return characters.map(character => {
-          character.homePlanet = planets.find(p => p.url === character.homeworld);
+        return characters.map((character) => {
+          character.homePlanet = planets.find(
+            (p) => p.url === character.homeworld
+          );
           return character;
         });
       })
@@ -148,14 +157,13 @@ export class HttpClientRxJSService {
    * Included to conform to the slides.
    */
   getCharactersWithHomePlanets_combineLatest(): Observable<Character[]> {
-    return combineLatest([
-      this.getCharacters(),
-      this.getPlanets()
-    ]).pipe(
+    return combineLatest([this.getCharacters(), this.getPlanets()]).pipe(
       map(([characters, planets]) => {
         // Add homePlanet to each character
-        return characters.map(character => {
-          character.homePlanet = planets.find(p => p.url === character.homeworld);
+        return characters.map((character) => {
+          character.homePlanet = planets.find(
+            (p) => p.url === character.homeworld
+          );
           return character;
         });
       })
@@ -163,9 +171,11 @@ export class HttpClientRxJSService {
   }
 
   /** Returns observable of the Character with its home planet set after getting planet from API. */
-  private updateCharacterWithPlanet(character: Character): Observable<Character> {
+  private updateCharacterWithPlanet(
+    character: Character
+  ): Observable<Character> {
     return this.http.get<Planet>(character.homeworld).pipe(
-      map(planet => {
+      map((planet) => {
         character.homePlanet = planet;
         return character;
       })
@@ -175,16 +185,18 @@ export class HttpClientRxJSService {
   /** Get Observable of Luke Skywalker and his home planet */
   getLukeWithHomePlanet(): Observable<Character> {
     const url = this.baseUrl + 'people/1/'; // Luke Skywalker
-    return this.http.get<Character>(url).pipe(
-      concatMap(character => this.updateCharacterWithPlanet(character))
-    );
+    return this.http
+      .get<Character>(url)
+      .pipe(
+        concatMap((character) => this.updateCharacterWithPlanet(character))
+      );
   }
 
   /** Get Observable of character's homeworld planet */
   // Why? Not called.
   private getCharacterHomeworld(characterUrl: string): Observable<Planet> {
     return this.http.get<Character>(characterUrl).pipe(
-      concatMap(character => {
+      concatMap((character) => {
         return this.http.get<Planet>(character.homeworld);
       })
     );
@@ -195,7 +207,6 @@ export class HttpClientRxJSService {
   private convertHttps(url: string) {
     return url ? url.replace('http://', 'https://') : url;
   }
-
 }
 
 /** Compare function for sorting by name */
