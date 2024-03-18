@@ -5,9 +5,14 @@ import { DatePipe } from '@angular/common';
   // tslint:disable-next-line: component-selector
   selector: 'input-date',
   standalone: true,
-  imports: [ DatePipe ],
-  template: `<input type="date" [value]="date | date:'yyyy-MM-dd'" (change)="date = $event.target.value"
-  [min]="min" [max]="max">`
+  imports: [DatePipe],
+  template: `<input
+    type="date"
+    [value]="date | date : 'yyyy-MM-dd'"
+    (change)="date = $event.target.value"
+    [min]="min"
+    [max]="max"
+  />`,
 })
 export class InputDateComponent {
   @Input() model: { [key: string]: any };

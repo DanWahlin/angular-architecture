@@ -5,7 +5,6 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data-service/in-memory-data.service';
 
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideProtractorTestingSupport(),
@@ -14,10 +13,12 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(/* withFetch()*/),
 
     // Fakes a backend data server. Never use in production apps.
-    importProvidersFrom(InMemoryWebApiModule.forRoot(InMemoryDataService, {
-      dataEncapsulation: false,
-      delay: 250,
-      passThruUnknownUrl: true
-    })),
+    importProvidersFrom(
+      InMemoryWebApiModule.forRoot(InMemoryDataService, {
+        dataEncapsulation: false,
+        delay: 250,
+        passThruUnknownUrl: true,
+      })
+    ),
   ],
 };

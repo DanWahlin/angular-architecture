@@ -6,15 +6,21 @@ import { Pipe, PipeTransform } from '@angular/core';
  * Remove the "pure: false" and see what happens!
  */
 @Pipe({
-  name: 'fullname', pure: false ,
-  standalone: true
+  name: 'fullname',
+  pure: false,
+  standalone: true,
 })
 export class FullNamePipe implements PipeTransform {
-  transform(person: { first?: string, last?: string }): string {
+  transform(person: { first?: string; last?: string }): string {
     return calcFullName(person);
   }
 }
 
-export function calcFullName(person: { first?: string, last?: string }): string {
-  return person ? ((person.first || '') + ' ' + (person.last || '')).trim() : '';
+export function calcFullName(person: {
+  first?: string;
+  last?: string;
+}): string {
+  return person
+    ? ((person.first || '') + ' ' + (person.last || '')).trim()
+    : '';
 }

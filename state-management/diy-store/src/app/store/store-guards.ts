@@ -18,7 +18,11 @@ export type OperationType = 'add' | 'update' | undefined;
  * @param [cache] an instance of the store cache holding the latest state of all cached collections.
  * @returns The entity, possibly modified by the guard.
  */
-export type StoreGuardFn = (entity: {}, op?: OperationType, cache?: StoreCache) => {};
+export type StoreGuardFn = (
+  entity: {},
+  op?: OperationType,
+  cache?: StoreCache
+) => {};
 
 /** An object with guard functions for each collection in the cache. */
 export const storeGuards: { [key: string]: StoreGuardFn } = {
@@ -37,18 +41,24 @@ function customerGuard(customer: Partial<Customer>): Partial<Customer> {
 }
 
 /** Ensure Order has only allowed props and the customerId links to a Customer in cache. */
-function orderGuard(order: Partial<Order>, op: OperationType, cache?: StoreCache): Partial<Order> {
+function orderGuard(
+  order: Partial<Order>,
+  op: OperationType,
+  cache?: StoreCache
+): Partial<Order> {
   // Allow only the properties the client may save
   const { id, customerId, orderItems } = order;
   if (op === 'add') {
-    if (null == cache?.customers.find(c => c.id === customerId)) {
-      throw new Error(`Order.customerId (${customerId}) not found in cached customers`);
+    if (null == cache?.customers.find((c) => c.id === customerId)) {
+      throw new Error(
+        `Order.customerId (${customerId}) not found in cached customers`
+      );
     }
     return { id, customerId, orderItems };
   } else if (op === 'update') {
     // orderItems is unusual in being an array rather than a simple value;
     // clone it for safety.
-    const itemClones = structuredClone(orderItems)
+    const itemClones = structuredClone(orderItems);
     return { id, orderItems: itemClones }; // can't update the customerId
   } else {
     throw new Error(`Unknown operation type: ${op}`);

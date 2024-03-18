@@ -17,32 +17,40 @@ import { CustomerOrdersDataService } from '../services';
   imports: [AsyncPipe, CustomerDetailsComponent, CustomerListComponent],
   styleUrls: ['./customer.css'],
   template: `
-  <button (click)="addCustomer()" class="btn btn-primary button-row">Add Customer</button>
+    <button (click)="addCustomer()" class="btn btn-primary button-row">
+      Add Customer
+    </button>
 
-  <!-- Binds to "showDeleted" as a checkbox and toggles it when changed -->
-  <div (click)="toggleShowDeleted()"><input type="checkbox" [checked]="showDeleted"> Show Deleted</div>
+    <!-- Binds to "showDeleted" as a checkbox and toggles it when changed -->
+    <div (click)="toggleShowDeleted()">
+      <input type="checkbox" [checked]="showDeleted" /> Show Deleted
+    </div>
 
-  @if(customers$ | async; as customers) {
+    @if(customers$ | async; as customers) {
     <div class="row">
-
       <!-- Customer List -->
       <div class="col-md-2">
-        <app-customer-list [customers]="customers" (selected)="selected($event)"/>
+        <app-customer-list
+          [customers]="customers"
+          (selected)="selected($event)"
+        />
       </div>
 
       <!-- Customer Detail -->
       @if(selectedVm) {
-        <div class="col-md-5">
-          <app-customer-details [vm]="selectedVm" (cancel)="cancel()" (save)="save($event)"/>
-        </div>
+      <div class="col-md-5">
+        <app-customer-details
+          [vm]="selectedVm"
+          (cancel)="cancel()"
+          (save)="save($event)"
+        />
+      </div>
       }
-
     </div>
-  }
+    }
   `,
 })
 export class CustomerContainerComponent {
-
   /** List of customers to display. The Customer model objects, not ViewModels! */
   customers$: Observable<Customer[]>;
   /** ViewModel of selected customer, displayed in Detail component */
@@ -56,11 +64,11 @@ export class CustomerContainerComponent {
     // Updates when any customer changes or when showDeleted flag changes
     this.customers$ = combineLatest([
       this.dataService.customers$,
-      this.showDeleted$
+      this.showDeleted$,
     ]).pipe(
       // Filters customers to include or exclude deleted customers based on showDeleted flag.
       map(([customers, showDeleted]) =>
-        customers.filter(customer => showDeleted || !customer.isDeleted)
+        customers.filter((customer) => showDeleted || !customer.isDeleted)
       )
     );
   }
@@ -84,6 +92,6 @@ export class CustomerContainerComponent {
 
   // The toggleShowDeleted method should (a) toggle the flag and (b) refresh the customers$ observable.
   toggleShowDeleted() {
-    this.showDeleted$.next(this.showDeleted = !this.showDeleted);
+    this.showDeleted$.next((this.showDeleted = !this.showDeleted));
   }
 }

@@ -16,5 +16,4 @@ export interface StoreCache {
 export const initialCacheState: StoreCache = {
   customers: [],
   orders: [],
-}
-
+};

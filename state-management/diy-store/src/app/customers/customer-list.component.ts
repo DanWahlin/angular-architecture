@@ -8,18 +8,19 @@ import { FullNamePipe } from '../shared';
   imports: [FullNamePipe],
   styleUrls: ['./customer.css'],
   template: `
-
     <h4>Customers</h4>
 
     <table class="table table-striped nav">
       @for(customer of customers; track customer.id) {
-        <tr (click)="select(customer)">
-          <td><img src="{{customer.photo}}" class="list"> {{ customer | fullname }}</td>
-        </tr>
+      <tr (click)="select(customer)">
+        <td>
+          <img src="{{ customer.photo }}" class="list" />
+          {{ customer | fullname }}
+        </td>
+      </tr>
       }
     </table>
-
-  `
+  `,
 })
 export class CustomerListComponent {
   @Input() customers: Customer[];
