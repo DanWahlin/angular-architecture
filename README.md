@@ -28,16 +28,16 @@ This code sample demonstrates different Angular Architecture concepts. It's used
 
 ## Additional Demos
 
-| Name                    | Description                                                 |
-| ----------------------- | ----------------------------------------------------------- |
-| Cloning                 | Run the project in the `cloning` folder                     |
-| Input/Output Properties | Run the project in the `input-output-demo` project          |
-| Shared Library          | Run the project in the `shared-library-example` project     |
-| State Management        | Open the `state-management` folder and run any of the demos |
-| State - DIY Store | Open the `state-management/diy-store` folder and start here with a simple "do it yourself" store with subjects and observables |
-| State - NgRx | Open the `state-management/ngrx` folder |
-| State - ngrx-data | Open the `state-management/ngrx-data` folder |
-| State - Observable Store | Open the `state-management/observable-store` folder Observable Store library |
+| Name                     | Description                                                                                                                    |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| Cloning                  | Run the project in the `cloning` folder                                                                                        |
+| Input/Output Properties  | Run the project in the `input-output-demo` project                                                                             |
+| Shared Library           | Run the project in the `shared-library-example` project                                                                        |
+| State Management         | Open the `state-management` folder and run any of the demos                                                                    |
+| State - DIY Store        | Open the `state-management/diy-store` folder and start here with a simple "do it yourself" store with subjects and observables |
+| State - NgRx             | Open the `state-management/ngrx` folder                                                                                        |
+| State - ngrx-data        | Open the `state-management/ngrx-data` folder                                                                                   |
+| State - Observable Store | Open the `state-management/observable-store` folder Observable Store library                                                   |
 
 ## The Angular JumpStart Application
 
