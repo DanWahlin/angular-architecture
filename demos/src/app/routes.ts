@@ -9,6 +9,13 @@ export const routes: Routes = [
         (m) => m.ComponentInheritanceComponent
       ),
   },
+  {
+    path: 'communication',
+    loadComponent: () =>
+      import('./communication/communication.component').then(
+        (m) => m.CommunicationComponent
+      ),
+  },
 
   {
     path: 'features-modules',

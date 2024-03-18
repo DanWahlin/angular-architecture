@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { routes } from './routes';
 import { CoreModule } from './core/core.module';
-import { CommunicationModule } from './communication/communication.module';
 import { ViewModelModule } from './view-model/view-model.module';
 import { RouterModule } from '@angular/router';
 
@@ -15,7 +14,6 @@ import { RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     CoreModule,
     RouterModule.forRoot(routes),
-    CommunicationModule,
     ViewModelModule,
   ],
   declarations: [AppComponent],
