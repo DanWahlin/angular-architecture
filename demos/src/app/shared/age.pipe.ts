@@ -2,12 +2,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'age' })
 export class AgePipe implements PipeTransform {
-  transform(birthDate: Date | string ): number | null {
+  transform(birthDate: Date | string): number | null {
     return calcAge(birthDate);
   }
 }
 
-export function calcAge(birthDate: Date | string ): number | null {
+export function calcAge(birthDate: Date | string): number | null {
   if (birthDate == null) {
     return null;
   }

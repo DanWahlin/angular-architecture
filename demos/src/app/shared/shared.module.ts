@@ -7,13 +7,17 @@ import { AgePipe } from './age.pipe';
 import { FullNamePipe } from './fullname.pipe';
 import { InputDateComponent } from './input-date.component';
 
-const declarables = [ AddTaxPipe, AddTaxMemoPipe, AgePipe, FullNamePipe, InputDateComponent ];
+const declarables = [
+  AddTaxPipe,
+  AddTaxMemoPipe,
+  AgePipe,
+  FullNamePipe,
+  InputDateComponent,
+];
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   exports: declarables,
-  declarations: declarables
+  declarations: declarables,
 })
-export class SharedModule { }
+export class SharedModule {}

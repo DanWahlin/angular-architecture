@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'addtax'
+  name: 'addtax',
 })
 export class AddTaxPipe implements PipeTransform {
   transform(price: number): number {
@@ -13,8 +13,7 @@ export class AddTaxPipe implements PipeTransform {
 
   getTotalPrice(price: number) {
     console.log('addtax pipe called');
-    let total = price + (price * .08);
+    let total = price + price * 0.08;
     return total;
   }
-
 }
