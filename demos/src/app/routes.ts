@@ -33,4 +33,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./signals/signals.component').then((m) => m.SignalsComponent),
   },
+  {
+    path: 'structuring-components',
+    loadComponent: () =>
+      import('./structuring-components/structuring-components.component').then(
+        (m) => m.StructuringComponentsComponent
+      ),
+  },
 ];
