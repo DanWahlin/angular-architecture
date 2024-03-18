@@ -29,7 +29,7 @@ import { CustomerOrdersDataService } from '../services';
     @if(customers$ | async; as customers) {
     <div class="row">
       <!-- Customer List -->
-      <div class="col-md-2">
+      <div class="col-md-3">
         <app-customer-list
           [customers]="customers"
           (selected)="selected($event)"
