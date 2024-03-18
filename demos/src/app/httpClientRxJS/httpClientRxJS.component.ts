@@ -18,7 +18,9 @@ import { AsyncPipe, JsonPipe } from '@angular/common';
   standalone: true,
   imports: [AsyncPipe, JsonPipe, ReactiveFormsModule],
   templateUrl: './httpClientRxJS.component.html',
-  styleUrls: ['./httpClientRxJS.component.css'],
+  styles: `
+    p { font-family: Lato;}
+  `,
 })
 export class HttpClientRxJSComponent implements OnInit {
   formGroup!: FormGroup;
