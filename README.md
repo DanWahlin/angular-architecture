@@ -10,16 +10,35 @@ This code sample demonstrates different Angular Architecture concepts. It's used
 
 1. Run `ng serve -o` in the `demos` folder to start the server and launch the app
 
+### Main Demos
+
+| Name                   | Description                                                         |
+| ---------------------- | ------------------------------------------------------------------- |
+| Communication          | Show services and subjects to provide communication for components. |
+|                        |
+| Component Inheritance  | inheriting components                                               |
+| Features Modules       | Example structure with NgModules                                    |
+| Http Client RxJS       | RxJS to combine results with operators                              |
+| Pipes and Functions    | Pipes                                                               |
+| Planning               | Planning tips for your app                                          |
+| Signals                | Simple Signals demo                                                 |
+| Structuring Components | Component presentation with change detection                        |
+| Subjects               | Simple use of each Subject type                                     |
+| View Models            | Progressive examples of where view models are useful                |
+
 ## Additional Demos
 
 1. Cloning - Run the project in the `cloning` folder
 1. Input/Output Properties - Run the project in the `input-output-demo` project
 1. Shared Library - Run the project in the `shared-library-example` project
 1. State Management - Open the `state-management` folder and run any of he demos:
-   - DIY Store - Start here with a simple "do it yourself" store with subjects and observables
-   - NgRx
-   - ngrx-data
-   - Observable Store
+
+   | Name             | Description                                                                   |
+   | ---------------- | ----------------------------------------------------------------------------- |
+   | DIY Store        | Start here with a simple "do it yourself" store with subjects and observables |
+   | NgRx             | NgRx demo                                                                     |
+   | ngrx-data        | NgRx Data demo with model data                                                |
+   | Observable Store | Demo using the Observable Store library                                       |
 
 ## The Angular JumpStart Application
 
