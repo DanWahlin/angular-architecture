@@ -9,7 +9,6 @@ import { StructuringComponentsModule } from './structuring-components/structurin
 import { CoreModule } from './core/core.module';
 import { CommunicationModule } from './communication/communication.module';
 import { ViewModelModule } from './view-model/view-model.module';
-import { PipesFunctionsModule } from './pipes-functions/pipes-functions.module';
 import { SubjectsModule } from './subjects/subjects.module';
 import { ComponentInheritanceModule } from './component-inheritance/component-inheritance.module';
 import { RouterModule } from '@angular/router';
@@ -22,7 +21,6 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot(routes),
     PlanningModule,
     StructuringComponentsModule,
-    PipesFunctionsModule,
     CommunicationModule,
     ViewModelModule,
     SubjectsModule,

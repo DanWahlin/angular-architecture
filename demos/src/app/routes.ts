@@ -17,6 +17,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'pipes-functions',
+    loadComponent: () =>
+      import('./pipes-functions/pipes-functions.component').then(
+        (m) => m.PipesFunctionsComponent
+      ),
+  },
+  {
     path: 'signals',
     loadComponent: () =>
       import('./signals/signals.component').then((m) => m.SignalsComponent),
