@@ -22,8 +22,8 @@ export class CustomersOrdersViewService {
 
   private createCustomerVms$(): Observable<CustomerVm[]> {
     return this.dataService.customers$.pipe(
-      map(customers =>
-        customers.map(customer => {
+      map((customers) =>
+        customers.map((customer) => {
           const watchOrders$ = this.dataService.watchCustomerOrders(customer);
           return CustomerVm.create(customer, watchOrders$);
         })
@@ -31,20 +31,25 @@ export class CustomersOrdersViewService {
     );
   }
 
-  selectedOrderVm(orderId: number, customerVm: CustomerVm | null): Observable<OrderVm> {
+  selectedOrderVm(
+    orderId: number,
+    customerVm: CustomerVm | null
+  ): Observable<OrderVm> {
     if (customerVm) {
-    return this.dataService
-      .getOrderGraphByOrderId(orderId)
-      .pipe(map(orderGraph => createOrderVm(customerVm, orderGraph)));
+      return this.dataService
+        .getOrderGraphByOrderId(orderId)
+        .pipe(map((orderGraph) => createOrderVm(customerVm, orderGraph)));
     } else {
       return of();
-    } 
+    }
   }
 
   saveCustomer(customerVm: CustomerVm | null) {
     if (customerVm) {
       const customer = customerVm.toCustomer();
-      customer.id == 0 ? this.dataService.addCustomer(customer) : this.dataService.updateCustomer(customer);
+      customer.id == 0
+        ? this.dataService.addCustomer(customer)
+        : this.dataService.updateCustomer(customer);
     }
   }
 
@@ -52,7 +57,7 @@ export class CustomersOrdersViewService {
   saveOrder(orderVm: OrderVm) {
     const { orderId, orderDate, memo, lineItems } = orderVm;
     this.dataService.updateOrder({ id: orderId, orderDate, memo });
-    lineItems.forEach(item => {
+    lineItems.forEach((item) => {
       const { id, quantity } = item;
       this.dataService.updateLineItem({ id, quantity });
     });

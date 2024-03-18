@@ -14,11 +14,14 @@ import { Component } from '@angular/core';
     <section id="notes">
       <h4>Notes:</h4>
       <ul>
-        <li>Project the model into a ViewModel class with just what we need in the way we want it.</li>
+        <li>
+          Project the model into a ViewModel class with just what we need in the
+          way we want it.
+        </li>
         <li>ViewModel class holds much of the presentation logic.</li>
         <li>ViewModel class is super easy to unit test.</li>
       </ul>
     </section>
-  `
+  `,
 })
 export class VmShellComponent {}

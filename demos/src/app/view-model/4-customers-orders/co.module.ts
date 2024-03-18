@@ -15,13 +15,18 @@ const routes: Routes = [{ path: '', component: CustomersOrdersShellComponent }];
 
 /** ViewModel Class Demo - NgModule */
 @NgModule({
-  imports: [CommonModule, FormsModule, SharedModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SharedModule,
+    RouterModule.forChild(routes),
+  ],
   declarations: [
     CustomerDetailsComponent,
     CustomerListComponent,
     OrderDetailsComponent,
     CustomersOrdersContainerComponent,
-    CustomersOrdersShellComponent
-  ]
+    CustomersOrdersShellComponent,
+  ],
 })
 export class CustomersOrdersModule {}

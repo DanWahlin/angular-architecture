@@ -3,7 +3,16 @@ import { Injectable } from '@angular/core';
 import { of, ReplaySubject, Observable } from 'rxjs';
 import { concatMap, first, map } from 'rxjs/operators';
 
-import { addEntity, collectionSnapshot, updateEntity, Customer, EntityCache, LineItem, Order, Product } from '../model';
+import {
+  addEntity,
+  collectionSnapshot,
+  updateEntity,
+  Customer,
+  EntityCache,
+  LineItem,
+  Order,
+  Product,
+} from '../model';
 
 import { getNewCache } from './data';
 import { OrderGraph, ProductMap } from './order-graph';
@@ -20,10 +29,10 @@ export class CustomerOrdersDataService {
   cache$ = this.cacheStore.asObservable();
 
   // Observable collection selectors. They emit every time the collection changes.
-  customers$ = this.cache$.pipe(map(c => c.customers));
-  lineItems$ = this.cache$.pipe(map(l => l.lineItems));
-  orders$ = this.cache$.pipe(map(o => o.orders));
-  products$ = this.cache$.pipe(map(p => p.products));
+  customers$ = this.cache$.pipe(map((c) => c.customers));
+  lineItems$ = this.cache$.pipe(map((l) => l.lineItems));
+  orders$ = this.cache$.pipe(map((o) => o.orders));
+  products$ = this.cache$.pipe(map((p) => p.products));
 
   // Collection snapshots of the latest state of the collection. For those who don't like Observables :-)
   get customers() {
@@ -55,7 +64,7 @@ export class CustomerOrdersDataService {
     // get from cache but pretend to get it from the server
     return this.customers$.pipe(
       first(),
-      map(customers => customers.find(o => o.id === customerId))
+      map((customers) => customers.find((o) => o.id === customerId))
     );
   }
 
@@ -67,8 +76,8 @@ export class CustomerOrdersDataService {
     return this.orders$.pipe(
       first(),
       // Get the order for this orderId
-      map(orders => orders.find(o => o.id === orderId)),
-      concatMap(order => this.getOrderGraphForOrder(order!))
+      map((orders) => orders.find((o) => o.id === orderId)),
+      concatMap((order) => this.getOrderGraphForOrder(order!))
     );
   }
 
@@ -78,18 +87,24 @@ export class CustomerOrdersDataService {
    */
   getOrderGraphForOrder(order: Order): Observable<OrderGraph> {
     if (order == null) {
-      return of({ order, lineItems: [] as LineItem[], products: {} as ProductMap });
+      return of({
+        order,
+        lineItems: [] as LineItem[],
+        products: {} as ProductMap,
+      });
     }
 
     // Terminating observable of the order's lineItems
     const lineItems$ = this.lineItems$.pipe(
       first(),
-      map(items => items.filter(item => item.orderId === order.id))
+      map((items) => items.filter((item) => item.orderId === order.id))
     );
 
     return lineItems$.pipe(
-      concatMap(lineItems =>
-        this.getLineItemProducts(lineItems).pipe(map(products => ({ order, lineItems, products })))
+      concatMap((lineItems) =>
+        this.getLineItemProducts(lineItems).pipe(
+          map((products) => ({ order, lineItems, products }))
+        )
       )
     );
   }
@@ -100,7 +115,10 @@ export class CustomerOrdersDataService {
    */
   private getLineItemProducts = (lineItems: LineItem[]) => {
     // product ids referenced by line items
-    const productIds = lineItems && lineItems.length > 0 ? lineItems.map(item => item.productId) : [];
+    const productIds =
+      lineItems && lineItems.length > 0
+        ? lineItems.map((item) => item.productId)
+        : [];
 
     return this.getProductMap(productIds);
   };
@@ -114,10 +132,10 @@ export class CustomerOrdersDataService {
       return this.products$.pipe(
         first(),
         // the ordered products referenced in the line items
-        map(products => products.filter(p => productIds.includes(p.id))),
+        map((products) => products.filter((p) => productIds.includes(p.id))),
 
         // convert ordered products array into a product hash map
-        map(orderedProducts =>
+        map((orderedProducts) =>
           orderedProducts.reduce((acc, product) => {
             acc[product.id] = product;
             return acc;
@@ -134,9 +152,12 @@ export class CustomerOrdersDataService {
    * @returns a non-terminating observable of Orders. Must unsubscribe!
    */
   watchCustomerOrders(customerOrId: Customer | number): Observable<Order[]> {
-    const customerId = typeof customerOrId === 'number' ? customerOrId : customerOrId.id;
+    const customerId =
+      typeof customerOrId === 'number' ? customerOrId : customerOrId.id;
     // get from cache but pretend to get from the server
-    return this.orders$.pipe(map(orders => orders.filter(o => o.customerId === customerId)));
+    return this.orders$.pipe(
+      map((orders) => orders.filter((o) => o.customerId === customerId))
+    );
   }
 
   // #endregion get methods
@@ -148,7 +169,11 @@ export class CustomerOrdersDataService {
     return addEntity<Customer>(newCustomer, 'customers', this.cacheStore);
   }
 
-  addLineItem(lineItem: Partial<LineItem> = {}, order?: Order, product?: Product): LineItem {
+  addLineItem(
+    lineItem: Partial<LineItem> = {},
+    order?: Order,
+    product?: Product
+  ): LineItem {
     const id = this.nextId++;
     const newLineItem = LineItem.create(id, lineItem, order, product);
     return addEntity<LineItem>(newLineItem, 'lineItems', this.cacheStore);
@@ -161,11 +186,19 @@ export class CustomerOrdersDataService {
   }
 
   updateCustomer(customer: Partial<Customer>): Customer {
-    return updateEntity<Customer>(customer as Customer, 'customers', this.cacheStore);
+    return updateEntity<Customer>(
+      customer as Customer,
+      'customers',
+      this.cacheStore
+    );
   }
 
   updateLineItem(lineItem: Partial<LineItem>): LineItem {
-    return updateEntity<LineItem>(lineItem as LineItem, 'lineItems', this.cacheStore);
+    return updateEntity<LineItem>(
+      lineItem as LineItem,
+      'lineItems',
+      this.cacheStore
+    );
   }
 
   updateOrder(order: Partial<Order>): Order {

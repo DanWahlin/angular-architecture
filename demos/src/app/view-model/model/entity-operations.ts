@@ -7,7 +7,13 @@
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { CacheStore, cacheSnapShot, collectionSnapshot, EntityCache, EntityType } from './entity-cache';
+import {
+  CacheStore,
+  cacheSnapShot,
+  collectionSnapshot,
+  EntityCache,
+  EntityType,
+} from './entity-cache';
 import { modelGuards } from './model-guards';
 
 /**
@@ -22,13 +28,13 @@ export function addEntity<T extends EntityType>(
   cacheStore: CacheStore
 ): T {
   const newEntity = addEntityGuard(entity, collectionName, cacheStore);
-  cacheStore.pipe(first()).subscribe(cache => {
-    const coll = (cache[collectionName] as any) as T[];
+  cacheStore.pipe(first()).subscribe((cache) => {
+    const coll = cache[collectionName] as any as T[];
 
     // Add-one-to-cache reducer
     cache = {
       ...cache,
-      [collectionName]: coll.concat(newEntity as T)
+      [collectionName]: coll.concat(newEntity as T),
     };
 
     cacheStore.next(cache);
@@ -49,13 +55,15 @@ export function updateEntity<T extends EntityType>(
 ): T {
   const id = entity.id;
   const update = updateEntityGuard(entity, collectionName, cacheStore);
-  cacheStore.pipe(first()).subscribe(cache => {
-    const coll = (cache[collectionName] as any) as T[];
+  cacheStore.pipe(first()).subscribe((cache) => {
+    const coll = cache[collectionName] as any as T[];
 
     // Update-one-in-cache reducer
     cache = {
       ...cache,
-      [collectionName]: coll.map(e => (e.id === id ? (entity = { ...e, ...update }) : e))
+      [collectionName]: coll.map((e) =>
+        e.id === id ? (entity = { ...e, ...update }) : e
+      ),
     };
 
     cacheStore.next(cache);
@@ -74,12 +82,20 @@ function addEntityGuard<T extends { id: number }>(
 ): T {
   const id = entity.id;
   if (id == null) {
-    throw new Error(`Cannot add a new entity to ${collectionName} without an id.`);
+    throw new Error(
+      `Cannot add a new entity to ${collectionName} without an id.`
+    );
   }
 
-  const bad = null != collectionSnapshot(collectionName, cache$).find((e: { id: number }) => e.id === id);
+  const bad =
+    null !=
+    collectionSnapshot(collectionName, cache$).find(
+      (e: { id: number }) => e.id === id
+    );
   if (bad) {
-    throw new Error(`Cannot add entity with id:${id} because it is already in the ${collectionName} collection.`);
+    throw new Error(
+      `Cannot add entity with id:${id} because it is already in the ${collectionName} collection.`
+    );
   }
   const cache = cacheSnapShot(cache$);
   return modelGuards[collectionName](entity, true, cache) as T;
@@ -96,9 +112,15 @@ function updateEntityGuard<T extends { id: number }>(
 ): T {
   const id = entity.id;
   if (id == null) {
-    throw new Error(`Cannot update an new entity to ${collectionName} without an id.`);
+    throw new Error(
+      `Cannot update an new entity to ${collectionName} without an id.`
+    );
   }
-  const bad = null == collectionSnapshot(collectionName, cache$).find((e: { id: number }) => e.id === id);
+  const bad =
+    null ==
+    collectionSnapshot(collectionName, cache$).find(
+      (e: { id: number }) => e.id === id
+    );
   if (bad) {
     throw new Error(
       `Cannot update and entity with id:${id} because it cannot be found in the ${collectionName} collection.`

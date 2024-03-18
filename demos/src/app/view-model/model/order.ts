@@ -6,14 +6,18 @@ export class Order {
   memo = '';
   orderDate: Date = new Date();
 
-  static create(id: number, order: Partial<Order> = {}, customer?: Partial<Customer>) {
+  static create(
+    id: number,
+    order: Partial<Order> = {},
+    customer?: Partial<Customer>
+  ) {
     // Defaults
     const newOrder: Order = Object.assign(new Order(), {
       // Defaults
       customerId: customer ? customer.id : 0,
       orderDate: new Date(),
       ...order,
-      id
+      id,
     });
     return newOrder;
   }
