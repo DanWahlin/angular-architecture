@@ -17,6 +17,11 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'planning',
+    loadComponent: () =>
+      import('./planning/planning.component').then((m) => m.PlanningComponent),
+  },
+  {
     path: 'pipes-functions',
     loadComponent: () =>
       import('./pipes-functions/pipes-functions.component').then(
