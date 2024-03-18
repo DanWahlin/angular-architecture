@@ -12,7 +12,6 @@ import { ViewModelModule } from './view-model/view-model.module';
 import { PipesFunctionsModule } from './pipes-functions/pipes-functions.module';
 import { SubjectsModule } from './subjects/subjects.module';
 import { ComponentInheritanceModule } from './component-inheritance/component-inheritance.module';
-import { HttpClientRxJSModule } from './httpClientRxJS/httpClientRxJS.module';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { RouterModule } from '@angular/router';
     ViewModelModule,
     SubjectsModule,
     ComponentInheritanceModule,
-    HttpClientRxJSModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

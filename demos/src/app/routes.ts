@@ -10,10 +10,15 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'httpclient-rxjs',
+    loadComponent: () =>
+      import('./httpClientRxJS/httpClientRxJS.component').then(
+        (m) => m.HttpClientRxJSComponent
+      ),
+  },
+  {
     path: 'signals',
     loadComponent: () =>
-      import('./signals/signals.component').then(
-        m => m.SignalsComponent
-      )
+      import('./signals/signals.component').then((m) => m.SignalsComponent),
   },
 ];
