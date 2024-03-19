@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Villains</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ul class="villains">
+      @for(villain of villains; track villain.id){
+        <li class="item-container">
+          <button
+            mat-button
+            mat-suffix
+            mat-icon-button
+            color="accent"
+            class="delete-button"
+            aria-label="Delete"
+            (click)="deleteVillain(villain)"
+            matTooltip="Delete the villain"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          <div
+            class="selectable-item"
+            [class.selected]="villain === selectedVillain"
+          >
+            <div class="badge">{{ villain.id }}</div>
+            <div class="item-text" (click)="onSelect(villain)">
+              <div class="name">{{ villain.name }}</div>
+              <div class="saying">{{ villain.saying }}</div>
+            </div>
+          </div>
+        </li>
+      }
+    </ul>
+  </mat-card-content>
+</mat-card>
